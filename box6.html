@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OFFERTA: Un Viaggio di Sapori Eleganti  | Più Siamo, Meno Paghiamo!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* RESET E STILI BASE */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f2f7fb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(to right, #00b4db, #0083b0);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 2.5rem;
+      margin: 0 0 10px 0;
+    }
+
+    .back-home {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: white;
+      color: #0083b0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+
+    .back-home:hover {
+      background: #f0f0f0;
+      transform: translateX(-3px);
+    }
+
+    .countdown {
+      background: #2c3e50;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+      margin: 20px auto;
+      max-width: 300px;
+    }
+
+    .countdown span {
+      color: #f1c40f;
+    }
+
+    /* CONTAINER PRINCIPALE */
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    /* GALLERIA IMMAGINI */
+    .image-gallery {
+      width: 100%;
+      padding: 20px;
+      position: relative;
+    }
+
+    .main-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f8f9fa;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 400px;
+    }
+
+    .main-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .image-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(231, 76, 60, 0.9);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .thumbnails {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .thumbnails img {
+      width: 100px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.3s;
+    }
+
+    .thumbnails img:hover,
+    .thumbnails img.active {
+      opacity: 1;
+      transform: scale(1.05);
+      border: 2px solid #00b894;
+    }
+
+    .thumbnail-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #f1c40f;
+      color: #000;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* CONTENUTO */
+    .content {
+      padding: 25px 20px;
+    }
+
+    .content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #0083b0;
+      text-align: center;
+    }
+
+    .price-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .current-price {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+
+    .original-price {
+      font-size: 1.5rem;
+      text-decoration: line-through;
+      color: #95a5a6;
+      margin-left: 10px;
+    }
+
+    .discount-badge {
+      display: inline-block;
+      background: #f1c40f;
+      color: #000;
+      padding: 3px 10px;
+      border-radius: 15px;
+      font-weight: bold;
+      margin-left: 10px;
+      font-size: 0.9rem;
+    }
+
+    .content p {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    /* SEZIONI */
+    .details {
+      background: #fff8e1;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid #f1c40f;
+    }
+
+    .details h3 {
+      margin-top: 0;
+      color: #0077a3;
+      font-size: 1.3rem;
+    }
+
+    .details ul {
+      padding-left: 20px;
+    }
+
+    .details li {
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .details li i {
+      color: #e74c3c;
+      margin-right: 8px;
+    }
+
+    .benefits {
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid #2ecc71;
+    }
+
+    .participants-message {
+      background: #e74c3c;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 20px 0;
+    }
+
+    /* SOCIAL E TESTIMONIAL */
+    .social-proof {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .social-proof img {
+      height: 40px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .social-proof img:hover {
+      opacity: 1;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border-top: 3px solid #e74c3c;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-author {
+      font-weight: bold;
+      color: #e74c3c;
+      text-align: right;
+    }
+
+    .stars {
+      color: #f1c40f;
+      margin-bottom: 5px;
+    }
+
+    /* PULSANTE */
+    .button-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .button-container button {
+      padding: 16px 40px;
+      background-color: #00b894;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 0 #009972;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button-container button:hover {
+      background-color: #009972;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 0 #007d5e;
+    }
+
+    .button-container button:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #a53125;
+    }
+
+    .guarantee {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin-top: 10px;
+    }
+
+    .guarantee i {
+      color: #2ecc71;
+      margin-right: 5px;
+    }
+
+    /* ANIMAZIONI */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* MEDIA QUERIES */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .current-price {
+        font-size: 1.8rem;
+      }
+      
+      .original-price {
+        font-size: 1.2rem;
+      }
+      
+      .participants-message {
+        font-size: 1rem;
+      }
+      
+      .main-image {
+        height: 250px;
+      }
+      
+      .thumbnails img {
+        width: 80px;
+        height: 50px;
+      }
+      
+      .button-container button {
+        padding: 14px 30px;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
+    <h1>OFFERTA IMPERDIBILE</h1>
+    <div class="countdown">⏰ <i class="fas fa-bolt"></i> Scade tra: <span id="timer">00:59:59</span></div>
+  </header>
+
+  <div class="container">
+    <div class="image-gallery">
+      <div class="main-image">
+        <div class="image-badge">OFFERTA LIMITATA</div>
+        <img id="current-image" src="https://i.pinimg.com/736x/0e/b3/a0/0eb3a0e524af390900f369804bd21e5f.jpg" alt="Sunset Serenade">
+      </div>
+      <div class="thumbnails">
+        <img src="https://i.pinimg.com/736x/0c/dc/26/0cdc264014c3d8ea4299ac676cf46dbc.jpg" alt="Sunset Serenade" class="thumb active" onclick="changeImage(this)">
+        <div class="thumbnail-badge"><i class="fas fa-heart"></i></div>
+        <img src="https://i.pinimg.com/736x/2a/e7/af/2ae7afe648732f1278dfa7e7bb48c5a4.jpg" alt="Sunset Serenade" class="thumb" onclick="changeImage(this)">
+        <div class="thumbnail-badge"><i class="fas fa-star"></i></div>
+        <img src="https://i.pinimg.com/736x/ab/20/f5/ab20f574e7e4c26a7962fd3fbeaf68e8.jpg" alt="Sunset Serenade" class="thumb" onclick="changeImage(this)">
+        <img src="https://i.pinimg.com/736x/32/b5/49/32b549e82dd3faaafc35f7d7d7ab9c57.jpg" alt="Sunset Serenade" class="thumb" onclick="changeImage(this)">
+       
+        
+        
+      </div>
+    </div>
+
+    <div class="content">
+    <h2>Bruschetta "Caprese"<br>Per 2 Persone<span class="current-price">     <b>€18</b></span> <span class="original-price"><S>Anzichè€36</S></span> </h2>
+      
+      <div class="participants-message">
+        <i class="fas fa-users"></i> <b>Se siamo in 20 persone, sblocchiamo l'offerta!</b>
+      </div>
+
+      <p>Approfitta subito di questa offerta esclusiva! Partecipa  ora per assicurarti il tuo posto!</p>
+     <p><b>NEBBIE & SAPORI</b> / 
+Via delle Antiche Mura 12, Bergamo </p>
+      
+      
+
+      <div class="benefits">
+        <h3><i class="fas fa-utensils"></i>
+Il Menù:</h3>
+        <ul>
+         <strong>Base:</strong> Pane rustico artigianale a lievitazione naturale, grigliato su brace per un leggero sentore affumicato. Spalmato con aglio fresco e condito con olio EVO monocultivar, per esaltare il profumo della tostatura.<br>
+          <strong>Cuore: </strong>Pomodoro cuore di bue marinato con sale Maldon, basilico fresco tagliato a mano e un filo di aceto balsamico invecchiato. Una nota croccante è data dalla polvere di pane integrale tostato e da una spolverata di pepe nero di Sarawak.<br>
+           <strong>Tocco finale: </strong>Spremuta di arancia bionda e melograno, estratta a freddo per mantenere intatti aromi e vitamine. Servita in calice alto con cubetti di ghiaccio cristallino e un twist di lime, che aggiunge freschezza e una leggera acidità balsamica.
+        </ul>
+      </div>
+
+      <div class="details">
+        <h3><i class="fas fa-pizza-slice"></i> L'Accompagnamento:</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> Mini bruschetta con crema di burrata e acciughe del Cantabrico, rifinita con scorza di limone grattugiata.
+
+.</li>
+          <li><i class="fas fa-check"></i> Mini bruschetta con crema di burrata e acciughe del Cantabrico, rifinita con scorza di limone grattugiata.
+
+</li>
+          <li><i class="fas fa-check"></i> Insalatina di rucola selvatica e petali di pomodoro confit, con vinaigrette al miele e zenzero.</li>
+           <li><i class="fas fa-check"></i> Mandorle tostate alla paprika affumicata, servite calde per stimolare il palato.</li>
+        </ul>
+      </div>
+
+      <div class="details">
+        <h3><i class="fas fa-exclamation-circle"></i> Condizioni:</h3>
+        <ul>
+          <li><i class="fas fa-stopwatch"></i> Offerta valida per un periodo limitato – non perdere l'occasione!</li>
+          <li><i class="fas fa-calendar-check"></i> Prenotazione obbligatoria </li>
+          <li><i class="fas fa-store"></i> Valida solo presso: NEBBIE & SAPORI</li>
+        </ul>
+      </div>
+
+      <div class="button-container">
+        <button class="pulse" onclick="window.location.href='index.html#box6'">
+          <i class="fas fa-ticket-alt"></i> PARTECIPA ORA & RISPARMIA 
+        </button>
+        <div class="guarantee">
+          <i class="fas fa-shield-alt"></i> Cancellazione gratuita fino a 24 ore prima
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Funzione per cambiare immagine
+    function changeImage(element) {
+      document.getElementById("current-image").src = element.src;
+      document.querySelectorAll(".thumb").forEach(img => img.classList.remove("active"));
+      element.classList.add("active");
+    }
+
+    // 2. Timer countdown (48 ore)
+    function startCountdown() {
+      const endTime = new Date();
+      endTime.setHours(endTime.getHours() + 1);
+      
+      const timer = setInterval(() => {
+        const now = new Date();
+        const diff = endTime - now;
+        
+        if (diff <= 0) {
+          clearInterval(timer);
+          document.getElementById("timer").textContent = "OFFERTA SCADUTA";
+          return;
+        }
+        
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        document.getElementById("timer").textContent = 
+          `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    // 3. Inizializzazione
+    window.addEventListener('DOMContentLoaded', () => {
+      startCountdown();
+      
+      // Animazione pulsante
+      document.querySelector(".button-container button").addEventListener("click", function() {
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Stiamo confermando...';
+        setTimeout(() => {
+          window.location.href = 'index.html#box1';
+        }, 1500);
+      });
+    });
+  </script>
+
+</body>
+</html>
