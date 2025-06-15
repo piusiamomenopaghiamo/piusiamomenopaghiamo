@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Più Siamo, Meno Paghiamo!</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* RESET E STILI BASE */
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: 'Open Sans', sans-serif;
+background: #f2f7fb;
+color: #333;
+line-height: 1.6;
+}
+
+/* HEADER */
+header {
+background: linear-gradient(to right, #00b4db, #0083b0);
+color: white;
+padding: 50px 20px 30px;
+text-align: center;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+font-family: 'Quicksand', sans-serif;
+font-size: 3rem;
+margin-bottom: 15px;
+}
+
+header p {
+font-size: 1.2rem;
+max-width: 600px;
+margin: 0 auto;
+}
+
+/* BOX OFFERTE */
+.main-box {
+max-width: 500px;
+background: white;
+margin: 30px auto;
+padding: 30px 20px;
+border-radius: 12px;
+box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+border: 2px solid #00b894;
+}
+
+.pizza-container {
+width: 300px;
+height: 300px;
+margin: 0 auto 20px;
+border: 4px solid #a0d8f3;
+border-radius: 12px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.pizza-container img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 8px;
+}
+
+.offer-details {
+text-align: center;
+margin: 20px 0;
+}
+
+.offer-title {
+font-size: 1.8rem;
+color: #d62828;
+margin-bottom: 10px;
+}
+
+.offer-description {
+background-color: #fff3cd;
+padding: 15px;
+border-radius: 10px;
+}
+
+
+
+/* PREZZO E PROMO */
+.price-highlight {
+background: linear-gradient(45deg, #ff4e00, #ec9f05);
+color: #fff;
+text-align: center;
+padding: 25px;
+margin: 20px 0;
+border-radius: 20px;
+box-shadow: 0 0 25px rgba(255, 69, 0, 0.7);
+animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+0%, 100% { box-shadow: 0 0 25px rgba(255, 69, 0, 0.7); }
+50% { box-shadow: 0 0 35px rgba(255, 100, 0, 1); }
+}
+
+.explosive-text {
+font-size: 1.8rem;
+font-weight: 900;
+color: #fff200;
+text-shadow: 2px 2px 0 #000, 0 0 10px #ff0000, 0 0 20px #ff6600;
+animation: flash-text 1.5s infinite alternate;
+}
+
+/* Added style for highlighted price */
+.explosive-text strong {
+    border: 3px solid #00ff00; /* Green border for highlight */
+    padding: 5px 10px;
+    border-radius: 8px;
+    display: inline-block; /* To apply padding and border correctly */
+    margin-left: 10px; /* Spacing from the "ANZICHÉ" text */
+}
+
+@keyframes flash-text {
+from { color: #fff200; text-shadow: 2px 2px 0 #000, 0 0 10px #ff0000, 0 0 20px #ff6600; }
+to { color: #ffffff; text-shadow: 2px 2px 0 #000, 0 0 15px #ff3300, 0 0 25px #ff6600; }
+}
+
+/* FORM */
+form {
+display: flex;
+flex-direction: column;
+gap: 15px;
+margin: 20px 0;
+}
+
+input {
+padding: 12px;
+border: 1px solid #ccc;
+border-radius: 8px;
+font-size: 16px;
+}
+
+input:focus {
+border-color: #00b4db;
+outline: none;
+box-shadow: 0 0 8px rgba(0,180,219,0.3);
+}
+
+/* PULSANTI */
+button {
+padding: 14px;
+background-color: #00b894;
+color: white;
+border: none;
+border-radius: 8px;
+font-size: 18px;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+button:hover {
+background-color: #009972;
+transform: scale(1.03);
+}
+
+.menu-btn {
+display: block;
+margin: 20px auto;
+background-color: #00b4db;
+}
+
+.menu-btn:hover {
+background-color: #0083b0;
+}
+
+.success-message {
+display: none;
+background-color: #d4edda;
+color: #155724;
+padding: 15px;
+border-radius: 8px;
+margin: 20px 0;
+text-align: center;
+}
+
+/* POPUP */
+.popup {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.7);
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+}
+
+.popup-content {
+background: white;
+padding: 30px;
+border-radius: 10px;
+text-align: center;
+max-width: 400px;
+}
+
+.popup h3 {
+color: #e63946;
+font-size: 1.8rem;
+margin-bottom: 15px;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #000;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 5px solid #00b4db;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer-section h3 {
+color: #00b4db;
+font-family: 'Quicksand', sans-serif;
+margin-bottom: 20px;
+font-size: 1.3rem;
+}
+
+.footer-section ul {
+list-style: none;
+}
+
+.footer-section li {
+margin-bottom: 10px;
+}
+
+.footer-section a {
+color: #ccc;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+.footer-section a:hover {
+color: #00b4db;
+}
+
+.social-icons {
+display: flex;
+gap: 15px;
+margin: 20px 0;
+}
+
+.social-icons a {
+color: white;
+font-size: 1.5rem;
+}
+
+.newsletter-form {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.copyright {
+text-align: center;
+margin-top: 40px;
+padding-top: 20px;
+border-top: 1px solid #333;
+color: #777;
+font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+header h1 {
+font-size: 2.2rem;
+}
+
+.main-box {
+margin: 20px 15px;
+padding: 20px 15px;
+}
+
+.pizza-container {
+width: 250px;
+height: 250px;
+}
+
+.explosive-text {
+font-size: 1.5rem;
+}
+
+.footer-container {
+grid-template-columns: 1fr;
+}
+}
+
+/* THANK YOU MESSAGE */
+.thank-you-message {
+display: none;
+background-color: #d4edda;
+color: #155724;
+padding: 20px;
+border-radius: 8px;
+margin: 20px 0;
+text-align: center;
+}
+
+.thank-you-message h3 {
+color: #28a745;
+margin-bottom: 10px;
+}
+
+/* COMPLETED MESSAGE */
+.completed-message {
+display: none;
+background-color: #d1ecf1;
+color: #0c5460;
+padding: 20px;
+border-radius: 8px;
+margin: 20px 0;
+text-align: center;
+}
+
+.completed-message h3 {
+color: #17a2b8;
+margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Più siamo, meno paghiamo!</h1>
+<p>Unisciti al gruppo per accedere a sconti esclusivi: più partecipanti, maggiore è lo sconto! Insieme risparmiamo su esperienze, cene e prodotti. Entra ora!</p>
+</header>
+
+<div class="main-box" id="box1">
+
+<div class="pizza-container">
+<img src="https://i.pinimg.com/736x/4d/f1/a8/4df1a8ed667c9275c534888822a57145.jpg" alt="Pizza">
+</div>
+
+<div class="offer-details">
+<h2 class="offer-title">"Sunset Serenade" Un Viaggio di Sapori Eleganti per Due</h2>
+<p class="offer-description">
+<b>Solo per chi partecipa all'offerta di gruppo!</b><br>
+
+Perfetto per chi cerca un’esperienza sensoriale senza compromessi: il Sunset Serenade unisce l’eleganza di un drink strutturato alla raffinatezza di abbinamenti inaspettati, trasformando l’apericena in un momento memorabile.
+
+</p>
+</div>
+
+<center><b>L'offerta termina il 05/06/2024 alle ore 18</b></center>
+
+<button class="menu-btn" onclick="window.location.href='box1.html'">Vai al menu</button>
+
+<div class="price-highlight">
+<div class="custom-message">
+<span class="explosive-text">Se siamo in 30, paghiamo solo <strong>30€</strong>! <S>ANZICHÉ 62€</S></span>
+</div>
+</div>
+
+<div class="counter-box">
+Al momento siamo: <span id="counter1">0</span>
+</div>
+
+<form id="formPartecipazione1">
+<input type="text" name="nome" placeholder="Il tuo nome" required>
+<input type="email" name="email" placeholder="La tua email" required>
+<button type="submit" id="submitBtn1">Partecipa</button>
+</form>
+
+<div id="thankYouMessage1" class="thank-you-message">
+<h3>Grazie per la tua partecipazione!</h3>
+<p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+</div>
+
+<div id="completedMessage1" class="completed-message">
+<h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+<p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+</div>
+</div>
+
+<div class="main-box" id="box2">
+<div class="pizza-container">
+<img src="https://www.ilcuoreinpentola.it/wp-content/uploads/2024/03/spaghetti-alla-carbonara-ok.jpeg" alt="Carbonara">
+</div>
+
+<div class="offer-details">
+<h2 class="offer-title">Carbonara per 2 persone</h2>
+<p class="offer-description">
+Due porzioni abbondanti di pasta alla carbonara, 2 calici di vino e caffè inclusi!
+Solo per chi partecipa all'offerta di gruppo!
+</p>
+</div>
+
+<div class="timer-container">
+<i class="fas fa-hourglass-half"></i>
+<div id="countdown2" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+</div>
+
+<button class="menu-btn" onclick="window.location.href='box2.html'">Vai al menu</button>
+
+<div class="price-highlight">
+<div class="custom-message">
+<span class="explosive-text">Se siamo in 20, paghiamo solo <strong>30€</strong>! ANZICHÉ 60€</span>
+</div>
+</div>
+
+<div class="counter-box">
+Al momento siamo: <span id="counter2">0</span>
+</div>
+
+<form id="formPartecipazione2">
+<input type="text" name="nome" placeholder="Il tuo nome" required>
+<input type="email" name="email" placeholder="La tua email" required>
+<button type="submit" id="submitBtn2">Partecipa</button>
+</form>
+
+<div id="thankYouMessage2" class="thank-you-message">
+<h3>Grazie per la tua partecipazione!</h3>
+<p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+</div>
+
+<div id="completedMessage2" class="completed-message">
+<h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+<p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+</div>
+</div>
+    
+<div class="main-box" id="box3">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Tiramisu_-_Pasticceria_Greco%2C_Rome.jpg" alt="Tiramisù">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Dolce & Caffè per 2</h2>
+        <p class="offer-description">
+            Un tiramisù artigianale da condividere e 2 caffè espressi. Dolce fine serata per due!
+            Offerta valida solo per gruppi.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown3" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box3.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 4, paghiamo solo <strong>10€</strong>! ANZICHÉ 20€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter3">0</span>
+    </div>
+
+    <form id="formPartecipazione3">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn3">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage3" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage3" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box4">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Hamburger.JPG" alt="Hamburger">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Hamburger Gourmet per 2</h2>
+        <p class="offer-description">
+            Due hamburger gourmet con patatine e 2 birre artigianali. Un'offerta imperdibile per chi ama il gusto!
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown4" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box4.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 7, paghiamo solo <strong>28€</strong>! ANZICHÉ 56€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter4">0</span>
+    </div>
+
+    <form id="formPartecipazione4">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn4">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage4" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage4" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+
+<div class="main-box">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Sushi_platter.jpg" alt="Sushi">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Sushi per 2</h2>
+        <p class="offer-description">
+            Un assortimento di sushi fresco, 2 zuppe miso e 2 tè verdi. Un'esperienza giapponese autentica!
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown5" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box5.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 20, paghiamo solo <strong>40€</strong>! ANZICHÉ 80€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter5">0</span>
+    </div>
+
+    <form id="formPartecipazione5">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn5">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage5" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage5" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box6">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Caprese_salad.jpg" alt="Insalata Caprese">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Cena Light per 2</h2>
+        <p class="offer-description">
+            Due insalate capresi, bruschette e 2 spremute fresche. Perfetto per una cena leggera e gustosa.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown6" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box6.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 5, paghiamo solo <strong>18€</strong>! ANZICHÉ 36€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter6">0</span>
+    </div>
+
+    <form id="formPartecipazione6">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn6">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage6" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage6" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box7">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Cheeseburger.jpg" alt="Cheeseburger">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Cheeseburger per 2</h2>
+        <p class="offer-description">
+            Due cheeseburger gourmet con patatine fritte e 2 bibite. Un classico che non delude mai!
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown7" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box7.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 6, paghiamo solo <strong>22€</strong>! ANZICHÉ 44€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter7">0</span>
+    </div>
+
+    <form id="formPartecipazione7">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn7">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage7" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage7" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box8">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Spaghetti_Bolognese_%28hozinja%29.jpg" alt="Spaghetti Bolognese">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Spaghetti Bolognese per 2</h2>
+        <p class="offer-description">
+            Due porzioni di spaghetti al ragù bolognese con parmigiano e 2 bicchieri di vino rosso.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown8" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box8.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 5, paghiamo solo <strong>24€</strong>! ANZICHÉ 48€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter8">0</span>
+    </div>
+
+    <form id="formPartecipazione8">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn8">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage8" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage8" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box9">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Korean_strawberry_milk_-_Seoul_South_Korea.jpg" alt="Dessert">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Dessert Speciali per 2</h2>
+        <p class="offer-description">
+            Due dessert a scelta tra tiramisù, cheesecake o panna cotta, con 2 caffè o tè.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown9" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box9.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 4, paghiamo solo <strong>12€</strong>! ANZICHÉ 24€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter9">0</span>
+    </div>
+
+    <form id="formPartecipazione9">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn9">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage9" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage9" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box10">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Indiandishes.jpg" alt="Cucina Indiana">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Cena Indiana per 2</h2>
+        <p class="offer-description">
+            Un assortimento di piatti indiani con riso basmati, naan e 2 birre o limonate.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown10" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box10.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 6, paghiamo solo <strong>36€</strong>! ANZICHÉ 72€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter10">0</span>
+    </div>
+
+    <form id="formPartecipazione10">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn10">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage10" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage10" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box11">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg" alt="Tacos">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Tacos Messicani per 2</h2>
+        <p class="offer-description">
+            Un assortimento di tacos con diverse farciture, guacamole e 2 margarita o bibite.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown11" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box11.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 5, paghiamo solo <strong>28€</strong>! ANZICHÉ 56€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter11">0</span>
+    </div>
+
+    <form id="formPartecipazione11">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn11">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage11" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage11" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box12">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Ribollita_di_cavolo_nero.jpg" alt="Zuppa">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Zuppe Artigianali per 2</h2>
+        <p class="offer-description">
+            Due zuppe della casa con pane casereccio e 2 tisane o infusi. Perfetto per una serata invernale.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown12" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box12.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 4, paghiamo solo <strong>16€</strong>! ANZICHÉ 32€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter12">0</span>
+    </div>
+
+    <form id="formPartecipazione12">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn12">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage12" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage12" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box13">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Recipe-575434.jpg" alt="Pasta al Pesto">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Pasta al Pesto per 2</h2>
+        <p class="offer-description">
+            Due porzioni di pasta al pesto genovese con pinoli e 2 bicchieri di vino bianco.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown13" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box13.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 5, paghiamo solo <strong>22€</strong>! ANZICHÉ 44€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momentiamo: <span id="counter13">0</span>
+    </div>
+
+    <form id="formPartecipazione13">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn13">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage13" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage13" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="main-box" id="box14">
+    <div class="pizza-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Falafel_in_pita.jpg" alt="Falafel">
+    </div>
+
+    <div class="offer-details">
+        <h2 class="offer-title">Falafel per 2</h2>
+        <p class="offer-description">
+            Due panini falafel con hummus e verdure fresche, più 2 succhi di frutta naturali.
+        </p>
+    </div>
+
+    <div class="timer-container">
+        <i class="fas fa-hourglass-half"></i>
+        <div id="countdown14" class="countdown">L'offerta di Gruppo termina il 05/06/2024 alle ore 18</div>
+    </div>
+
+    <button class="menu-btn" onclick="window.location.href='box14.html'">Vai al menu</button>
+
+    <div class="price-highlight">
+        <div class="custom-message">
+            <span class="explosive-text">Se siamo in 5, paghiamo solo <strong>18€</strong>! ANZICHÉ 36€</span>
+        </div>
+    </div>
+
+    <div class="counter-box">
+        Al momento siamo: <span id="counter14">0</span>
+    </div>
+
+    <form id="formPartecipazione14">
+        <input type="text" name="nome" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <button type="submit" id="submitBtn14">Partecipa</button>
+    </form>
+
+    <div id="thankYouMessage14" class="thank-you-message">
+        <h3>Grazie per la tua partecipazione!</h3>
+        <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+    </div>
+
+    <div id="completedMessage14" class="completed-message">
+        <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
+        <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
+    </div>
+</div>
+
+<div class="popup" id="timeoutPopup">
+<div class="popup-content">
+<h3>Tempo scaduto! ⏰</h3>
+<p>La promozione è terminata. Torna presto per nuove offerte!</p>
+<button onclick="document.getElementById('timeoutPopup').style.display='none'">Chiudi</button>
+</div>
+</div>
+
+<footer>
+<div class="footer-container">
+<div class="footer-section">
+<h3>Informazioni</h3>
+<ul>
+<li><a href="chi-siamo.html">Chi siamo</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="contatti.html">Contatti</a></li>
+</ul>
+</div>
+
+<div class="footer-section">
+<h3>Regolamento</h3>
+<ul>
+<li><a href="regolamento.html">Regolamento partecipazione</a></li>
+<li><a href="termini-condizioni.html">Termini e condizioni</a></li>
+<li><a href="privacy.html">Privacy Policy</a></li>
+<li><a href="cookie.html">Cookie Policy</a></li>
+</ul>
+</div>
+
+
+
+<div class="footer-section">
+<h3>Seguici</h3>
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+</div>
+
+<h3>Newsletter</h3>
+<form class="newsletter-form">
+<input type="email" placeholder="La tua email" required>
+<button type="submit">Iscriviti</button>
+</form>
+</div>
+</div>
+
+<div class="copyright">
+<p>&copy; 2023 Più Siamo, Meno Paghiamo! Tutti i diritti riservati.</p>
+<p>P.IVA 01234567890 - REA MI-1234567</p>
+</div>
+</footer>
+
+<script>
+// Configurazione box
+const box1Config = {
+id: '1',
+scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+counterEl: document.getElementById('counter1'),
+form: document.getElementById('formPartecipazione1'),
+submitBtn: document.getElementById('submitBtn1'),
+thankYouMessage: document.getElementById('thankYouMessage1'),
+completedMessage: document.getElementById('completedMessage1'),
+requiredParticipants: 20,
+originalPrice: "50€",
+discountPrice: "25€"
+};
+
+const box2Config = {
+id: '2',
+scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+counterEl: document.getElementById('counter2'),
+form: document.getElementById('formPartecipazione2'),
+submitBtn: document.getElementById('submitBtn2'),
+thankYouMessage: document.getElementById('thankYouMessage2'),
+completedMessage: document.getElementById('completedMessage2'),
+requiredParticipants: 5,
+originalPrice: "60€",
+discountPrice: "30€"
+};
+    
+const box3Config = {
+    id: '3',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter3'),
+    form: document.getElementById('formPartecipazione3'),
+    submitBtn: document.getElementById('submitBtn3'),
+    thankYouMessage: document.getElementById('thankYouMessage3'),
+    completedMessage: document.getElementById('completedMessage3'),
+    requiredParticipants: 4,
+    originalPrice: "20€",
+    discountPrice: "10€"
+};
+
+const box4Config = {
+    id: '4',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter4'),
+    form: document.getElementById('formPartecipazione4'),
+    submitBtn: document.getElementById('submitBtn4'),
+    thankYouMessage: document.getElementById('thankYouMessage4'),
+    completedMessage: document.getElementById('completedMessage4'),
+    requiredParticipants: 7,
+    originalPrice: "56€",
+    discountPrice: "28€"
+};
+
+const box5Config = {
+    id: '5',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter5'),
+    form: document.getElementById('formPartecipazione5'),
+    submitBtn: document.getElementById('submitBtn5'),
+    thankYouMessage: document.getElementById('thankYouMessage5'),
+    completedMessage: document.getElementById('completedMessage5'),
+    requiredParticipants: 8,
+    originalPrice: "80€",
+    discountPrice: "40€"
+};
+
+const box6Config = {
+    id: '6',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter6'),
+    form: document.getElementById('formPartecipazione6'),
+    submitBtn: document.getElementById('submitBtn6'),
+    thankYouMessage: document.getElementById('thankYouMessage6'),
+    completedMessage: document.getElementById('completedMessage6'),
+    requiredParticipants: 5,
+    originalPrice: "36€",
+    discountPrice: "18€"
+};
+
+const box7Config = {
+    id: '7',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter7'),
+    form: document.getElementById('formPartecipazione7'),
+    submitBtn: document.getElementById('submitBtn7'),
+    thankYouMessage: document.getElementById('thankYouMessage7'),
+    completedMessage: document.getElementById('completedMessage7'),
+    requiredParticipants: 6,
+    originalPrice: "44€",
+    discountPrice: "22€"
+};
+
+const box8Config = {
+    id: '8',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter8'),
+    form: document.getElementById('formPartecipazione8'),
+    submitBtn: document.getElementById('submitBtn8'),
+    thankYouMessage: document.getElementById('thankYouMessage8'),
+    completedMessage: document.getElementById('completedMessage8'),
+    requiredParticipants: 5,
+    originalPrice: "48€",
+    discountPrice: "24€"
+};
+
+const box9Config = {
+    id: '9',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter9'),
+    form: document.getElementById('formPartecipazione9'),
+    submitBtn: document.getElementById('submitBtn9'),
+    thankYouMessage: document.getElementById('thankYouMessage9'),
+    completedMessage: document.getElementById('completedMessage9'),
+    requiredParticipants: 4,
+    originalPrice: "24€",
+    discountPrice: "12€"
+};
+
+const box10Config = {
+    id: '10',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter10'),
+    form: document.getElementById('formPartecipazione10'),
+    submitBtn: document.getElementById('submitBtn10'),
+    thankYouMessage: document.getElementById('thankYouMessage10'),
+    completedMessage: document.getElementById('completedMessage10'),
+    requiredParticipants: 6,
+    originalPrice: "72€",
+    discountPrice: "36€"
+};
+
+const box11Config = {
+    id: '11',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter11'),
+    form: document.getElementById('formPartecipazione11'),
+    submitBtn: document.getElementById('submitBtn11'),
+    thankYouMessage: document.getElementById('thankYouMessage11'),
+    completedMessage: document.getElementById('completedMessage11'),
+    requiredParticipants: 5,
+    originalPrice: "56€",
+    discountPrice: "28€"
+};
+
+const box12Config = {
+    id: '12',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter12'),
+    form: document.getElementById('formPartecipazione12'),
+    submitBtn: document.getElementById('submitBtn12'),
+    thankYouMessage: document.getElementById('thankYouMessage12'),
+    completedMessage: document.getElementById('completedMessage12'),
+    requiredParticipants: 4,
+    originalPrice: "32€",
+    discountPrice: "16€"
+};
+
+const box13Config = {
+    id: '13',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter13'),
+    form: document.getElementById('formPartecipazione13'),
+    submitBtn: document.getElementById('submitBtn13'),
+    thankYouMessage: document.getElementById('thankYouMessage13'),
+    completedMessage: document.getElementById('completedMessage13'),
+    requiredParticipants: 5,
+    originalPrice: "44€",
+    discountPrice: "22€"
+};
+
+const box14Config = {
+    id: '14',
+    scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
+    counterEl: document.getElementById('counter14'),
+    form: document.getElementById('formPartecipazione14'),
+    submitBtn: document.getElementById('submitBtn14'),
+    thankYouMessage: document.getElementById('thankYouMessage14'),
+    completedMessage: document.getElementById('completedMessage14'),
+    requiredParticipants: 5,
+    originalPrice: "36€",
+    discountPrice: "18€"
+};
+
+const popup = document.getElementById('timeoutPopup');
+
+// Aggiorna contatore
+async function updateCounter(config) {
+try {
+const res = await fetch(config.scriptURL + '?action=getCount&boxId=' + config.id);
+const data = await res.json();
+config.counterEl.textContent = data.count;
+
+if (data.count >= config.requiredParticipants) {
+config.submitBtn.disabled = true;
+config.submitBtn.textContent = "Limite raggiunto";
+config.submitBtn.style.backgroundColor = "#ccc";
+config.completedMessage.style.display = "block";
+} else {
+config.completedMessage.style.display = "none";
+}
+} catch (error) {
+config.counterEl.textContent = 'Errore';
+console.error('Errore nel recupero contatore:', error);
+}
+}
+
+// Gestione form
+function setupFormSubmit(config) {
+    config.form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(config.form);
+        formData.append('boxId', config.id);
+
+        try {
+            const res = await fetch(config.scriptURL, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (!res.ok) throw new Error('Network response was not ok');
+            
+            const data = await res.json();
+            if (data.result === "success") {
+                config.thankYouMessage.style.display = "block";
+                config.form.style.display = "none";
+                updateCounter(config);
+                
+                // Nascondi il messaggio dopo 5 secondi e mostra di nuovo il form
+                setTimeout(() => {
+                    config.thankYouMessage.style.display = "none";
+                    config.form.style.display = "flex"; // o "block" a seconda del tuo layout
+                    config.form.reset(); // Resetta il form
+                }, 5000); // 5000 millisecondi = 5 secondi
+            } else {
+                alert("Errore: " + (data.message || "Invio dati fallito"));
+            }
+        } catch (error) {
+            alert("Errore nella connessione: " + error.message);
+        }
+    });
+}
+
+// Inizializzazione
+document.addEventListener('DOMContentLoaded', function() {
+    // Configura i form
+    setupFormSubmit(box1Config);
+    setupFormSubmit(box2Config);
+    setupFormSubmit(box3Config);
+    setupFormSubmit(box4Config);
+    setupFormSubmit(box5Config);
+    setupFormSubmit(box6Config);
+    setupFormSubmit(box7Config);
+    setupFormSubmit(box8Config);
+    setupFormSubmit(box9Config);
+    setupFormSubmit(box10Config);
+    setupFormSubmit(box11Config);
+    setupFormSubmit(box12Config);
+    setupFormSubmit(box13Config);
+    setupFormSubmit(box14Config);
+    
+    // Aggiorna i contatori iniziali e imposta l'aggiornamento periodico
+    updateCounter(box1Config);
+    updateCounter(box2Config);
+    updateCounter(box3Config);
+    updateCounter(box4Config);
+    updateCounter(box5Config);
+    updateCounter(box6Config);
+    updateCounter(box7Config);
+    updateCounter(box8Config);
+    updateCounter(box9Config);
+    updateCounter(box10Config);
+    updateCounter(box11Config);
+    updateCounter(box12Config);
+    updateCounter(box13Config);
+    updateCounter(box14Config);
+    
+    setInterval(() => {
+        updateCounter(box1Config);
+        updateCounter(box2Config);
+        updateCounter(box3Config);
+        updateCounter(box4Config);
+        updateCounter(box5Config);
+        updateCounter(box6Config);
+        updateCounter(box7Config);
+        updateCounter(box8Config);
+        updateCounter(box9Config);
+        updateCounter(box10Config);
+        updateCounter(box11Config);
+        updateCounter(box12Config);
+        updateCounter(box13Config);
+        updateCounter(box14Config);
+    }, 15000);
+});
+</script>
+    
+   
+</body>
+</html>
