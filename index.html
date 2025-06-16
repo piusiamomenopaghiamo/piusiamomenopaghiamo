@@ -4,6 +4,58 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Più Siamo, Meno Paghiamo!</title>
+    
+<meta charset="UTF-8">
+  <title>Più Siamo Meno Paghiamo</title>
+
+  <!-- 🔹 STILI DEL POPUP -->
+  <style>
+    .popup-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      display: none;
+    }
+    .popup-box {
+      background: white;
+      padding: 30px;
+      max-width: 500px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      font-family: sans-serif;
+    }
+    .popup-box h2 {
+      margin-bottom: 15px;
+    }
+    .popup-box ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      margin: 10px auto;
+    }
+    .popup-box ul li {
+      margin: 5px 0;
+    }
+    .popup-box button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00b894;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .popup-box button:hover {
+      background-color: #019874;
+    }
+  </style>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -365,6 +417,23 @@ margin-bottom: 10px;
 </style>
 </head>
 <body>
+    <!-- 🔔 POPUP HTML -->
+  <div id="popup" class="popup-container">
+    <div class="popup-box">
+      <h2>✨ Benvenuto su <strong>Più Siamo Meno Paghiamo</strong>!</h2>
+      <p>Questa è una <strong>simulazione di test</strong> creata da un gruppo di ragazzi di Torino per validare un’idea semplice ma potente:</p>
+      <blockquote><em>Più persone partecipano, meno paghi!</em></blockquote>
+      <ul>
+        <li>✅ <strong>Nessun impegno</strong></li>
+        <li>✅ <strong>Nessun pagamento</strong></li>
+        <li>✅ <strong>Solo un test di prelancio</strong></li>
+      </ul>
+      <p>👥 <strong>Partecipa a un'offerta, condividila con i tuoi amici e guarda come si abbassa il prezzo!</strong></p>
+      <p>⏳ Il lancio ufficiale è previsto per <strong>ottobre</strong>!</p>
+      <p>💬 Aiutaci a farla girare: ogni clic conta! 🙌</p>
+      <button onclick="closePopup()">Ok, partecipo!</button>
+    </div>
+  </div>
 <!-- HEADER -->
 <header>
 <h1>PIU' SIAMO MENO PAGHIAMO</h1>
@@ -375,17 +444,15 @@ margin-bottom: 10px;
 <div class="main-box" id="box1">
 
 <div class="pizza-container">
-<img src="https://i.pinimg.com/736x/4d/f1/a8/4df1a8ed667c9275c534888822a57145.jpg" alt="Sunset Serenade">
+<img src="https://bing.com/th/id/BCO.67d2ab57-19db-4847-9740-199e5bc64e22.png" alt="Sunset Serenade">
 </div>
 
 <div class="offer-details">
-<h2 class="offer-title">Coktail per 2 Persone<br>"Sunset Serenade" </h2>
+<h2 class="offer-title">Drink-Cena per 2 Persone<br>"Cena al Buio" </h2>
 <p class="offer-description">
 
 
-Perfetto per chi cerca un’esperienza sensoriale senza compromessi: 
-    il Sunset Serenade unisce l’eleganza di un drink strutturato alla raffinatezza di abbinamenti 
-    inaspettati, trasformando l’apericena in un momento memorabile.
+Vivi una serata immersiva, dove sapori e luci si dissolvono per restituire pure emozioni gustative.
 
 </p>
 </div>
@@ -399,7 +466,7 @@ Perfetto per chi cerca un’esperienza sensoriale senza compromessi:
 
 <div class="price-highlight">
 <div class="custom-message">
-<span class="explosive-text">Se siamo in 30, paghiamo solo 25€ <strong><S>ANZICHÉ 50€</S></strong></span>
+<span class="explosive-text">Se siamo in 30, paghiamo solo 22€ <strong><S>ANZICHÉ 33€</S></strong></span>
 </div>
 </div>
 
@@ -427,15 +494,13 @@ Al momento siamo: <span id="counter1">0</span>
 <!-- BOX 2 -->
 <div class="main-box" id="box2">
 <div class="pizza-container">
-<img src="https://i.pinimg.com/736x/ae/c2/ec/aec2ec7e16abe15b1202c5816eced5a3.jpg" alt="Golden Euphoria">
+<img src="https://cdn.leonardo.ai/users/ac0555b1-8fc6-4c8f-8620-c656797ce07f/generations/d0c62e4b-dbdb-4b52-9148-0eb51b938872/segments/1:4:1/Flux_Dev_creami_unimmagine_con_sfondo_su_un_bancone_del_bar_co_0.jpg" alt="Golden Euphoria">
 </div>
 
 <div class="offer-details">
-<h2 class="offer-title">Coktail per 2 Persone<br>"Golden Euphoria"</h2>
+<h2 class="offer-title">Menù per 2 Persone<br>"Sorso Esotico"</h2>
 <p class="offer-description">
-Il Golden Euphoria è un viaggio nel lusso discreto: il rum añejo dialoga con la terra e i fiori, 
-    mentre gli abbinamenti sfidano le aspettative con contrasti audaci. Perfetto per celebrare un anniversario o un traguardo, 
-    è un tributo alla dolcezza della vita.
+Assapora pietanze ignote al buio e scopri sapori che ti sorprenderanno.
 </p>
 </div>
 
@@ -448,7 +513,7 @@ Il Golden Euphoria è un viaggio nel lusso discreto: il rum añejo dialoga con l
 
 <div class="price-highlight">
 <div class="custom-message">
-<span class="explosive-text">Se siamo in 20, paghiamo solo 30€! <strong><s>ANZICHÉ 60€</s></strong></span>
+<span class="explosive-text">Se siamo in 30, paghiamo solo 26€! <strong><s>ANZICHÉ 40€</s></strong></span>
 </div>
 </div>
 
@@ -476,13 +541,13 @@ Al momento siamo: <span id="counter2">0</span>
 <!-- BOX 3 -->
 <div class="main-box" id="box3">
     <div class="pizza-container">
-        <img src="https://i.pinimg.com/736x/88/16/5e/88165e8b2e71e8e1d8ca5856b34e8ff8.jpg" alt="Tiramisù">
+        <img src="https://cdn.leonardo.ai/users/531e6304-fcb4-40da-9b61-eed16b17623b/generations/e752a339-c3d4-46f4-816c-c2dc4e40e0c6/segments/4:4:1/Flux_Dev_A_highresolution_commercially_professional_and_visual_3.jpg" alt="Tiramisù">
     </div>
 
     <div class="offer-details">
-        <h2 class="offer-title">Coktail per 4 Persone<br>"Celestial Noir"</h2>
+        <h2 class="offer-title">Cena per 2 Persone<br>"Spritz d'Arte"</h2>
         <p class="offer-description">
-            Il Celestial Noir è un’esperienza multisensoriale: i contrasti tra terra e cielo (il wagyu e il gelsomino), la teatralità della luce UV e la complessità degli abbinamenti lo rendono perfetto per chi vuole trasformare l’apericena in un evento.
+            Arte e gusto si fondono in un'esperienza multisensoriale raffinata.
         </p>
     </div>
 
@@ -495,7 +560,7 @@ Al momento siamo: <span id="counter2">0</span>
 
     <div class="price-highlight">
         <div class="custom-message">
-            <span class="explosive-text">Se siamo in 20, paghiamo solo 120€! <strong><s>ANZICHE'180€</s></strong></span>
+            <span class="explosive-text">Se siamo in 30, paghiamo solo 24€! <strong><s>ANZICHE'35</s></strong></span>
         </div>
     </div>
 
@@ -523,13 +588,13 @@ Al momento siamo: <span id="counter2">0</span>
 <!-- BOX 4 -->
 <div class="main-box" id="box4">
     <div class="pizza-container">
-        <img src="https://i.pinimg.com/736x/4a/0a/9c/4a0a9c7df3a8cc0983c1e0794d833f41.jpg" alt="Hamburger">
+        <img src="https://i.pinimg.com/736x/ed/cd/e1/edcde1717e0acbe3b15ee558e99acee2.jpg" alt="pasta">
     </div>
 
     <div class="offer-details">
-        <h2 class="offer-title">Cocktail per 2 Persone<br>"Luna di Miele"</h2>
+        <h2 class="offer-title">Cena per 2 Persone<br>"Antica Roma"</h2>
         <p class="offer-description">
-         Luna di Miele è un’esperienza unica: Un tributo all'amore che non ha bisogno di parole, dove il lusso si misura in emozioni condivise.
+         Ogni piatto è un viaggio nel tempo, un omaggio alle radici gloriose della tradizione romana, reinterpretata con la raffinatezza piemontese.
         </p>
     </div>
 
@@ -542,7 +607,7 @@ Al momento siamo: <span id="counter2">0</span>
 
     <div class="price-highlight">
         <div class="custom-message">
-           <span class="explosive-text">Se siamo in 20, paghiamo solo 100€ <strong><s>ANZICHÉ 120€</s></strong></span>
+           <span class="explosive-text">Se siamo in 30, paghiamo solo 55€ <strong><s>ANZICHÉ 120€</s></strong></span>
         </div>
     </div>
 
@@ -1620,6 +1685,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
     
-   
+ <!-- 🔸 SCRIPT DEL POPUP -->
+  <script>
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    // Mostra il popup dopo 1 secondi
+    window.addEventListener("load", function() {
+      setTimeout(function() {
+        document.getElementById("popup").style.display = "flex";
+      }, 1000);
+    });
+  </script>   
 </body>
 </html>
