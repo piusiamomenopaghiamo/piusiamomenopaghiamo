@@ -1,23 +1,31 @@
-{
-  "short_name": "PiuSiamoMenoPaghi",
-  "name": "Piu Siamo Meno Paghiamo",
-  "description": "Comunità di acquisto per risparmiare insieme sui contratti di luce, gas e altre utenze.",
-  "icons": [
-    {
-      "src": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/logo1.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/logo2.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "start_url": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/",
-  "background_color": "#ffffff",
-  "display": "standalone",
-  "scope": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/",
-  "theme_color": "#000000",
-  "orientation": "portrait-primary"
-}
+const CACHE_NAME = 'psmp-cache-v3';
+const urlsToCache = [
+  './',
+  './index.html',
+  './chi-siamo.html',
+  './come-funziona.html',
+  './contatti.html',
+  './faq.html',
+  './css/all.min.css',
+  './Logo1.png',
+  './Logo2.png'
+];
+
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        console.log('Cache aperta per PSMP');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        return response || fetch(event.request);
+      })
+  );
+});
