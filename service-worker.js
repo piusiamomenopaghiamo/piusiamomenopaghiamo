@@ -1,31 +1,23 @@
-const CACHE_NAME = 'psmp-cache-v2';
-const urlsToCache = [
-    '/piusiamomenopaghiamo/',
-    '/piusiamomenopaghiamo/index.html',
-    '/piusiamomenopaghiamo/chi-siamo.html',
-    '/piusiamomenopaghiamo/come-funziona.html',
-    '/piusiamomenopaghiamo/contatti.html',
-    '/piusiamomenopaghiamo/faq.html',
-    '/piusiamomenopaghiamo/css/all.min.css',
-    '/piusiamomenopaghiamo/Logo1.png',
-    '/piusiamomenopaghiamo/Logo2.png'
-];
-
-self.addEventListener('install', function(event) {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-        .then(function(cache) {
-            console.log('Cache aperta per PSMP');
-            return cache.addAll(urlsToCache);
-        })
-    ); // AGGIUNTA PARENTESI CHIUDENTE QUI
-});
-
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request)
-        .then(function(response) {
-            return response || fetch(event.request);
-        })
-    ); // AGGIUNTA PARENTESI CHIUDENTE QUI
-});
+{
+  "short_name": "PiuSiamoMenoPaghi",
+  "name": "Piu Siamo Meno Paghiamo",
+  "description": "Comunità di acquisto per risparmiare insieme sui contratti di luce, gas e altre utenze.",
+  "icons": [
+    {
+      "src": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/logo1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/logo2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary"
+}
