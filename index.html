@@ -1625,6 +1625,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
     
- 
+ <script>
+// Registra il Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/piusiamomenopaghiamo/service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registrato con successo:', registration);
+      })
+      .catch(function(error) {
+        console.log('Registrazione Service Worker fallita:', error);
+      });
+  });
+}
+</script>
 </body>
+
 </html>
