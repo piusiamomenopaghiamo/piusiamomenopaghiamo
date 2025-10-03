@@ -1,31 +1,29 @@
-const CACHE_NAME = 'psmp-cache-v3';
+const CACHE_NAME = 'psmp-v1';
 const urlsToCache = [
-  './',
-  './index.html',
-  './chi-siamo.html',
-  './come-funziona.html',
-  './contatti.html',
-  './faq.html',
-  './css/all.min.css',
-  './Logo1.png',
-  './Logo2.png'
+    './',
+    './index.html',
+    './Logo1.png',
+    './Logo2.png'
 ];
 
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Cache aperta per PSMP');
-        return cache.addAll(urlsToCache);
-      })
-  );
+// Installazione e caching iniziale
+self.addEventListener('install', event => {
+    console.log('Service Worker installato');
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+    );
 });
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        return response || fetch(event.request);
-      })
-  );
+// Attivazione
+self.addEventListener('activate', event => {
+    console.log('Service Worker attivato');
+});
+
+// Gestione richieste (offline support)
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request).then(response => {
+            return response || fetch(event.request);
+        })
+    );
 });

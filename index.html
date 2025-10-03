@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    
-    <link rel="manifest" href="manifest.json">
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Più Siamo, Meno Paghiamo!</title>
+   
     
 <meta charset="UTF-8">
-  <title>Più Siamo Meno Paghiamo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piu Siamo Meno Paghiamo</title>
+    
+    <!-- 🔹 META PWA -->
+    <meta name="theme-color" content="#000000"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PiuMenoPaghi">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PiuMenoPaghi">
+
+    <!-- 🔹 LINK MANIFEST E ICONE -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="Logo1.png">
+    <link rel="apple-touch-icon" href="Logo1.png">
+
+    <!-- 🔹 FONT E CSS ESTERNI -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- 🔹 STILI DEL POPUP DEMO -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    
+    
 <style>
 /* RESET E STILI BASE */
 * {
@@ -1052,6 +1069,11 @@ Al momento siamo: <span id="counter2">0</span>
     </div>
 </div>
 
+ <!-- 🔹 PULSANTE INSTALLA APP -->
+<button id="installBtn" style="display:none; position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 12px 20px; background: #007bff; color: white; border: none; border-radius: 25px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,123,255,0.3);">
+    📲 Installa App
+</button>   
+    
 <!-- POPUP -->
 <div class="popup" id="timeoutPopup">
 <div class="popup-content">
@@ -1627,20 +1649,38 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
     
- <script>
-// Registra il Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/piusiamomenopaghiamo/service-worker.js')
-      .then(function(registration) {
-        console.log('Service Worker registrato con successo:', registration);
-      })
-      .catch(function(error) {
-        console.log('Registrazione Service Worker fallita:', error);
-      });
-  });
-}
+  
+    <script>
+    // Registra Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+            .then(() => console.log('✅ Service Worker registrato'))
+            .catch(err => console.log('❌ Errore SW:', err));
+    }
+
+    // Gestione Installazione PWA
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = 'block';
+    });
+
+    installBtn.addEventListener('click', () => {
+        installBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('✅ Utente ha installato l\'App');
+                alert('App installata con successo!');
+            } else {
+                console.log('❌ Utente ha rifiutato l\'installazione');
+            }
+            deferredPrompt = null;
+        });
+    });
 </script>
 </body>
-
 </html>
