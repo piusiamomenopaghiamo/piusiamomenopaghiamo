@@ -103,6 +103,7 @@
 
         .nav-menu li {
             margin-left: 20px;
+            position: relative;
         }
 
         .nav-menu a {
@@ -117,6 +118,40 @@
         .nav-menu a:hover {
             color: #ffe66d;
             background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* MENU A TENDINA CATEGORIE */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            display: block;
+            padding: 10px 20px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f0f0f0;
+            color: #00b4db;
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            display: block;
         }
 
         /* MOBILE MENU */
@@ -161,6 +196,23 @@
             .nav-menu a:hover {
                 background: rgba(255, 255, 255, 0.2);
                 transform: translateY(-2px);
+            }
+
+            .dropdown-menu {
+                position: static;
+                background: rgba(255, 255, 255, 0.1);
+                box-shadow: none;
+                margin-top: 10px;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                margin: 5px 0;
+            }
+
+            .dropdown-menu a:hover {
+                background: rgba(255, 255, 255, 0.2);
             }
 
             /* Hamburger animation */
@@ -495,34 +547,43 @@
 
 <body>
     <!-- HEADER CON MENU HAMBURGER -->
-   <header>
-    <div class="header-content">
-        <!-- TITOLO CENTRALE SOPRA AL MENU -->
-        <div class="logo-container" style="text-align: center; width: 100%; margin-bottom: 10px;">
-            <h1 style="margin: 0; font-size: 1.8rem;">PIU' SIAMO MENO PAGHIAMO</h1>
-        </div>
-        
-        <!-- MENU HAMBURGER -->
-        <div class="hamburger-menu" id="hamburgerMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <header>
+        <div class="header-content">
+            <!-- TITOLO CENTRALE SOPRA AL MENU -->
+            <div class="logo-container" style="text-align: center; width: 100%; margin-bottom: 10px;">
+                <h1 style="margin: 0; font-size: 1.8rem;">PIU' SIAMO MENO PAGHIAMO</h1>
+            </div>
+            
+            <!-- MENU HAMBURGER -->
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-        <!-- NAVIGATION MENU -->
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="#categorie">Categorie</a></li>
-            <li><a href="chi-siamo.html">Chi Siamo</a></li>
-            <li><a href="come-funziona.html">Come Funziona</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contatti.html">Contatti</a></li>
-        </ul>
-    </div>
-</header>
+            <!-- NAVIGATION MENU CON DROPDOWN -->
+            <ul class="nav-menu" id="navMenu">
+                <li>
+                    <a href="#categorie">Categorie</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="filterBoxes('tutti')">Tutti</a></li>
+                        <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
+                        <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
+                        <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                        <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
+                    </ul>
+                </li>
+                <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                <li><a href="come-funziona.html">Come Funziona</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </div>
+    </header>
 
     <!-- CONTENUTO PRINCIPALE (TUTTI I BOX ESISTENTI) -->
-    <!-- BOX 1 -->
-    <div class="main-box" id="box1">
+    <!-- BOX 1 - RISTORANTI -->
+    <div class="main-box" id="box1" data-category="ristoranti">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/736x/52/52/e0/5252e0c168f169ff8bca2038dfe7ee43.jpg" alt="Sunset Serenade">
         </div>
@@ -568,8 +629,8 @@
         </div>
     </div>
 
-    <!-- BOX 2 -->
-    <div class="main-box" id="box2">
+    <!-- BOX 2 - RISTORANTI -->
+    <div class="main-box" id="box2" data-category="ristoranti">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/736x/7e/ec/53/7eec53743baff4caeac00996ce2e3390.jpg" alt="Golden Euphoria">
         </div>
@@ -615,8 +676,8 @@
         </div>
     </div>
     
-    <!-- BOX 3 -->
-    <div class="main-box" id="box3">
+    <!-- BOX 3 - BIRRERIA PUB -->
+    <div class="main-box" id="box3" data-category="birreria-pub">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/736x/93/f8/5c/93f85ce0b00af94d9cdde5faba5e7418.jpg" alt="Tiramisù">
         </div>
@@ -662,9 +723,8 @@
         </div>
     </div>
 
-    <!-- I RESTANTI BOX DA 4 A 14 RIMANGONO UGUALI -->
-    <!-- BOX 4 -->
-    <div class="main-box" id="box4">
+    <!-- BOX 4 - PIZZERIA -->
+    <div class="main-box" id="box4" data-category="pizzeria">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/53/17/8f/53178fa21cb33aa1b162d20f81c83a7f.jpg" alt="pasta">
         </div>
@@ -710,8 +770,8 @@
         </div>
     </div>
 
-    <!-- BOX 5 -->   
-    <div class="main-box" id="box5">
+    <!-- BOX 5 - PIZZERIA -->   
+    <div class="main-box" id="box5" data-category="pizzeria">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/736x/cc/38/ce/cc38ceb02e72da7d5d212558f067ba20.jpg" alt="pizza">
         </div>
@@ -757,8 +817,8 @@
         </div>
     </div>
 
-    <!-- BOX 6 -->
-    <div class="main-box" id="box6">
+    <!-- BOX 6 - DRINK -->
+    <div class="main-box" id="box6" data-category="drink">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/736x/b3/5d/ac/b35dac88e5b9a93bc27b6a65dc9a1297.jpg">
         </div>
@@ -804,8 +864,8 @@
         </div>
     </div>
 
-    <!-- BOX 7 -->
-    <div class="main-box" id="box7">
+    <!-- BOX 7 - DRINK -->
+    <div class="main-box" id="box7" data-category="drink">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/736x/88/25/7a/88257af3289e298777894c3d96b872b4.jpg" alt="Cheeseburger">
         </div>
@@ -851,8 +911,8 @@
         </div>
     </div>
 
-    <!-- BOX 8 -->
-    <div class="main-box" id="box8">
+    <!-- BOX 8 - DRINK -->
+    <div class="main-box" id="box8" data-category="drink">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/5f/07/8b/5f078bc04058f9bbb7d438031910ca15.jpg" alt="Spaghetti Bolognese">
         </div>
@@ -898,8 +958,8 @@
         </div>
     </div>
 
-    <!-- BOX 9 -->
-    <div class="main-box" id="box9">
+    <!-- BOX 9 - BIRRERIA PUB -->
+    <div class="main-box" id="box9" data-category="birreria-pub">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/97/81/66/978166024f1072a53b5fc7b35c8232f0.jpg" alt="Dessert">
         </div>
@@ -945,8 +1005,8 @@
         </div>
     </div>
 
-    <!-- BOX 10 -->
-    <div class="main-box" id="box10">
+    <!-- BOX 10 - RISTORANTI -->
+    <div class="main-box" id="box10" data-category="ristoranti">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/13/f8/58/13f858d91de5a0454761cb58242c9b5d.jpg" alt="Cucina Indiana">
         </div>
@@ -992,8 +1052,8 @@
         </div>
     </div>
 
-    <!-- BOX 11 -->
-    <div class="main-box" id="box11">
+    <!-- BOX 11 - PIZZERIA -->
+    <div class="main-box" id="box11" data-category="pizzeria">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/ab/c1/f9/abc1f96e8e7ac91801f038fff1139031.jpg" alt="Tacos">
         </div>
@@ -1039,8 +1099,8 @@
         </div>
     </div>
 
-    <!-- BOX 12 -->
-    <div class="main-box" id="box12">
+    <!-- BOX 12 - DRINK -->
+    <div class="main-box" id="box12" data-category="drink">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/96/df/b5/96dfb527bd2f604071eeb54ad3cfe7e7.jpg" alt="Zuppa">
         </div>
@@ -1086,18 +1146,19 @@
         </div>
     </div>
 
-    <!-- BOX 13 -->
-    <div class="main-box" id="box13">
+    <!-- BOX 13 - BIRRERIA PUB -->
+    <div class="main-box" id="box13" data-category="birreria-pub">
         <div class="pizza-container">
-            <img src="https://www.caffeborbone.com/dw/image/v2/BHCB_PRD/on/demandware.static/-/Sites-master-catalog/default/dw6649ded3/cialde/cialda_150.jpg?sw=1200&sh=1200" alt="Pasta al Tartufo">
+            <img src="https://i.pinimg.com/736x/cb/76/81/cb76817f76cb7111eb7940211c824103.jpg" alt="Pasta al Tartufo">
         </div>
 
         <div class="offer-details">
-            <h2 class="offer-title">150 Cialda da 44 mm Filtro<br>"Borbone Rossa"</h2> 
+            <h2 class="offer-title">Aperitivo Gourmet</h2>
             <p class="offer-description">
-                Una miscela potente e grintosa in formato cialda da 44 mm. Perfetta per chi desidera un espresso forte e ricco, con tutta l'energia della Qualità Rossa e la praticità del filtro in carta.
+                Una selezione di pizze classiche e gourmet, ideali da abbinare a una birra fresca per una cena tra amici.
             </p>
         </div>
+
 
         <div class="timer-container">
             <i class="fas fa-hourglass-half"></i>
@@ -1133,16 +1194,16 @@
         </div>
     </div>
 
-    <!-- BOX 14 -->
-    <div class="main-box" id="box14">
+    <!-- BOX 14 - BIRRERIA PUB -->
+    <div class="main-box" id="box14" data-category="birreria-pub">
         <div class="pizza-container">
-            <img src="https://www.caffeborbone.com/dw/image/v2/BHCB_PRD/on/demandware.static/-/Sites-master-catalog/default/dw6649ded3/cialde/cialda_150.jpg?sw=1200&sh=1200" alt="Falafel">
+            <img src="https://i.pinimg.com/1200x/76/32/91/7632914caf72b80713ef5023c345aa74.jpg" alt="Falafel">
         </div>
 
         <div class="offer-details">
-            <h2 class="offer-title">150 Cialda da 44 mm Filtro<br>"Borbone Oro"</h2> 
+            <h2 class="offer-title">Bruschette & Delizia</h2>
             <p class="offer-description">
-                Eleganza e delicatezza in una cialda da 44 mm. La miscela Borbone Qualità Oro offre un espresso raffinato e aromatico, con tutta la comodità del filtro in carta: per chi cerca un caffè dolce, profumato e di qualità superiore.
+                Cocktail d'autore e piccoli assaggi gourmet per vivere l'esperienza completa della mixology torinese.
             </p>
         </div>
 
@@ -1239,7 +1300,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPT PER IL MENU HAMBURGER -->
+    <!-- SCRIPT PER IL MENU HAMBURGER E FILTRO CATEGORIE -->
     <script>
         // Gestione menu hamburger
         const hamburgerMenu = document.getElementById('hamburgerMenu');
@@ -1265,6 +1326,27 @@
                 navMenu.classList.remove('active');
             }
         });
+
+        // FUNZIONE FILTRO CATEGORIE
+        function filterBoxes(category) {
+            const boxes = document.querySelectorAll('.main-box');
+            
+            boxes.forEach(box => {
+                if (category === 'tutti') {
+                    box.style.display = 'block';
+                } else {
+                    if (box.getAttribute('data-category') === category) {
+                        box.style.display = 'block';
+                    } else {
+                        box.style.display = 'none';
+                    }
+                }
+            });
+
+            // Chiudi il menu dopo la selezione (mobile)
+            hamburgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
     </script>
 
     <!-- IL RESTO DEL TUO SCRIPT ESISTENTE -->
