@@ -1875,29 +1875,95 @@
                 .catch(err => console.log('❌ Errore SW:', err));
         }
 
-        // Gestione Installazione PWA
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
+       // Gestione Installazione PWA - VERSIONE MIGLIORATA
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
+// Mostra il pulsante solo se supportato
+if (window.matchMedia('(display-mode: browser)').matches) {
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = 'block';
+        
+        // Forza l'aggiornamento del layout
+        setTimeout(() => {
             installBtn.style.display = 'block';
-        });
+        }, 1000);
+    });
+}
 
-        installBtn.addEventListener('click', () => {
-            installBtn.style.display = 'none';
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('✅ Utente ha installato l\'App');
-                    alert('App installata con successo!');
-                } else {
-                    console.log('❌ Utente ha rifiutato l\'installazione');
-                }
-                deferredPrompt = null;
-            });
-        });
+installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) {
+        // Fallback: mostra istruzioni manuali
+        showInstallInstructions();
+        return;
+    }
+    
+    installBtn.style.display = 'none';
+    try {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        
+        if (outcome === 'accepted') {
+            console.log('✅ Utente ha accettato l\'installazione');
+            showSuccessMessage();
+        } else {
+            console.log('❌ Utente ha rifiutato l\'installazione');
+            showManualInstructions();
+        }
+    } catch (error) {
+        console.error('Errore durante l\'installazione:', error);
+        showManualInstructions();
+    }
+    deferredPrompt = null;
+});
+
+// Funzione per mostrare istruzioni manuali
+function showManualInstructions() {
+    const isAndroid = /Android/.test(navigator.userAgent);
+    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    
+    let message = '';
+    
+    if (isAndroid) {
+        message = `
+        📱 Per installare l'app su Android:
+        1. Apri il menu (tre puntini in alto a destra)
+        2. Tocca "Aggiungi alla schermata Home"
+        3. Conferma l'installazione
+        `;
+    } else if (isIOS) {
+        message = `
+        📱 Per installare l'app su iPhone/iPad:
+        1. Tocca il pulsante Condividi (quadrato con freccia)
+        2. Scorri verso il basso e tocca "Aggiungi a Home"
+        3. Conferma l'installazione
+        `;
+    } else {
+        message = `
+        💻 Per installare l'app:
+        Cerca l'icona di installazione nella barra degli indirizzi
+        o usa il menu del browser per "Installa app"
+        `;
+    }
+    
+    alert(message);
+}
+
+function showSuccessMessage() {
+    alert('🎉 App installata con successo! Trovala nella tua schermata home.');
+}
+
+function showInstallInstructions() {
+    alert('📲 Usa il menu del browser per installare l\'app sul tuo dispositivo.');
+}
+
+// Controlla se l'app è già installata
+window.addEventListener('appinstalled', () => {
+    console.log('📱 PWA installata con successo');
+    installBtn.style.display = 'none';
+});
     </script>
 </body>
 </html>
