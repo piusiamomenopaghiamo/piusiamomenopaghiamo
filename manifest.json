@@ -1,23 +1,22 @@
 {
+  "name": "Piu Siamo Meno Paghiamo",
   "short_name": "PiuMenoPaghi",
-  "name": "PiùSiamoMenoPaghiamo",
-  "description": "Comunità di acquisto per risparmiare insieme sui contratti di luce, gas e altre utenze.",
+  "description": "Comunità di acquisto per risparmiare insieme",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
   "icons": [
     {
-  "src": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/Logo1.png",
-  "sizes": "192x192",
-  "type": "image/png"
-},
-{
-  "src": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/Logo2.png", 
-  "sizes": "512x512",
-  "type": "image/png"
-}
-  ],
-  "start_url": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/",
-  "background_color": "#ffffff",
-  "display": "standalone",
-  "scope": "https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/",
-  "theme_color": "#000000",
-  "orientation": "portrait-primary"
+      "src": "Logo1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Logo2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
