@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accedi - Piu Siamo Meno Paghiamo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00b4db;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .google-btn {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+            transition: all 0.3s;
+        }
+
+        .google-btn:hover {
+            background: #357ae8;
+            transform: translateY(-2px);
+        }
+
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .features {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .feature-icon {
+            color: #00b4db;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">PIU' SIAMO MENO PAGHIAMO</div>
+        <h1>Benvenuto! 👋</h1>
+        <p>Accedi per scoprire offerte esclusive e unirti alla nostra comunità di risparmio</p>
+        
+        <button class="google-btn" onclick="signInWithGoogle()">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE2LjUxIDkuMjA0NTVWOS4xNjM2NEg5LjE4VjEwLjg5NTVIMTMuNDQ2QzEzLjEwNSAxMi42NjM2IDExLjUzOCAxMy45NTQ1IDkuMTggMTMuOTU0NUM2LjQyNzI3IDEzLjk1NDUgNC4xODE4MiAxMS43MSA0LjE4MTgyIDguOTU0NTVDNCA2LjE5OTA5IDYuMjQ1NDUgNCA5IDRDOS45OTcyNyA0IDEwLjkzMTggNC4zMjcyNyAxMS42OTU1IDQuODcyNzNMMTMuNDU1NSAzLjIxMzY0QzEyLjE5NTUgMi4yNzI3MyAxMC42NCAxLjcyNzI3IDkgMS43MjcyN0M1LjE4MTgyIDEuNzI3MjcgMiA0LjkwOTA5IDIgOC43MjcyN0MyIDEyLjU0NTUgNS4xODE4MiAxNS43MjczIDkgMTUuNzI3M0MxMi44MTgyIDE1LjcyNzMgMTYgMTIuNTQ1NSAxNiA4LjcyNzI3QzE2IDguMzE4MTggMTUuOTU0NSA3LjkzMTgyIDE1Ljg4MTggNy41NjM2NEwxNi41MSA5LjIwNDVaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" alt="Google">
+            Accedi con Google
+        </button>
+
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                Accedi in modo sicuro e veloce
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                Accedi a offerte esclusive
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                Unisciti alla comunità
+            </div>
+        </div>
+    </div>
+
+    <!-- SOSTITUISCI "TUO_CLIENT_ID" con l'ID Client che hai ottenuto da Google -->
+    <script>
+        const CLIENT_ID = "342488980649-bdo97jh32hgsp7eubadpic1abneppmpc.apps.googleusercontent.com";
+        
+        function signInWithGoogle() {
+            const redirectUri = encodeURIComponent('https://piusiamomenopaghiamo.github.io');
+            const scope = encodeURIComponent('email profile');
+            const state = generateState();
+            
+            localStorage.setItem('oauth_state', state);
+            
+            const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+                `client_id=${CLIENT_ID}&` +
+                `redirect_uri=${redirectUri}&` +
+                `response_type=token&` +
+                `scope=${scope}&` +
+                `state=${state}`;
+            
+            window.location.href = authUrl;
+        }
+
+        function generateState() {
+            return Math.random().toString(36).substring(2, 15) + 
+                   Math.random().toString(36).substring(2, 15);
+        }
+    </script>
+</body>
+</html>
