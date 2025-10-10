@@ -1329,18 +1329,16 @@
 
         // FUNZIONE FILTRO CATEGORIE
         function filterBoxes(category) {
-            const boxes = document.querySelectorAll('.main-box');
-            
-            boxes.forEach(box => {
-                if (category === 'tutti') {
-                    box.style.display = 'block';
-                } else {
-                    if (box.getAttribute('data-category') === category) {
-                        box.style.display = 'block';
-                    } else {
-                        box.style.display = 'none';
-                    }
-                }
+    // ... logica di filtraggio dei box ...
+    
+    // QUESTO DEVE ESSERE ANCORA PRESENTE PER EVITARE CHE IL MENU SPARI
+    if (window.innerWidth <= 768) {
+        setTimeout(() => {
+            navMenu.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+        }, 50); 
+    }
+}
             });
 
             // Chiudi il menu dopo la selezione (mobile)
