@@ -565,13 +565,13 @@
             <ul class="nav-menu" id="navMenu">
                 <li>
                     <a href="#categorie">Categorie</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" onclick="filterBoxes('tutti')">Tutti</a></li>
-                        <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
-                        <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
-                        <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
-                        <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
-                    </ul>
+                   <ul class="dropdown-menu">
+    <li><a href="#" onclick="event.preventDefault(); filterBoxes('tutti')">Tutti</a></li>
+    <li><a href="#" onclick="event.preventDefault(); filterBoxes('ristoranti')">Ristoranti</a></li>
+    <li><a href="#" onclick="event.preventDefault(); filterBoxes('birreria-pub')">Birreria Pub</a></li>
+    <li><a href="#" onclick="event.preventDefault(); filterBoxes('drink')">Drink</a></li>
+    <li><a href="#" onclick="event.preventDefault(); filterBoxes('pizzeria')">Pizzeria</a></li>
+</ul>
                 </li>
                 <li><a href="chi-siamo.html">Chi Siamo</a></li>
                 <li><a href="come-funziona.html">Come Funziona</a></li>
