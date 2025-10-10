@@ -542,142 +542,6 @@
             color: #17a2b8;
             margin-bottom: 10px;
         }
-        
-        /* ========== MIGLIORAMENTI PER MOBILE - FIX ANDROID ========== */
-
-/* ========== FIX COMPLETO PER ANDROID ========== */
-
-/* Reset completo per problemi touch */
-* {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
-.nav-menu a, .dropdown-menu a, button, .hamburger-menu {
-    -webkit-tap-highlight-color: rgba(0, 180, 219, 0.3);
-    touch-action: manipulation;
-}
-
-/* Fix specifico per Android */
-@media (max-width: 768px) {
-    /* Previeni qualsiasi hover problematica su mobile */
-    .mobile-view .nav-menu li:hover .dropdown-menu {
-        display: none !important;
-    }
-    
-    /* Dropdown sempre visibile quando il menu è attivo */
-    .nav-menu.active .dropdown-menu {
-        display: block !important;
-        position: static !important;
-        background: rgba(255, 255, 255, 0.15) !important;
-        margin: 10px 0;
-        border-radius: 8px;
-        animation: fadeIn 0.3s ease;
-    }
-    
-    /* Migliora il feedback al tocco */
-    .nav-menu a:active,
-    .dropdown-menu a:active,
-    .hamburger-menu:active {
-        background: rgba(255, 255, 255, 0.3) !important;
-        transform: scale(0.95);
-        transition: all 0.1s ease;
-    }
-    
-    /* Assicura che i link siano abbastanza grandi per il tocco */
-    .nav-menu a,
-    .dropdown-menu a {
-        min-height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
-        margin: 8px 0;
-    }
-    
-    /* Fix per il layout del header */
-    .header-content {
-        flex-wrap: wrap;
-        padding: 10px 15px;
-    }
-    
-    .logo-container {
-        order: 1;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    .hamburger-menu {
-        order: 2;
-        margin-left: auto;
-    }
-    
-    .nav-menu {
-        order: 3;
-    }
-    
-    /* Previeni scroll accidentale */
-    body.menu-open {
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-    }
-}
-
-/* Animazione per il dropdown */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Migliora le performance di scrolling */
-.nav-menu {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-}
-
-/* Fix per il dropdown su desktop */
-@media (min-width: 769px) {
-    .nav-menu li:hover .dropdown-menu {
-        display: block;
-        animation: fadeIn 0.3s ease;
-    }
-}
-
-/* Indicatore visivo per debug */
-.debug-info {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    z-index: 10000;
-    display: none;
-}
-
-/* Messaggio quando non ci sono risultati */
-.no-results {
-    text-align: center;
-    padding: 40px 20px;
-    color: #666;
-    font-size: 1.2rem;
-    display: none;
-}
-
-.no-results i {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    color: #ccc;
-}
-}     
-        
-        
-        
     </style>
 </head>
 
@@ -698,26 +562,22 @@
             </div>
 
             <!-- NAVIGATION MENU CON DROPDOWN -->
-            <!-- NAVIGATION MENU CON DROPDOWN - VERSIONE FISSATA -->
-<ul class="nav-menu" id="navMenu">
-    <li class="menu-category">
-        <a href="javascript:void(0)" class="category-trigger">
-            <span>Categorie</span>
-            <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 0.8em;"></i>
-        </a>
-        <ul class="dropdown-menu">
-            <li><a href="javascript:void(0)" data-category="tutti" onclick="filterBoxes('tutti')">📋 Tutti</a></li>
-            <li><a href="javascript:void(0)" data-category="ristoranti" onclick="filterBoxes('ristoranti')">🍝 Ristoranti</a></li>
-            <li><a href="javascript:void(0)" data-category="birreria-pub" onclick="filterBoxes('birreria-pub')">🍺 Birreria Pub</a></li>
-            <li><a href="javascript:void(0)" data-category="drink" onclick="filterBoxes('drink')">🍹 Drink</a></li>
-            <li><a href="javascript:void(0)" data-category="pizzeria" onclick="filterBoxes('pizzeria')">🍕 Pizzeria</a></li>
-        </ul>
-    </li>
-    <li><a href="chi-siamo.html" onclick="closeMenu()">👥 Chi Siamo</a></li>
-    <li><a href="come-funziona.html" onclick="closeMenu()">❓ Come Funziona</a></li>
-    <li><a href="faq.html" onclick="closeMenu()">💡 FAQ</a></li>
-    <li><a href="contatti.html" onclick="closeMenu()">📞 Contatti</a></li>
-</ul>
+            <ul class="nav-menu" id="navMenu">
+                <li>
+                    <a href="#categorie">Categorie</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="filterBoxes('tutti')">Tutti</a></li>
+                        <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
+                        <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
+                        <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                        <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
+                    </ul>
+                </li>
+                <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                <li><a href="come-funziona.html">Come Funziona</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
         </div>
     </header>
 
@@ -1440,72 +1300,55 @@
         </div>
     </footer>
 
-    
-<!-- SCRIPT MENU - VERSIONE ULTRA SEMPLIFICATA -->
-<script>
-    // Elementi del menu
-    const hamburger = document.getElementById('hamburgerMenu');
-    const navMenu = document.getElementById('navMenu');
-    
-    // Apri/chiudi menu hamburger
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-    
-    // Chiudi menu quando si clicca su un link
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Se è un link di categoria, applica il filtro
-            if (this.hasAttribute('data-category') || this.getAttribute('onclick')) {
-                e.preventDefault();
-                let category;
-                
-                if (this.hasAttribute('data-category')) {
-                    category = this.getAttribute('data-category');
-                } else {
-                    category = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-                }
-                
-                // Applica filtro
-                filterBoxes(category);
-            }
-            
-            // Chiudi menu
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
+    <!-- SCRIPT PER IL MENU HAMBURGER E FILTRO CATEGORIE -->
+    <script>
+        // Gestione menu hamburger
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
-    });
-    
-    // Chiudi menu quando si clicca fuori
-    document.addEventListener('click', function(e) {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            hamburger.classList.remove('active');
+
+        // Chiudi il menu quando si clicca su un link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Chiudi il menu quando si clicca fuori
+        document.addEventListener('click', (e) => {
+            if (!hamburgerMenu.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // FUNZIONE FILTRO CATEGORIE
+        function filterBoxes(category) {
+            const boxes = document.querySelectorAll('.main-box');
+            
+            boxes.forEach(box => {
+                if (category === 'tutti') {
+                    box.style.display = 'block';
+                } else {
+                    if (box.getAttribute('data-category') === category) {
+                        box.style.display = 'block';
+                    } else {
+                        box.style.display = 'none';
+                    }
+                }
+            });
+
+            // Chiudi il menu dopo la selezione (mobile)
+            hamburgerMenu.classList.remove('active');
             navMenu.classList.remove('active');
         }
-    });
-    
-    // Funzione filtro semplificata
-    function filterBoxes(category) {
-        console.log('Filtro attivato:', category);
-        
-        document.querySelectorAll('.main-box').forEach(box => {
-            if (category === 'tutti' || box.getAttribute('data-category') === category) {
-                box.style.display = 'block';
-            } else {
-                box.style.display = 'none';
-            }
-        });
-        
-        // Scroll al primo elemento visibile
-        setTimeout(() => {
-            const firstVisible = document.querySelector('.main-box[style="display: block"]');
-            if (firstVisible) {
-                firstVisible.scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 100);
-    }
-</script>
+    </script>
+
     <!-- IL RESTO DEL TUO SCRIPT ESISTENTE -->
     <script>
         // Configurazione box
@@ -2122,7 +1965,72 @@ window.addEventListener('appinstalled', () => {
     installBtn.style.display = 'none';
 });
     </script>
+<script>
+    // Seleziona gli elementi principali
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
     
-   
-</body>
+    // =========================================================
+    // 1. GESTIONE MENU HAMBURGER
+    // =========================================================
+    // Questa parte è già presente nel tuo file, ma la inserisco qui per chiarezza
+    hamburgerMenu.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburgerMenu.classList.toggle('active');
+    });
+
+    // =========================================================
+    // 2. FUNZIONE PRINCIPALE DI FILTRAGGIO (FIX PER IL BUG ANDROID)
+    // =========================================================
+    function filterBoxes(category) {
+        const boxes = document.querySelectorAll('.main-box');
+
+        // Esegue il filtro dei box in base alla categoria
+        boxes.forEach(box => {
+            const boxCategory = box.getAttribute('data-category');
+            if (category === 'tutti' || boxCategory === category) {
+                box.style.display = 'block';
+            } else {
+                box.style.display = 'none';
+            }
+        });
+
+        // ⭐ BUGFIX ANDROID: Chiude esplicitamente il menu mobile dopo la selezione di una categoria.
+        // La condizione window.innerWidth <= 768 assicura che si chiuda solo in modalità mobile.
+        if (window.innerWidth <= 768) {
+            // Un leggero ritardo (es. 50ms) è spesso risolutivo su Android per prevenire
+            // race condition tra l'evento di click e la chiusura del menu.
+            setTimeout(() => {
+                navMenu.classList.remove('active');
+                hamburgerMenu.classList.remove('active');
+            }, 50); 
+        }
+    }
+    
+    // =========================================================
+    // 3. GESTIONE GENERICA DEI LINK
+    // =========================================================
+    // Questo listener è già presente nel tuo codice per chiudere il menu mobile 
+    // quando si clicca un link generico (es. "Chi Siamo").
+    // Lo manteniamo, ma la funzione filterBoxes ora è più robusta.
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Se il link cliccato ha un `onclick` (come le categorie), la chiusura
+            // viene gestita da `filterBoxes`, quindi non facciamo nulla qui per evitare doppi eventi.
+            if (!link.getAttribute('onclick')) {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    hamburgerMenu.classList.remove('active');
+                }
+            }
+        });
+    });
+
+    // ... (Mantieni qui il resto del tuo codice JavaScript esistente, come quello PWA e timer)
+</script>
+    
+    </body>
 </html>
+
+
