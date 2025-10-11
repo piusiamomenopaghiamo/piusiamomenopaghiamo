@@ -45,15 +45,13 @@
         header {
             background: linear-gradient(to right, #00b4db, #0083b0);
             color: white;
-            padding: 10px 20px 30px;
+            padding: 10px 20px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
-            /* FIX: Aggiunto per garantire che l'header rimanga visibile */
             width: 100%;
-            transition: all 0.3s ease;
         }
 
         .header-content {
@@ -71,13 +69,7 @@
         header h1 {
             font-family: 'Quicksand', sans-serif;
             font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        header p {
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-bottom: 10px;
         }
 
         /* MENU HAMBURGER */
@@ -105,8 +97,7 @@
         }
 
         .nav-menu li {
-            margin-left: 20px;
-            position: relative;
+            margin-left: 15px;
         }
 
         .nav-menu a {
@@ -114,47 +105,14 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
-            padding: 5px 10px;
+            padding: 8px 12px;
             border-radius: 5px;
+            white-space: nowrap;
         }
 
         .nav-menu a:hover {
             color: #ffe66d;
             background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* MENU A TENDINA CATEGORIE */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            z-index: 1000;
-            padding: 10px 0;
-        }
-
-        .dropdown-menu li {
-            margin: 0;
-        }
-
-        .dropdown-menu a {
-            color: #333;
-            display: block;
-            padding: 10px 20px;
-            transition: all 0.3s;
-        }
-
-        .dropdown-menu a:hover {
-            background: #f0f0f0;
-            color: #00b4db;
-        }
-
-        .nav-menu li:hover .dropdown-menu {
-            display: block;
         }
 
         /* MOBILE MENU */
@@ -173,7 +131,7 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
-                padding-top: 50px;
+                padding-top: 30px;
                 transition: left 0.3s ease;
                 z-index: 99;
             }
@@ -183,39 +141,17 @@
             }
 
             .nav-menu li {
-                margin: 15px 0;
+                margin: 10px 0;
             }
 
             .nav-menu a {
-                font-size: 1.2rem;
-                padding: 15px 30px;
+                font-size: 1.1rem;
+                padding: 12px 25px;
                 display: block;
-                width: 200px;
+                width: 180px;
                 text-align: center;
                 border: 2px solid rgba(255, 255, 255, 0.2);
                 border-radius: 10px;
-            }
-
-            .nav-menu a:hover {
-                background: rgba(255, 255, 255, 0.2);
-                transform: translateY(-2px);
-            }
-
-            .dropdown-menu {
-                position: static;
-                background: rgba(255, 255, 255, 0.1);
-                box-shadow: none;
-                margin-top: 10px;
-            }
-
-            .dropdown-menu a {
-                color: white;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                margin: 5px 0;
-            }
-
-            .dropdown-menu a:hover {
-                background: rgba(255, 255, 255, 0.2);
             }
 
             /* Hamburger animation */
@@ -420,100 +356,81 @@
             margin-bottom: 15px;
         }
 
-        /* FOOTER */
-        footer {
-            background-color: #000;
-            color: white;
-            padding: 40px 20px;
-            margin-top: 50px;
-            border-top: 5px solid #00b4db;
-            width: 100%;
-        }
+     /* FOOTER */
+footer {
+    background-color: #000;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px;
+    border-top: 5px solid #00b4db;
+    width: 100%;
+}
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
 
-        .footer-section h3 {
-            color: #00b4db;
-            font-family: 'Quicksand', sans-serif;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
+.footer-section h3 {
+    color: #00b4db;
+    font-family: 'Quicksand', sans-serif;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
 
-        .footer-section ul {
-            list-style: none;
-        }
+.footer-section ul {
+    list-style: none;
+}
 
-        .footer-section li {
-            margin-bottom: 10px;
-        }
+.footer-section li {
+    margin-bottom: 10px;
+}
 
-        .footer-section a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+.footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
 
-        .footer-section a:hover {
-            color: #00b4db;
-        }
+.footer-section a:hover {
+    color: #00b4db;
+}
 
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin: 20px 0;
-        }
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
 
-        .social-icons a {
-            color: white;
-            font-size: 1.5rem;
-        }
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+}
 
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-        .copyright {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            color: #777;
-            font-size: 0.9rem;
-        }
+.copyright {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    color: #777;
+    font-size: 0.9rem;
+}
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            .main-box {
-                margin: 20px 15px;
-                padding: 20px 15px;
-            }
-
-            .pizza-container {
-                width: 250px;
-                height: 250px;
-            }
-
-            .explosive-text {
-                font-size: 1.8rem;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
         /* THANK YOU MESSAGE */
         .thank-you-message {
             display: none;
@@ -564,18 +481,12 @@
                 <span></span>
             </div>
 
-            <!-- NAVIGATION MENU CON DROPDOWN -->
+            <!-- NAVIGATION MENU CON CATEGORIE DIRETTE -->
             <ul class="nav-menu" id="navMenu">
-                <li>
-                    <a href="#categorie">Categorie</a>
-                   <ul class="dropdown-menu">
-    <li><a href="#" onclick="event.preventDefault(); filterBoxes('tutti')">Tutti</a></li>
-    <li><a href="#" onclick="event.preventDefault(); filterBoxes('ristoranti')">Ristoranti</a></li>
-    <li><a href="#" onclick="event.preventDefault(); filterBoxes('birreria-pub')">Birreria Pub</a></li>
-    <li><a href="#" onclick="event.preventDefault(); filterBoxes('drink')">Drink</a></li>
-    <li><a href="#" onclick="event.preventDefault(); filterBoxes('pizzeria')">Pizzeria</a></li>
-</ul>
-                </li>
+                <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
+                <li><a href="#" onclick="filterBoxes('birreria-pub')">Pub</a></li>
+                <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzerie</a></li>
+                <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
                 <li><a href="chi-siamo.html">Chi Siamo</a></li>
                 <li><a href="come-funziona.html">Come Funziona</a></li>
                 <li><a href="faq.html">FAQ</a></li>
@@ -961,94 +872,25 @@
         </div>
     </div>
 
-    <!-- POPUP -->
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
-            <button onclick="closePopup()">Chiudi</button>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>Più Siamo Meno Paghiamo</h3>
-                <p>Unisciti alla rivoluzione degli acquisti di gruppo per ristoranti e locali. Più persone partecipano, più il prezzo scende!</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h3>Link Utili</h3>
-                <ul>
-                    <li><a href="chi-siamo.html">Chi Siamo</a></li>
-                    <li><a href="come-funziona.html">Come Funziona</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contatti.html">Contatti</a></li>
-                    <li><a href="termini-condizioni.html">Termini e Condizioni</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Categorie</h3>
-                <ul>
-                    <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
-                    <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
-                    <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
-                    <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Newsletter</h3>
-                <p>Iscriviti per ricevere le offerte esclusive</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="La tua email" required>
-                    <button type="submit">Iscriviti</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="copyright">
-            <p>&copy; 2023 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
-        </div>
-    </footer>
-
     <script>
-        // VARIABILI GLOBALI
-        let counters = [0, 0, 0, 0, 0, 0, 0, 0];
-        const targetCounts = [40, 50, 60, 50, 45, 40, 70, 60];
-        let timers = [3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600];
-        let timerIntervals = [];
+        // GESTIONE MENU HAMBURGER
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const navMenu = document.getElementById('navMenu');
 
-        // INIZIALIZZAZIONE
-        document.addEventListener('DOMContentLoaded', function() {
-            // Carica i dati salvati
-            loadSavedData();
-            
-            // Inizializza i timer
-            for (let i = 0; i < 8; i++) {
-                startTimer(i);
-            }
-            
-            // Inizializza i contatori
-            updateAllCounters();
-            
-            // Gestione menu hamburger
-            setupHamburgerMenu();
-            
-            // Gestione form di partecipazione
-            setupForms();
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
 
-        // FUNZIONE PER FILTRARE LE CATEGORIE
+        // Chiudi il menu quando si clicca su un link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // FUNZIONE PER FILTRARE LE CATEGORIE - VERSIONE SEMPLIFICATA
         function filterBoxes(category) {
             const boxes = document.querySelectorAll('.main-box');
             
@@ -1060,141 +902,77 @@
                 }
             });
             
-            // FIX: Scroll morbido che tiene conto dell'header fisso
+            // FIX DEFINITIVO PER ANDROID: Scroll immediato senza problemi
             const firstVisibleBox = document.querySelector('.main-box[style="display: block"]');
             if (firstVisibleBox) {
                 const headerHeight = document.querySelector('header').offsetHeight;
-                const boxPosition = firstVisibleBox.getBoundingClientRect().top + window.pageYOffset;
+                const boxPosition = firstVisibleBox.offsetTop - headerHeight - 10;
                 
-                window.scrollTo({
-                    top: boxPosition - headerHeight - 20,
-                    behavior: 'smooth'
-                });
+                // Scroll immediato senza smooth behavior (compatibile con Android)
+                window.scrollTo(0, boxPosition);
             }
             
             // Chiudi il menu mobile se aperto
-            closeMobileMenu();
-        }
-
-        // GESTIONE MENU HAMBURGER
-        function setupHamburgerMenu() {
-            const hamburgerMenu = document.getElementById('hamburgerMenu');
-            const navMenu = document.getElementById('navMenu');
-            
-            hamburgerMenu.addEventListener('click', function() {
-                hamburgerMenu.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-            
-            // Chiudi il menu quando si clicca su un link
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    hamburgerMenu.classList.remove('active');
-                    navMenu.classList.remove('active');
-                });
-            });
-        }
-
-        function closeMobileMenu() {
-            const hamburgerMenu = document.getElementById('hamburgerMenu');
-            const navMenu = document.getElementById('navMenu');
-            
-            hamburgerMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-
-        // GESTIONE FORM
-        function setupForms() {
-            for (let i = 1; i <= 8; i++) {
-                const form = document.getElementById(`formPartecipazione${i}`);
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    handleFormSubmission(i-1);
-                });
+            if (window.innerWidth <= 768) {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
             }
         }
 
-        function handleFormSubmission(boxIndex) {
-            // Incrementa il contatore
-            counters[boxIndex]++;
-            
-            // Salva i dati
-            saveData();
-            
-            // Aggiorna il display
-            updateCounter(boxIndex);
-            
-            // Mostra il messaggio di ringraziamento
-            document.getElementById(`thankYouMessage${boxIndex+1}`).style.display = 'block';
-            
-            // Nascondi il form
-            document.getElementById(`formPartecipazione${boxIndex+1}`).style.display = 'none';
-            
-            // Verifica se è stato raggiunto il target
-            if (counters[boxIndex] >= targetCounts[boxIndex]) {
-                document.getElementById(`completedMessage${boxIndex+1}`).style.display = 'block';
-                document.getElementById(`thankYouMessage${boxIndex+1}`).style.display = 'none';
-            }
-        }
-
-        // GESTIONE TIMER
-        function startTimer(boxIndex) {
-            timerIntervals[boxIndex] = setInterval(function() {
-                if (timers[boxIndex] > 0) {
-                    timers[boxIndex]--;
-                    updateTimerDisplay(boxIndex);
-                } else {
-                    clearInterval(timerIntervals[boxIndex]);
-                    // Timer scaduto - gestisci qui l'azione
-                }
-            }, 1000);
-        }
-
-        function updateTimerDisplay(boxIndex) {
-            const minutes = Math.floor(timers[boxIndex] / 60);
-            const seconds = timers[boxIndex] % 60;
-            document.getElementById(`countdown${boxIndex+1}`).textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        // GESTIONE CONTATORI
-        function updateCounter(boxIndex) {
-            document.getElementById(`counter${boxIndex+1}`).textContent = counters[boxIndex];
-        }
-
-        function updateAllCounters() {
-            for (let i = 0; i < 8; i++) {
-                updateCounter(i);
-            }
-        }
-
-        // SALVATAGGIO E CARICAMENTO DATI
-        function saveData() {
-            const data = {
-                counters: counters,
-                timers: timers
-            };
-            localStorage.setItem('piuMenoPaghiData', JSON.stringify(data));
-        }
-
-        function loadSavedData() {
-            const savedData = localStorage.getItem('piuMenoPaghiData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                counters = data.counters || counters;
-                timers = data.timers || timers;
-            }
-        }
-
-        // GESTIONE POPUP
-        function openPopup() {
-            document.getElementById('popup').style.display = 'flex';
-        }
-
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
+        // INIZIALIZZA MOSTRANDO TUTTI I BOX
+        document.addEventListener('DOMContentLoaded', function() {
+            filterBoxes('tutti');
+        });
     </script>
+    
+    <!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Più Siamo Meno Paghiamo</h3>
+            <p>Unisciti alla rivoluzione degli acquisti di gruppo per ristoranti e locali. Più persone partecipano, più il prezzo scende!</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Link Utili</h3>
+            <ul>
+                <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                <li><a href="come-funziona.html">Come Funziona</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Categorie</h3>
+            <ul>
+                <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
+                <li><a href="#" onclick="filterBoxes('birreria-pub')">Pub</a></li>
+                <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzerie</a></li>
+                <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Newsletter</h3>
+            <p>Iscriviti per ricevere le offerte esclusive</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="La tua email" required>
+                <button type="submit">Iscriviti</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>&copy; 2024 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
+        <p>P.IVA 01234567890</p>
+    </div>
+</footer>
 </body>
 </html>
