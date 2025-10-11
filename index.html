@@ -41,7 +41,7 @@
             line-height: 1.6;
         }
 
-        /* HEADER */
+        /* HEADER - FIX PER IL BUG ANDROID */
         header {
             background: linear-gradient(to right, #00b4db, #0083b0);
             color: white;
@@ -51,6 +51,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            /* FIX: Aggiunto per garantire che l'header rimanga visibile */
+            width: 100%;
+            transition: all 0.3s ease;
         }
 
         .header-content {
@@ -914,13 +917,13 @@
     <!-- BOX 8 - DRINK -->
     <div class="main-box" id="box8" data-category="drink">
         <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/5f/07/8b/5f078bc04058f9bbb7d438031910ca15.jpg" alt="Spaghetti Bolognese">
+            <img src="https://i.pinimg.com/1200x/5f/07/8b/5f078bc04058f9bbb7d438031910ca15.jpg" alt="Spritz">
         </div>
 
         <div class="offer-details">
-            <h2 class="offer-title">Mix & Chill</h2>                                      
+            <h2 class="offer-title">Spritz & Aperitivo</h2>
             <p class="offer-description">
-                Un'esperienza giovane e dinamica con cocktail freschi e piatti street food rivisitati in chiave gourmet.
+                L'aperitivo torinese per eccellenza: spritz, vini e un ricco buffet per iniziare la serata con gusto.
             </p>
         </div>
 
@@ -933,7 +936,7 @@
 
         <div class="price-highlight">
             <div class="custom-message">
-                <span class="explosive-text">Se siamo in 40, paghiamo solo 35€! <strong><s>ANZICHÉ 70€</s></strong></span>
+                <span class="explosive-text">Se siamo in 60, paghiamo solo 16€ <strong><s>ANZICHÉ 32€</s></strong></span>
             </div>
         </div>
 
@@ -958,300 +961,12 @@
         </div>
     </div>
 
-    <!-- BOX 9 - BIRRERIA PUB -->
-    <div class="main-box" id="box9" data-category="birreria-pub">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/97/81/66/978166024f1072a53b5fc7b35c8232f0.jpg" alt="Dessert">
-        </div>
-
-        <div class="offer-details">
-            <h2 class="offer-title">Sapori Bavaresi</h2>                                    
-            <p class="offer-description">
-                Un viaggio tra i grandi classici delle birrerie: carne alla griglia, street food e birre fresche spillate al momento.
-            </p>
-        </div>
-
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown9" class="countdown">60:00</div>
-        </div>
-
-        <button class="menu-btn" onclick="window.location.href='box9.html'">Scopri di più</button>
-
-        <div class="price-highlight">
-            <div class="custom-message">
-                <span class="explosive-text">Se siamo in 40, paghiamo solo 20€! <strong><s>ANZICHÉ 38€</s></strong></span>
-            </div>
-        </div>
-
-        <div class="counter-box">
-            Al momento siamo: <span id="counter9">0</span>
-        </div>
-
-        <form id="formPartecipazione9">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn9">Partecipa</button>
-        </form>
-
-        <div id="thankYouMessage9" class="thank-you-message">
-            <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
-        </div>
-
-        <div id="completedMessage9" class="completed-message">
-            <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
-        </div>
-    </div>
-
-    <!-- BOX 10 - RISTORANTI -->
-    <div class="main-box" id="box10" data-category="ristoranti">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/13/f8/58/13f858d91de5a0454761cb58242c9b5d.jpg" alt="Cucina Indiana">
-        </div>
-
-        <div class="offer-details">
-            <h2 class="offer-title">Eleganza Piemontese</h2>                                       
-            <p class="offer-description">
-                Piatti raffinati della tradizione piemontese rivisitati in chiave moderna.
-            </p>
-        </div>
-
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown10" class="countdown">60:00</div>                                 
-        </div>
-
-        <button class="menu-btn" onclick="window.location.href='box10.html'">Scopri di più</button>
-
-        <div class="price-highlight">
-            <div class="custom-message">
-                <span class="explosive-text">Se siamo in 50, paghiamo solo 18€! <strong><s>ANZICHÉ 34€</s></strong></span>
-            </div>
-        </div>
-
-        <div class="counter-box">
-            Al momento siamo: <span id="counter10">0</span>
-        </div>
-
-        <form id="formPartecipazione10">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn10">Partecipa</button>
-        </form>
-
-        <div id="thankYouMessage10" class="thank-you-message">
-            <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
-        </div>
-
-        <div id="completedMessage10" class="completed-message">
-            <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
-        </div>
-    </div>
-
-    <!-- BOX 11 - PIZZERIA -->
-    <div class="main-box" id="box11" data-category="pizzeria">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/ab/c1/f9/abc1f96e8e7ac91801f038fff1139031.jpg" alt="Tacos">
-        </div>
-
-        <div class="offer-details">
-            <h2 class="offer-title">La Pizza Gustosa</h2>      
-            <p class="offer-description">
-                Le pizze più amate di sempre, preparate con ingredienti freschi e di qualità, perfette per una serata informale e gustosa.
-            </p>
-        </div>
-
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown11" class="countdown">60:00</div>
-        </div>
-
-        <button class="menu-btn" onclick="window.location.href='box11.html'">Scopri di più</button>
-
-        <div class="price-highlight">
-            <div class="custom-message">
-                <span class="explosive-text">Se siamo in 50, paghiamo solo 14€! <strong><s>ANZICHÉ 30€</s></strong></span>
-            </div>
-        </div>
-
-        <div class="counter-box">
-            Al momento siamo: <span id="counter11">0</span>
-        </div>
-
-        <form id="formPartecipazione11">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn11">Partecipa</button>
-        </form>
-
-        <div id="thankYouMessage11" class="thank-you-message">
-            <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
-        </div>
-
-        <div id="completedMessage11" class="completed-message">
-            <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
-        </div>
-    </div>
-
-    <!-- BOX 12 - DRINK -->
-    <div class="main-box" id="box12" data-category="drink">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/96/df/b5/96dfb527bd2f604071eeb54ad3cfe7e7.jpg" alt="Zuppa">
-        </div>
-
-        <div class="offer-details">
-            <h2 class="offer-title">Mixology & Tapas</h2> 
-            <p class="offer-description">
-                Cocktail d'autore e piccoli assaggi gourmet per vivere l'esperienza completa della mixology torinese.
-            </p>
-        </div>
-
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown12" class="countdown">60:00</div>
-        </div>
-
-        <button class="menu-btn" onclick="window.location.href='box12.html'">Scopri di più</button>
-
-        <div class="price-highlight">
-            <div class="custom-message">
-                <span class="explosive-text">Se siamo in 40, paghiamo solo 18€! <strong><s>ANZICHÉ 36€</s></strong></span>
-            </div>
-        </div>
-
-        <div class="counter-box">
-            Al momento siamo: <span id="counter12">0</span>
-        </div>
-
-        <form id="formPartecipazione12">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn12">Partecipa</button>
-        </form>
-
-        <div id="thankYouMessage12" class="thank-you-message">
-            <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
-        </div>
-
-        <div id="completedMessage12" class="completed-message">
-            <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
-        </div>
-    </div>
-
-    <!-- BOX 13 - BIRRERIA PUB -->
-    <div class="main-box" id="box13" data-category="birreria-pub">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/cb/76/81/cb76817f76cb7111eb7940211c824103.jpg" alt="Pasta al Tartufo">
-        </div>
-
-        <div class="offer-details">
-            <h2 class="offer-title">Aperitivo Gourmet</h2>
-            <p class="offer-description">
-                Una selezione di pizze classiche e gourmet, ideali da abbinare a una birra fresca per una cena tra amici.
-            </p>
-        </div>
-
-
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown13" class="countdown">60:00</div>
-        </div>
-
-        <button class="menu-btn" onclick="window.location.href='box13.html'">Scopri di più</button>
-
-        <div class="price-highlight">
-            <div class="custom-message">
-                <span class="explosive-text">Se siamo in 5, paghiamo solo 23€! <strong><s>ANZICHÉ 28€</s></strong></span>
-            </div>
-        </div>
-
-        <div class="counter-box">
-            Al momento siamo: <span id="counter13">0</span>
-        </div>
-
-        <form id="formPartecipazione13">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn13">Partecipa</button>
-        </form>
-
-        <div id="thankYouMessage13" class="thank-you-message">
-            <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
-        </div>
-
-        <div id="completedMessage13" class="completed-message">
-            <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
-        </div>
-    </div>
-
-    <!-- BOX 14 - BIRRERIA PUB -->
-    <div class="main-box" id="box14" data-category="birreria-pub">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/76/32/91/7632914caf72b80713ef5023c345aa74.jpg" alt="Falafel">
-        </div>
-
-        <div class="offer-details">
-            <h2 class="offer-title">Bruschette & Delizia</h2>
-            <p class="offer-description">
-                Cocktail d'autore e piccoli assaggi gourmet per vivere l'esperienza completa della mixology torinese.
-            </p>
-        </div>
-
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown14" class="countdown">15:00</div>
-        </div>
-
-        <button class="menu-btn" onclick="window.location.href='box14.html'">Scopri di più</button>
-
-        <div class="price-highlight">
-            <div class="custom-message">
-                <span class="explosive-text">Se siamo in 5, paghiamo solo 21€! <strong><s>ANZICHÉ 36€</s></strong></span>
-            </div>
-        </div>
-
-        <div class="counter-box">
-            Al momento siamo: <span id="counter14">0</span>
-        </div>
-
-        <form id="formPartecipazione14">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn14">Partecipa</button>
-        </form>
-
-        <div id="thankYouMessage14" class="thank-you-message">
-            <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
-        </div>
-
-        <div id="completedMessage14" class="completed-message">
-            <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
-        </div>
-    </div>
-
-    <!-- 🔹 PULSANTE INSTALLA APP -->
-    <button id="installBtn" style="display:none; position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding: 12px 20px; background: #007bff; color: white; border: none; border-radius: 25px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,123,255,0.3);">
-        📲 Installa App
-    </button>   
-    
     <!-- POPUP -->
-    <div class="popup" id="timeoutPopup">
+    <div class="popup" id="popup">
         <div class="popup-content">
-            <h3>Tempo scaduto! ⏰</h3>
-            <p>La promozione è terminata. Torna presto per nuove offerte!</p>
-            <button onclick="document.getElementById('timeoutPopup').style.display='none'">Chiudi</button>
+            <h3>Grazie per la tua partecipazione!</h3>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
+            <button onclick="closePopup()">Chiudi</button>
         </div>
     </div>
 
@@ -1259,34 +974,41 @@
     <footer>
         <div class="footer-container">
             <div class="footer-section">
-                <h3>Informazioni</h3>
-                <ul>
-                    <li><a href="chi-siamo.html">Chi siamo</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contatti.html">Contatti</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Regolamento</h3>
-                <ul>
-                    <li><a href="regolamento.html">Regolamento partecipazione</a></li>
-                    <li><a href="termini-condizioni.html">Termini e condizioni</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="cookie.html">Cookie Policy</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Seguici</h3>
+                <h3>Più Siamo Meno Paghiamo</h3>
+                <p>Unisciti alla rivoluzione degli acquisti di gruppo per ristoranti e locali. Più persone partecipano, più il prezzo scende!</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
                 </div>
+            </div>
 
+            <div class="footer-section">
+                <h3>Link Utili</h3>
+                <ul>
+                    <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                    <li><a href="come-funziona.html">Come Funziona</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                    <li><a href="termini-condizioni.html">Termini e Condizioni</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Categorie</h3>
+                <ul>
+                    <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
+                    <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
+                    <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                    <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
                 <h3>Newsletter</h3>
+                <p>Iscriviti per ricevere le offerte esclusive</p>
                 <form class="newsletter-form">
                     <input type="email" placeholder="La tua email" required>
                     <button type="submit">Iscriviti</button>
@@ -1295,740 +1017,184 @@
         </div>
 
         <div class="copyright">
-            <p>&copy; 2023 Più Siamo, Meno Paghiamo! Tutti i diritti riservati.</p>
-            <p>P.IVA 01234567890 - REA MI-1234567</p>
+            <p>&copy; 2023 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
         </div>
     </footer>
 
-    <!-- SCRIPT PER IL MENU HAMBURGER E FILTRO CATEGORIE -->
     <script>
-        // Gestione menu hamburger
-        const hamburgerMenu = document.getElementById('hamburgerMenu');
-        const navMenu = document.getElementById('navMenu');
+        // VARIABILI GLOBALI
+        let counters = [0, 0, 0, 0, 0, 0, 0, 0];
+        const targetCounts = [40, 50, 60, 50, 45, 40, 70, 60];
+        let timers = [3600, 3600, 3600, 3600, 3600, 3600, 3600, 3600];
+        let timerIntervals = [];
 
-        hamburgerMenu.addEventListener('click', () => {
-            hamburgerMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Chiudi il menu quando si clicca su un link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburgerMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Chiudi il menu quando si clicca fuori
-        document.addEventListener('click', (e) => {
-            if (!hamburgerMenu.contains(e.target) && !navMenu.contains(e.target)) {
-                hamburgerMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-
-        // FUNZIONE FILTRO CATEGORIE
-        function filterBoxes(category) {
-    // ... logica di filtraggio dei box ...
-    
-    // QUESTO DEVE ESSERE ANCORA PRESENTE PER EVITARE CHE IL MENU SPARI
-    if (window.innerWidth <= 768) {
-        setTimeout(() => {
-            navMenu.classList.remove('active');
-            hamburgerMenu.classList.remove('active');
-        }, 50); 
-    }
-}
-            });
-
-            // Chiudi il menu dopo la selezione (mobile)
-            hamburgerMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    </script>
-
-    <!-- IL RESTO DEL TUO SCRIPT ESISTENTE -->
-    <script>
-        // Configurazione box
-        const box1Config = {
-            id: '1',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown1'),
-            counterEl: document.getElementById('counter1'),
-            form: document.getElementById('formPartecipazione1'),
-            submitBtn: document.getElementById('submitBtn1'),
-            thankYouMessage: document.getElementById('thankYouMessage1'),
-            completedMessage: document.getElementById('completedMessage1'),
-            requiredParticipants: 40,
-            originalPrice: "20€",
-            discountPrice: "38€"
-        };
-
-        const box2Config = {
-            id: '2',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown2'),
-            counterEl: document.getElementById('counter2'),
-            form: document.getElementById('formPartecipazione2'),
-            submitBtn: document.getElementById('submitBtn2'),
-            thankYouMessage: document.getElementById('thankYouMessage2'),
-            completedMessage: document.getElementById('completedMessage2'),
-            requiredParticipants: 50,
-            originalPrice: "34€",
-            discountPrice: "18€"
-        };
-            
-        const box3Config = {
-            id: '3',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown3'),
-            counterEl: document.getElementById('counter3'),
-            form: document.getElementById('formPartecipazione3'),
-            submitBtn: document.getElementById('submitBtn3'),
-            thankYouMessage: document.getElementById('thankYouMessage3'),
-            completedMessage: document.getElementById('completedMessage3'),
-            requiredParticipants: 60,
-            originalPrice: "35€",
-            discountPrice: "15€"
-        };
-
-        const box4Config = {
-            id: '4',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown4'),
-            counterEl: document.getElementById('counter4'),
-            form: document.getElementById('formPartecipazione4'),
-            submitBtn: document.getElementById('submitBtn4'),
-            thankYouMessage: document.getElementById('thankYouMessage4'),
-            completedMessage: document.getElementById('completedMessage4'),
-            requiredParticipants: 50,
-            originalPrice: "30€",
-            discountPrice: "14€"
-        };
-
-        const box5Config = {
-            id: '5',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown5'),
-            counterEl: document.getElementById('counter5'),
-            form: document.getElementById('formPartecipazione5'),
-            submitBtn: document.getElementById('submitBtn5'),
-            thankYouMessage: document.getElementById('thankYouMessage5'),
-            completedMessage: document.getElementById('completedMessage5'),
-            requiredParticipants: 45,
-            originalPrice: "33€",
-            discountPrice: "12€"
-        };
-
-        const box6Config = {
-            id: '6',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown6'),
-            counterEl: document.getElementById('counter6'),
-            form: document.getElementById('formPartecipazione6'),
-            submitBtn: document.getElementById('submitBtn6'),
-            thankYouMessage: document.getElementById('thankYouMessage6'),
-            completedMessage: document.getElementById('completedMessage6'),
-            requiredParticipants: 70,
-            originalPrice: "42€",
-            discountPrice: "20€"
-        };
-
-        const box7Config = {
-            id: '7',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown7'),
-            counterEl: document.getElementById('counter7'),
-            form: document.getElementById('formPartecipazione7'),
-            submitBtn: document.getElementById('submitBtn7'),
-            thankYouMessage: document.getElementById('thankYouMessage7'),
-            completedMessage: document.getElementById('completedMessage7'),
-            requiredParticipants: 5,
-            originalPrice: "44€",
-            discountPrice: "22€"
-        };
-
-        const box8Config = {
-            id: '8',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown8'),
-            counterEl: document.getElementById('counter8'),
-            form: document.getElementById('formPartecipazione8'),
-            submitBtn: document.getElementById('submitBtn8'),
-            thankYouMessage: document.getElementById('thankYouMessage8'),
-            completedMessage: document.getElementById('completedMessage8'),
-            requiredParticipants: 40,
-            originalPrice: "70€",
-            discountPrice: "35€"
-        };
-
-        const box9Config = {
-            id: '9',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown9'),
-            counterEl: document.getElementById('counter9'),
-            form: document.getElementById('formPartecipazione9'),
-            submitBtn: document.getElementById('submitBtn9'),
-            thankYouMessage: document.getElementById('thankYouMessage9'),
-            completedMessage: document.getElementById('completedMessage9'),
-            requiredParticipants: 40,
-            originalPrice: "38€",
-            discountPrice: "20€"
-        };
-
-        const box10Config = {
-            id: '10',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown10'),
-            counterEl: document.getElementById('counter10'),
-            form: document.getElementById('formPartecipazione10'),
-            submitBtn: document.getElementById('submitBtn10'),
-            thankYouMessage: document.getElementById('thankYouMessage10'),
-            completedMessage: document.getElementById('completedMessage10'),
-            requiredParticipants: 50,
-            originalPrice: "34€",
-            discountPrice: "18€"
-        };
-
-        const box11Config = {
-            id: '11',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown11'),
-            counterEl: document.getElementById('counter11'),
-            form: document.getElementById('formPartecipazione11'),
-            submitBtn: document.getElementById('submitBtn11'),
-            thankYouMessage: document.getElementById('thankYouMessage11'),
-            completedMessage: document.getElementById('completedMessage11'),
-            requiredParticipants: 50,
-            originalPrice: "30€",
-            discountPrice: "14€"
-        };
-
-        const box12Config = {
-            id: '12',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown12'),
-            counterEl: document.getElementById('counter12'),
-            form: document.getElementById('formPartecipazione12'),
-            submitBtn: document.getElementById('submitBtn12'),
-            thankYouMessage: document.getElementById('thankYouMessage12'),
-            completedMessage: document.getElementById('completedMessage12'),
-            requiredParticipants: 40,
-            originalPrice: "36€",
-            discountPrice: "12€"
-        };
-
-        const box13Config = {
-            id: '13',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown13'),
-            counterEl: document.getElementById('counter13'),
-            form: document.getElementById('formPartecipazione13'),
-            submitBtn: document.getElementById('submitBtn13'),
-            thankYouMessage: document.getElementById('thankYouMessage13'),
-            completedMessage: document.getElementById('completedMessage13'),
-            requiredParticipants: 5,
-            originalPrice: "44€",
-            discountPrice: "22€"
-        };
-
-        const box14Config = {
-            id: '14',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
-            countdownEl: document.getElementById('countdown14'),
-            counterEl: document.getElementById('counter14'),
-            form: document.getElementById('formPartecipazione14'),
-            submitBtn: document.getElementById('submitBtn14'),
-            thankYouMessage: document.getElementById('thankYouMessage14'),
-            completedMessage: document.getElementById('completedMessage14'),
-            requiredParticipants: 5,
-            originalPrice: "36€",
-            discountPrice: "18€"
-        };
-
-        const popup = document.getElementById('timeoutPopup');
-
-        function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        // Inizializzazione timer
-        function initializeTimers() {
-            let timeLeft1 = 3600; // 60 minuti
-            let timeLeft2 = 3600;
-            let timeLeft3 = 3600;
-            let timeLeft4 = 3600;
-            let timeLeft5 = 3600;
-            let timeLeft6 = 3600;
-            let timeLeft7 = 3600;
-            let timeLeft8 = 3600;
-            let timeLeft9 = 3600;
-            let timeLeft10 = 3600;
-            let timeLeft11 = 3600;
-            let timeLeft12 = 3600;
-            let timeLeft13 = 3600;
-            let timeLeft14 = 3600;
-
-            // Timer Box 1
-            const timer1 = setInterval(() => {
-                timeLeft1--;
-                box1Config.countdownEl.textContent = formatTime(timeLeft1);
-                if (timeLeft1 <= 0) {
-                    clearInterval(timer1);
-                    box1Config.submitBtn.disabled = true;
-                    box1Config.submitBtn.textContent = "Tempo scaduto";
-                    box1Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 2
-            const timer2 = setInterval(() => {
-                timeLeft2--;
-                box2Config.countdownEl.textContent = formatTime(timeLeft2);
-                if (timeLeft2 <= 0) {
-                    clearInterval(timer2);
-                    box2Config.submitBtn.disabled = true;
-                    box2Config.submitBtn.textContent = "Tempo scaduto";
-                    box2Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 3
-            const timer3 = setInterval(() => {
-                timeLeft3--;
-                box3Config.countdownEl.textContent = formatTime(timeLeft3);
-                if (timeLeft3 <= 0) {
-                    clearInterval(timer3);
-                    box3Config.submitBtn.disabled = true;
-                    box3Config.submitBtn.textContent = "Tempo scaduto";
-                    box3Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 4
-            const timer4 = setInterval(() => {
-                timeLeft4--;
-                box4Config.countdownEl.textContent = formatTime(timeLeft4);
-                if (timeLeft4 <= 0) {
-                    clearInterval(timer4);
-                    box4Config.submitBtn.disabled = true;
-                    box4Config.submitBtn.textContent = "Tempo scaduto";
-                    box4Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 5
-            const timer5 = setInterval(() => {
-                timeLeft5--;
-                box5Config.countdownEl.textContent = formatTime(timeLeft5);
-                if (timeLeft5 <= 0) {
-                    clearInterval(timer5);
-                    box5Config.submitBtn.disabled = true;
-                    box5Config.submitBtn.textContent = "Tempo scaduto";
-                    box5Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 6
-            const timer6 = setInterval(() => {
-                timeLeft6--;
-                box6Config.countdownEl.textContent = formatTime(timeLeft6);
-                if (timeLeft6 <= 0) {
-                    clearInterval(timer6);
-                    box6Config.submitBtn.disabled = true;
-                    box6Config.submitBtn.textContent = "Tempo scaduto";
-                    box6Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 7
-            const timer7 = setInterval(() => {
-                timeLeft7--;
-                box7Config.countdownEl.textContent = formatTime(timeLeft7);
-                if (timeLeft7 <= 0) {
-                    clearInterval(timer7);
-                    box7Config.submitBtn.disabled = true;
-                    box7Config.submitBtn.textContent = "Tempo scaduto";
-                    box7Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 8
-            const timer8 = setInterval(() => {
-                timeLeft8--;
-                box8Config.countdownEl.textContent = formatTime(timeLeft8);
-                if (timeLeft8 <= 0) {
-                    clearInterval(timer8);
-                    box8Config.submitBtn.disabled = true;
-                    box8Config.submitBtn.textContent = "Tempo scaduto";
-                    box8Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 9
-            const timer9 = setInterval(() => {
-                timeLeft9--;
-                box9Config.countdownEl.textContent = formatTime(timeLeft9);
-                if (timeLeft9 <= 0) {
-                    clearInterval(timer9);
-                    box9Config.submitBtn.disabled = true;
-                    box9Config.submitBtn.textContent = "Tempo scaduto";
-                    box9Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 10
-            const timer10 = setInterval(() => {
-                timeLeft10--;
-                box10Config.countdownEl.textContent = formatTime(timeLeft10);
-                if (timeLeft10 <= 0) {
-                    clearInterval(timer10);
-                    box10Config.submitBtn.disabled = true;
-                    box10Config.submitBtn.textContent = "Tempo scaduto";
-                    box10Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 11
-            const timer11 = setInterval(() => {
-                timeLeft11--;
-                box11Config.countdownEl.textContent = formatTime(timeLeft11);
-                if (timeLeft11 <= 0) {
-                    clearInterval(timer11);
-                    box11Config.submitBtn.disabled = true;
-                    box11Config.submitBtn.textContent = "Tempo scaduto";
-                    box11Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 12
-            const timer12 = setInterval(() => {
-                timeLeft12--;
-                box12Config.countdownEl.textContent = formatTime(timeLeft12);
-                if (timeLeft12 <= 0) {
-                    clearInterval(timer12);
-                    box12Config.submitBtn.disabled = true;
-                    box12Config.submitBtn.textContent = "Tempo scaduto";
-                    box12Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 13
-            const timer13 = setInterval(() => {
-                timeLeft13--;
-                box13Config.countdownEl.textContent = formatTime(timeLeft13);
-                if (timeLeft13 <= 0) {
-                    clearInterval(timer13);
-                    box13Config.submitBtn.disabled = true;
-                    box13Config.submitBtn.textContent = "Tempo scaduto";
-                    box13Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-
-            // Timer Box 14
-            const timer14 = setInterval(() => {
-                timeLeft14--;
-                box14Config.countdownEl.textContent = formatTime(timeLeft14);
-                if (timeLeft14 <= 0) {
-                    clearInterval(timer14);
-                    box14Config.submitBtn.disabled = true;
-                    box14Config.submitBtn.textContent = "Tempo scaduto";
-                    box14Config.submitBtn.style.backgroundColor = "#ccc";
-                    popup.style.display = "flex";
-                }
-            }, 1000);
-        }
-
-        // Aggiorna contatore
-        async function updateCounter(config) {
-            try {
-                const res = await fetch(config.scriptURL + '?action=getCount&boxId=' + config.id);
-                const data = await res.json();
-                config.counterEl.textContent = data.count;
-
-                if (data.count >= config.requiredParticipants) {
-                    config.submitBtn.disabled = true;
-                    config.submitBtn.textContent = "Limite raggiunto";
-                    config.submitBtn.style.backgroundColor = "#ccc";
-                    config.completedMessage.style.display = "block";
-                } else {
-                    config.completedMessage.style.display = "none";
-                }
-            } catch (error) {
-                config.counterEl.textContent = 'Errore';
-                console.error('Errore nel recupero contatore:', error);
-            }
-        }
-
-        // Gestione form
-        function setupFormSubmit(config) {
-            config.form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                const formData = new FormData(config.form);
-                formData.append('boxId', config.id);
-
-                try {
-                    const res = await fetch(config.scriptURL, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    
-                    if (!res.ok) throw new Error('Network response was not ok');
-                    
-                    const data = await res.json();
-                    if (data.result === "success") {
-                        config.thankYouMessage.style.display = "block";
-                        config.form.style.display = "none";
-                        updateCounter(config);
-                        
-                        // Nascondi il messaggio dopo 5 secondi e mostra di nuovo il form
-                        setTimeout(() => {
-                            config.thankYouMessage.style.display = "none";
-                            config.form.style.display = "flex"; // o "block" a seconda del tuo layout
-                            config.form.reset(); // Resetta il form
-                        }, 5000); // 5000 millisecondi = 5 secondi
-                    } else {
-                        alert("Errore: " + (data.message || "Invio dati fallito"));
-                    }
-                } catch (error) {
-                    alert("Errore nella connessione: " + error.message);
-                }
-            });
-        }
-
-        // Inizializzazione
+        // INIZIALIZZAZIONE
         document.addEventListener('DOMContentLoaded', function() {
-            initializeTimers();
+            // Carica i dati salvati
+            loadSavedData();
             
-            // Configura i form
-            setupFormSubmit(box1Config);
-            setupFormSubmit(box2Config);
-            setupFormSubmit(box3Config);
-            setupFormSubmit(box4Config);
-            setupFormSubmit(box5Config);
-            setupFormSubmit(box6Config);
-            setupFormSubmit(box7Config);
-            setupFormSubmit(box8Config);
-            setupFormSubmit(box9Config);
-            setupFormSubmit(box10Config);
-            setupFormSubmit(box11Config);
-            setupFormSubmit(box12Config);
-            setupFormSubmit(box13Config);
-            setupFormSubmit(box14Config);
-            
-            // Aggiorna i contatori iniziali e imposta l'aggiornamento periodico
-            updateCounter(box1Config);
-            updateCounter(box2Config);
-            updateCounter(box3Config);
-            updateCounter(box4Config);
-            updateCounter(box5Config);
-            updateCounter(box6Config);
-            updateCounter(box7Config);
-            updateCounter(box8Config);
-            updateCounter(box9Config);
-            updateCounter(box10Config);
-            updateCounter(box11Config);
-            updateCounter(box12Config);
-            updateCounter(box13Config);
-            updateCounter(box14Config);
-            
-            setInterval(() => {
-                updateCounter(box1Config);
-                updateCounter(box2Config);
-                updateCounter(box3Config);
-                updateCounter(box4Config);
-                updateCounter(box5Config);
-                updateCounter(box6Config);
-                updateCounter(box7Config);
-                updateCounter(box8Config);
-                updateCounter(box9Config);
-                updateCounter(box10Config);
-                updateCounter(box11Config);
-                updateCounter(box12Config);
-                updateCounter(box13Config);
-                updateCounter(box14Config);
-            }, 15000);
-        });
-
-        // Registra Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-                .then(() => console.log('✅ Service Worker registrato'))
-                .catch(err => console.log('❌ Errore SW:', err));
-        }
-
-       // Gestione Installazione PWA - VERSIONE MIGLIORATA
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-
-// Mostra il pulsante solo se supportato
-if (window.matchMedia('(display-mode: browser)').matches) {
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBtn.style.display = 'block';
-        
-        // Forza l'aggiornamento del layout
-        setTimeout(() => {
-            installBtn.style.display = 'block';
-        }, 1000);
-    });
-}
-
-installBtn.addEventListener('click', async () => {
-    if (!deferredPrompt) {
-        // Fallback: mostra istruzioni manuali
-        showInstallInstructions();
-        return;
-    }
-    
-    installBtn.style.display = 'none';
-    try {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        
-        if (outcome === 'accepted') {
-            console.log('✅ Utente ha accettato l\'installazione');
-            showSuccessMessage();
-        } else {
-            console.log('❌ Utente ha rifiutato l\'installazione');
-            showManualInstructions();
-        }
-    } catch (error) {
-        console.error('Errore durante l\'installazione:', error);
-        showManualInstructions();
-    }
-    deferredPrompt = null;
-});
-
-// Funzione per mostrare istruzioni manuali
-function showManualInstructions() {
-    const isAndroid = /Android/.test(navigator.userAgent);
-    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-    
-    let message = '';
-    
-    if (isAndroid) {
-        message = `
-        📱 Per installare l'app su Android:
-        1. Apri il menu (tre puntini in alto a destra)
-        2. Tocca "Aggiungi alla schermata Home"
-        3. Conferma l'installazione
-        `;
-    } else if (isIOS) {
-        message = `
-        📱 Per installare l'app su iPhone/iPad:
-        1. Tocca il pulsante Condividi (quadrato con freccia)
-        2. Scorri verso il basso e tocca "Aggiungi a Home"
-        3. Conferma l'installazione
-        `;
-    } else {
-        message = `
-        💻 Per installare l'app:
-        Cerca l'icona di installazione nella barra degli indirizzi
-        o usa il menu del browser per "Installa app"
-        `;
-    }
-    
-    alert(message);
-}
-
-function showSuccessMessage() {
-    alert('🎉 App installata con successo! Trovala nella tua schermata home.');
-}
-
-function showInstallInstructions() {
-    alert('📲 Usa il menu del browser per installare l\'app sul tuo dispositivo.');
-}
-
-// Controlla se l'app è già installata
-window.addEventListener('appinstalled', () => {
-    console.log('📱 PWA installata con successo');
-    installBtn.style.display = 'none';
-});
-    </script>
-<script>
-    // Seleziona gli elementi principali
-    const hamburgerMenu = document.getElementById('hamburgerMenu');
-    const navMenu = document.getElementById('navMenu');
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    
-    // =========================================================
-    // 1. GESTIONE MENU HAMBURGER
-    // =========================================================
-    // Questa parte è già presente nel tuo file, ma la inserisco qui per chiarezza
-    hamburgerMenu.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburgerMenu.classList.toggle('active');
-    });
-
-    // =========================================================
-    // 2. FUNZIONE PRINCIPALE DI FILTRAGGIO (FIX PER IL BUG ANDROID)
-    // =========================================================
-    function filterBoxes(category) {
-        const boxes = document.querySelectorAll('.main-box');
-
-        // Esegue il filtro dei box in base alla categoria
-        boxes.forEach(box => {
-            const boxCategory = box.getAttribute('data-category');
-            if (category === 'tutti' || boxCategory === category) {
-                box.style.display = 'block';
-            } else {
-                box.style.display = 'none';
+            // Inizializza i timer
+            for (let i = 0; i < 8; i++) {
+                startTimer(i);
             }
+            
+            // Inizializza i contatori
+            updateAllCounters();
+            
+            // Gestione menu hamburger
+            setupHamburgerMenu();
+            
+            // Gestione form di partecipazione
+            setupForms();
         });
 
-        // ⭐ BUGFIX ANDROID: Chiude esplicitamente il menu mobile dopo la selezione di una categoria.
-        // La condizione window.innerWidth <= 768 assicura che si chiuda solo in modalità mobile.
-        if (window.innerWidth <= 768) {
-            // Un leggero ritardo (es. 50ms) è spesso risolutivo su Android per prevenire
-            // race condition tra l'evento di click e la chiusura del menu.
-            setTimeout(() => {
-                navMenu.classList.remove('active');
-                hamburgerMenu.classList.remove('active');
-            }, 50); 
-        }
-    }
-    
-    // =========================================================
-    // 3. GESTIONE GENERICA DEI LINK
-    // =========================================================
-    // Questo listener è già presente nel tuo codice per chiudere il menu mobile 
-    // quando si clicca un link generico (es. "Chi Siamo").
-    // Lo manteniamo, ma la funzione filterBoxes ora è più robusta.
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Se il link cliccato ha un `onclick` (come le categorie), la chiusura
-            // viene gestita da `filterBoxes`, quindi non facciamo nulla qui per evitare doppi eventi.
-            if (!link.getAttribute('onclick')) {
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.remove('active');
-                    hamburgerMenu.classList.remove('active');
+        // FUNZIONE PER FILTRARE LE CATEGORIE
+        function filterBoxes(category) {
+            const boxes = document.querySelectorAll('.main-box');
+            
+            boxes.forEach(box => {
+                if (category === 'tutti' || box.getAttribute('data-category') === category) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
                 }
+            });
+            
+            // FIX: Scroll morbido che tiene conto dell'header fisso
+            const firstVisibleBox = document.querySelector('.main-box[style="display: block"]');
+            if (firstVisibleBox) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const boxPosition = firstVisibleBox.getBoundingClientRect().top + window.pageYOffset;
+                
+                window.scrollTo({
+                    top: boxPosition - headerHeight - 20,
+                    behavior: 'smooth'
+                });
             }
-        });
-    });
+            
+            // Chiudi il menu mobile se aperto
+            closeMobileMenu();
+        }
 
-    // ... (Mantieni qui il resto del tuo codice JavaScript esistente, come quello PWA e timer)
-</script>
-    
-    </body>
+        // GESTIONE MENU HAMBURGER
+        function setupHamburgerMenu() {
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const navMenu = document.getElementById('navMenu');
+            
+            hamburgerMenu.addEventListener('click', function() {
+                hamburgerMenu.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Chiudi il menu quando si clicca su un link
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburgerMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        function closeMobileMenu() {
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const navMenu = document.getElementById('navMenu');
+            
+            hamburgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
+        // GESTIONE FORM
+        function setupForms() {
+            for (let i = 1; i <= 8; i++) {
+                const form = document.getElementById(`formPartecipazione${i}`);
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    handleFormSubmission(i-1);
+                });
+            }
+        }
+
+        function handleFormSubmission(boxIndex) {
+            // Incrementa il contatore
+            counters[boxIndex]++;
+            
+            // Salva i dati
+            saveData();
+            
+            // Aggiorna il display
+            updateCounter(boxIndex);
+            
+            // Mostra il messaggio di ringraziamento
+            document.getElementById(`thankYouMessage${boxIndex+1}`).style.display = 'block';
+            
+            // Nascondi il form
+            document.getElementById(`formPartecipazione${boxIndex+1}`).style.display = 'none';
+            
+            // Verifica se è stato raggiunto il target
+            if (counters[boxIndex] >= targetCounts[boxIndex]) {
+                document.getElementById(`completedMessage${boxIndex+1}`).style.display = 'block';
+                document.getElementById(`thankYouMessage${boxIndex+1}`).style.display = 'none';
+            }
+        }
+
+        // GESTIONE TIMER
+        function startTimer(boxIndex) {
+            timerIntervals[boxIndex] = setInterval(function() {
+                if (timers[boxIndex] > 0) {
+                    timers[boxIndex]--;
+                    updateTimerDisplay(boxIndex);
+                } else {
+                    clearInterval(timerIntervals[boxIndex]);
+                    // Timer scaduto - gestisci qui l'azione
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay(boxIndex) {
+            const minutes = Math.floor(timers[boxIndex] / 60);
+            const seconds = timers[boxIndex] % 60;
+            document.getElementById(`countdown${boxIndex+1}`).textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // GESTIONE CONTATORI
+        function updateCounter(boxIndex) {
+            document.getElementById(`counter${boxIndex+1}`).textContent = counters[boxIndex];
+        }
+
+        function updateAllCounters() {
+            for (let i = 0; i < 8; i++) {
+                updateCounter(i);
+            }
+        }
+
+        // SALVATAGGIO E CARICAMENTO DATI
+        function saveData() {
+            const data = {
+                counters: counters,
+                timers: timers
+            };
+            localStorage.setItem('piuMenoPaghiData', JSON.stringify(data));
+        }
+
+        function loadSavedData() {
+            const savedData = localStorage.getItem('piuMenoPaghiData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                counters = data.counters || counters;
+                timers = data.timers || timers;
+            }
+        }
+
+        // GESTIONE POPUP
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
 </html>
-
-
