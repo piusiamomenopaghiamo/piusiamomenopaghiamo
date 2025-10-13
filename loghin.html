@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Più Siamo, Meno Paghiamo!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo i {
+            font-size: 3rem;
+            color: #00b4db;
+            margin-bottom: 10px;
+        }
+
+        .logo h1 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #00b4db;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #00b894, #00a085);
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #ff4e00, #ec9f05);
+        }
+
+        .btn-logout {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            width: auto;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .switch-form {
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .switch-form a {
+            color: #00b4db;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+
+        .user-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00b894;
+        }
+
+        .user-info h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            display: none;
+            text-align: center;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <i class="fas fa-users"></i>
+            <h1>Più Siamo, Meno Paghiamo!</h1>
+            <p>Gestisci il tuo account</p>
+        </div>
+
+        <!-- Sezione Utente Loggato -->
+        <div id="userSection" style="display: none;">
+            <div class="user-info">
+                <h3>👤 Benvenuto!</h3>
+                <p id="userEmail">Email: </p>
+                <p id="userName">Nome: </p>
+            </div>
+            
+            <button class="btn btn-logout" onclick="goToHome()">
+                <i class="fas fa-home"></i> Vai alla Home
+            </button>
+            
+            <button class="btn btn-logout" onclick="logout()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52);">
+                <i class="fas fa-sign-out-alt"></i> Esci
+            </button>
+        </div>
+
+        <!-- Sezione Login/Registrazione -->
+        <div id="loginSection">
+            <!-- Messaggi -->
+            <div id="message" class="message"></div>
+
+            <!-- Form di Login -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="la.tua@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="La tua password" required>
+                </div>
+
+                <button type="submit" class="btn btn-login">Accedi</button>
+            </form>
+
+            <!-- Form di Registrazione -->
+            <form id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label for="registerName">Nome e Cognome</label>
+                    <input type="text" id="registerName" placeholder="Mario Rossi" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="la.tua@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Crea una password (min. 6 caratteri)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Conferma Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Ripeti la password" required>
+                </div>
+
+                <button type="submit" class="btn btn-register">Registrati</button>
+            </form>
+
+            <!-- Switch tra Login e Registrazione -->
+            <div class="switch-form">
+                <span id="toggleText">Non hai un account?</span> 
+                <a id="toggleForm">Registrati</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elementi DOM
+        const userSection = document.getElementById('userSection');
+        const loginSection = document.getElementById('loginSection');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const toggleForm = document.getElementById('toggleForm');
+        const toggleText = document.getElementById('toggleText');
+        const message = document.getElementById('message');
+        const userEmail = document.getElementById('userEmail');
+        const userName = document.getElementById('userName');
+
+        let isLoginMode = true;
+
+        // Controlla se l'utente è già loggato
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const email = localStorage.getItem('userEmail');
+            const name = localStorage.getItem('userName');
+
+            if (isLoggedIn === 'true' && email) {
+                // Mostra sezione utente loggato
+                userSection.style.display = 'block';
+                loginSection.style.display = 'none';
+                
+                // Aggiorna info utente
+                userEmail.textContent = 'Email: ' + email;
+                userName.textContent = 'Nome: ' + (name || 'Non specificato');
+            } else {
+                // Mostra sezione login
+                userSection.style.display = 'none';
+                loginSection.style.display = 'block';
+            }
+        }
+
+        // Toggle tra Login e Registrazione
+        toggleForm.addEventListener('click', () => {
+            isLoginMode = !isLoginMode;
+            
+            if (isLoginMode) {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                toggleText.textContent = 'Non hai un account?';
+                toggleForm.textContent = 'Registrati';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                toggleText.textContent = 'Hai già un account?';
+                toggleForm.textContent = 'Accedi';
+            }
+            
+            hideMessage();
+        });
+
+        // Nascondi messaggio
+        function hideMessage() {
+            message.style.display = 'none';
+        }
+
+        // Mostra messaggio
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = `message ${type}`;
+            message.style.display = 'block';
+        }
+
+        // LOGOUT - Esci dall'account
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userName');
+            
+            showMessage('✅ Sei uscito correttamente!', 'success');
+            
+            // Ritorna alla sezione login dopo 1 secondo
+            setTimeout(() => {
+                checkLoginStatus();
+                // Pulisci i form
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+                document.getElementById('registerName').value = '';
+                document.getElementById('registerEmail').value = '';
+                document.getElementById('registerPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+            }, 1000);
+        }
+
+        // Vai alla Home Page
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        // Gestione Login
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showMessage('Inserisci email e password!', 'error');
+                return;
+            }
+
+            // Verifica credenziali (demo - in produzione qui andrebbe una chiamata API)
+            const savedPassword = localStorage.getItem('userPassword_' + email);
+            const savedName = localStorage.getItem('userName_' + email);
+            
+            if (savedPassword && password === savedPassword) {
+                // Login riuscito
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userName', savedName || 'Utente');
+                
+                showMessage('✅ Accesso effettuato!', 'success');
+                
+                // Aggiorna l'interfaccia
+                setTimeout(() => {
+                    checkLoginStatus();
+                }, 1000);
+                
+            } else {
+                showMessage('❌ Email o password errati!', 'error');
+            }
+        });
+
+        // Gestione Registrazione
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validazioni
+            if (!name || !email || !password || !confirmPassword) {
+                showMessage('Compila tutti i campi!', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showMessage('Le password non coincidono!', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showMessage('La password deve essere di almeno 6 caratteri!', 'error');
+                return;
+            }
+
+            // Verifica se email già registrata
+            if (localStorage.getItem('userPassword_' + email)) {
+                showMessage('❌ Questa email è già registrata!', 'error');
+                return;
+            }
+
+            // Salva i dati utente
+            localStorage.setItem('userName_' + email, name);
+            localStorage.setItem('userPassword_' + email, password);
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userName', name);
+            
+            showMessage('✅ Registrazione completata!', 'success');
+            
+            // Aggiorna l'interfaccia
+            setTimeout(() => {
+                checkLoginStatus();
+            }, 1000);
+        });
+
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+        });
+    </script>
+</body>
+</html>
