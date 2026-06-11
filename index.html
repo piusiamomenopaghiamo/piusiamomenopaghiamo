@@ -542,82 +542,6 @@
             color: #17a2b8;
             margin-bottom: 10px;
         }
-        
-        /* MENU HAMBURGER */
-.hamburger-menu {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    padding: 5px;
-    z-index: 101;
-}
-
-.hamburger-menu span {
-    width: 25px;
-    height: 3px;
-    background: white;
-    margin: 3px 0;
-    transition: 0.3s;
-    border-radius: 2px;
-}
-
-/* MOBILE MENU */
-@media (max-width: 768px) {
-    .hamburger-menu {
-        display: flex;
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: linear-gradient(to bottom, #0083b0, #00b4db);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 50px;
-        transition: left 0.3s ease;
-        z-index: 99;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .nav-menu li {
-        margin: 15px 0;
-    }
-
-    .nav-menu a {
-        font-size: 1.2rem;
-        padding: 15px 30px;
-        display: block;
-        width: 200px;
-        text-align: center;
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-    }
-
-    .nav-menu a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-2px);
-    }
-
-    /* Hamburger animation */
-    .hamburger-menu.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-
-    .hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger-menu.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-}
     </style>
 </head>
 
@@ -627,7 +551,7 @@
         <div class="header-content">
             <!-- TITOLO CENTRALE SOPRA AL MENU -->
             <div class="logo-container" style="text-align: center; width: 100%; margin-bottom: 10px;">
-                <h1 style="margin: 0; font-size: 1.8rem;"></h1>
+                <h1 style="margin: 0; font-size: 1.8rem;">Più Siamo, Meno Paghiamo</h1>
             </div>
             
             <!-- MENU HAMBURGER -->
@@ -672,7 +596,7 @@
 
         <div class="price-highlight">
             <div class="custom-message">
-                <span class="explosive-text">Se siamo in 40, paghiamo solo 20€ <strong><S>ANZICHÉ 38€</S></strong></span>
+                <span class="explosive-text">Se siamo in 40, paghiamo solo 20€ <strong><s>ANZICHÉ 38€</s></strong></span>
             </div>
         </div>
 
@@ -719,7 +643,7 @@
 
         <div class="price-highlight">
             <div class="custom-message">
-                <span class="explosive-text">Se siamo in 50, paghiamo solo 18€ <strong><S>ANZICHÉ 34€</S></strong></span>
+                <span class="explosive-text">Se siamo in 50, paghiamo solo 18€ <strong><s>ANZICHÉ 34€</s></strong></span>
             </div>
         </div>
 
@@ -766,7 +690,7 @@
 
         <div class="price-highlight">
             <div class="custom-message">
-                <span class="explosive-text">Se siamo in 60, paghiamo solo 15€ <strong><S>ANZICHÉ 35€</S></strong></span>
+                <span class="explosive-text">Se siamo in 60, paghiamo solo 15€ <strong><s>ANZICHÉ 35€</s></strong></span>
             </div>
         </div>
 
@@ -813,7 +737,7 @@
 
         <div class="price-highlight">
             <div class="custom-message">
-                <span class="explosive-text">Se siamo in 50, paghiamo solo 14€ <strong><S>ANZICHÉ 30€</S></strong></span>
+                <span class="explosive-text">Se siamo in 50, paghiamo solo 14€ <strong><s>ANZICHÉ 30€</s></strong></span>
             </div>
         </div>
 
@@ -888,7 +812,7 @@
     <!-- BOX 6 - DRINK -->
     <div class="main-box" id="box6" data-category="drink">
         <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/b3/5d/ac/b35dac88e5b9a93bc27b6a65dc9a1297.jpg">
+            <img src="https://i.pinimg.com/736x/b3/5d/ac/b35dac88e5b9a93bc27b6a65dc9a1297.jpg" alt="Mixology & Tapas">
         </div>
 
         <div class="offer-details">
