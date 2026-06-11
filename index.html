@@ -1862,30 +1862,37 @@ document.addEventListener('click', (e) => {
         function setupFormSubmit(config) {
             config.form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
-                const formData = new FormData(config.form);
-                formData.append('boxId', config.id);
+
+                // ✅ Usa URLSearchParams invece di FormData per evitare il blocco CORS con Apps Script
+                const nomeInput = config.form.querySelector('input[name="nome"]');
+                const emailInput = config.form.querySelector('input[name="email"]');
+
+                const params = new URLSearchParams();
+                params.append('nome', nomeInput ? nomeInput.value : '');
+                params.append('email', emailInput ? emailInput.value : '');
+                params.append('boxId', config.id);
 
                 try {
                     const res = await fetch(config.scriptURL, {
                         method: 'POST',
-                        body: formData
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: params.toString()
                     });
-                    
+
                     if (!res.ok) throw new Error('Network response was not ok');
-                    
+
                     const data = await res.json();
                     if (data.result === "success") {
                         config.thankYouMessage.style.display = "block";
                         config.form.style.display = "none";
                         updateCounter(config);
-                        
+
                         // Nascondi il messaggio dopo 5 secondi e mostra di nuovo il form
                         setTimeout(() => {
                             config.thankYouMessage.style.display = "none";
-                            config.form.style.display = "flex"; // o "block" a seconda del tuo layout
-                            config.form.reset(); // Resetta il form
-                        }, 5000); // 5000 millisecondi = 5 secondi
+                            config.form.style.display = "flex";
+                            config.form.reset();
+                        }, 5000);
                     } else {
                         alert("Errore: " + (data.message || "Invio dati fallito"));
                     }
