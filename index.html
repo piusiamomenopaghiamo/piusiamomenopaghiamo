@@ -3,1017 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piu Siamo Meno Paghiamo</title>
+    <title>Più Siamo Meno Paghiamo</title>
     
-    <!-- 🔹 META PWA -->
     <meta name="theme-color" content="#000000"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content=\"yes\">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="PiuMenoPaghi">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="PiuMenoPaghi">
 
-    <!-- 🔹 LINK MANIFEST E ICONE -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="Logo1.png">
     <link rel="apple-touch-icon" href="Logo1.png">
 
-    <!-- 🔹 GOOGLE OAUTH -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <meta name="referrer" content="no-referrer-when-downgrade">
-    
 
-    <!-- 🔹 FONT E CSS ESTERNI -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
+        /* 🔹 REGOLE RESET & BASE */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Open Sans', sans-serif;
-            background: #f2f7fb;
+            background-color: #f4f7f6;
             color: #333;
-            line-height: 1.6;
+            padding-top: 70px;
         }
 
-        header {
-            background: linear-gradient(to right, #00b4db, #0083b0);
-            color: white;
-            padding: 10px 20px 30px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo-container {
-            flex: 1;
-        }
-
-        header h1 {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        header p {
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .hamburger-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-            z-index: 101;
-        }
-
-        .hamburger-menu span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu li {
-            margin-left: 20px;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .nav-menu a:hover {
-            color: #ffe66d;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        #googleLoginContainer {
-            margin-left: auto;
-        }
-
-        #userLoggedIn {
-            margin-left: auto;
-            color: white;
-            display: none;
-        }
-
-        #userLoggedIn button {
-            background: white;
-            color: #0083b0;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .hamburger-menu {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: linear-gradient(to bottom, #0083b0, #00b4db);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 50px;
-                transition: left 0.3s ease;
-                z-index: 99;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-menu li {
-                margin: 15px 0;
-            }
-
-            .nav-menu a {
-                font-size: 1.2rem;
-                padding: 15px 30px;
-                display: block;
-                width: 200px;
-                text-align: center;
-                border: 2px solid rgba(255, 255, 255, 0.2);
-                border-radius: 10px;
-            }
-
-            .hamburger-menu.active span:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-
-            .hamburger-menu.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger-menu.active span:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-
-            #googleLoginContainer {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-        }
-
-        .main-box {
-            max-width: 500px;
-            background: white;
-            margin: 30px auto;
-            padding: 30px 20px;
-            border-radius: 12px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-            border: 2px solid #00b894;
-            opacity: 1;
-            pointer-events: auto;
-            transition: all 0.3s;
-        }
-
-        .pizza-container {
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 20px;
-            border: 4px solid #a0d8f3;
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .pizza-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .offer-details {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .offer-title {
-            font-size: 1.8rem;
-            color: #d62828;
-            margin-bottom: 10px;
-        }
-
-        .offer-description {
-            background-color: #fff3cd;
-            padding: 15px;
-            border-radius: 10px;
-        }
-
-        .timer-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            color: #e63946;
-            font-weight: bold;
-        }
-
-        .counter-box {
-            background: #e6f5ff;
-            color: #0077a3;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .price-highlight {
-            background: linear-gradient(45deg, #ff4e00, #ec9f05);
-            color: #fff;
-            text-align: center;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(255, 69, 0, 0.7);
-            animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 25px rgba(255, 69, 0, 0.7); }
-            50% { box-shadow: 0 0 35px rgba(255, 100, 0, 1); }
-        }
-
-        .explosive-text {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #fff200;
-            text-shadow: 2px 2px 0 #000, 0 0 10px #ff0000, 0 0 20px #ff6600;
-            animation: flash-text 1.5s infinite alternate;
-        }
-
-        @keyframes flash-text {
-            from { color: #fff200; text-shadow: 2px 2px 0 #000, 0 0 10px #ff0000, 0 0 20px #ff6600; }
-            to { color: #ffffff; text-shadow: 2px 2px 0 #000, 0 0 15px #ff3300, 0 0 25px #ff6600; }
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        input {
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        input:focus {
-            border-color: #00b4db;
-            outline: none;
-            box-shadow: 0 0 8px rgba(0,180,219,0.3);
-        }
-
-        button {
-            padding: 14px;
-            background-color: #00b894;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        button:hover {
-            background-color: #009972;
-            transform: scale(1.03);
-        }
-
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .menu-btn {
-            display: block;
-            margin: 20px auto;
-            background-color: #00b4db;
-        }
-
-        .menu-btn:hover {
-            background-color: #0083b0;
-        }
-
-        .thank-you-message {
-            display: none;
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .completed-message {
-            display: none;
-            background-color: #d1ecf1;
-            color: #0c5460;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        footer {
-            background-color: #000;
-            color: white;
-            padding: 40px 20px;
-            margin-top: 50px;
-            border-top: 5px solid #00b4db;
-            text-align: center;
-        }
-
-        .popup {
+        /* 🔹 MENU IN ALTO MODIFICATO (CENTRATO E SENZA SCRITTA) */
+        .top-menu {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
+            height: 65px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
+            display: flex;
+            justify-content: center; /* Centra il menu orizzontalmente */
+            align-items: center;
+            padding: 0 20px;
+        }
+        .menu-nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        .menu-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+        .menu-nav a:hover {
+            color: #ffeb3b;
         }
 
-        .popup-content {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
+        /* 🔹 STRUTTURA CONTENUTO */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .box-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 5px solid #1e3c72;
+        }
+        .box-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.4rem;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+        .btn-partecipa {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .btn-partecipa:hover {
+            background: #1e3c72;
+        }
+        .counter {
+            font-weight: bold;
+            color: #ff5722;
+            margin-top: 10px;
+        }
+        .thank-you {
+            display: none;
+            color: #4caf50;
+            font-weight: bold;
+            margin-top: 15px;
             text-align: center;
-            max-width: 400px;
-        }
-
-        .popup h3 {
-            color: #e63946;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo-container" style="text-align: center; width: 100%; margin-bottom: 10px;">
-                <h1 style="margin: 0; font-size: 1.8rem;">Più Siamo Meno Paghiamo</h1>
+
+    <div class="top-menu">
+        <nav class="menu-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="coupon.html"><i class="fas fa-ticket-alt"></i> I Miei Coupon</a>
+            <a href="loghin.html"><i class="fas fa-user"></i> Login / Profilo</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="grid" id="boxesGrid">
             </div>
-            
-            <div class="hamburger-menu" id="hamburgerMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#" onclick="filterBoxes('tutti')">Tutti</a></li>
-                <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
-                <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
-                <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
-                <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
-            </ul>
-
-            <div id="googleLoginContainer">
-                <div id="buttonDiv"></div>
-            </div>
-            <div id="userLoggedIn">
-                Benvenuto, <strong><span id="userNameDisplay"></span></strong>!
-                <button onclick="logout()">Esci</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- BOX 1 -->
-    <div class="main-box" id="box1" data-category="ristoranti">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/52/52/e0/5252e0c168f169ff8bca2038dfe7ee43.jpg" alt="Sapori Bavaresi">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Sapori Bavaresi</h2>
-            <p class="offer-description">Un viaggio tra i grandi classici delle birrerie: carne alla griglia, street food e birre fresche spillate al momento.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown1" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 40, paghiamo solo 20€ <strong><s>ANZICHÉ 38€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter1">0</span></div>
-        <form id="formPartecipazione1">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn1">Partecipa</button>
-        </form>
-        <div id="thankYouMessage1" class="thank-you-message">
-            <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto!</p>
-        </div>
-        <div id="completedMessage1" class="completed-message">
-            <h3>Complimenti! Abbiamo raggiunto il numero!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per il pagamento e il coupon!</p>
-        </div>
     </div>
-
-    <!-- BOX 2 -->
-    <div class="main-box" id="box2" data-category="ristoranti">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/7e/ec/53/7eec53743baff4caeac00996ce2e3390.jpg" alt="Eleganza Piemontese">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Eleganza Piemontese</h2>
-            <p class="offer-description">Piatti raffinati della tradizione piemontese rivisitati in chiave moderna.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown2" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 50, paghiamo solo 18€ <strong><s>ANZICHÉ 34€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter2">0</span></div>
-        <form id="formPartecipazione2">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn2">Partecipa</button>
-        </form>
-        <div id="thankYouMessage2" class="thank-you-message">
-            <h3>Grazie!</h3>
-            <p>Riceverai un messaggio WhatsApp presto!</p>
-        </div>
-        <div id="completedMessage2" class="completed-message">
-            <h3>Complimenti! Abbiamo raggiunto il numero!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per il pagamento!</p>
-        </div>
-    </div>
-
-    <!-- BOX 3 -->
-    <div class="main-box" id="box3" data-category="birreria-pub">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/93/f8/5c/93f85ce0b00af94d9cdde5faba5e7418.jpg" alt="Burger & Birra">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Burger & Birra</h2>
-            <p class="offer-description">Specialità americane e vegetariane accompagnate da birre artigianali di qualità.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown3" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 60, paghiamo solo 15€ <strong><s>ANZICHÉ 35€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter3">0</span></div>
-        <form id="formPartecipazione3">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn3">Partecipa</button>
-        </form>
-        <div id="thankYouMessage3" class="thank-you-message">
-            <h3>Grazie!</h3>
-            <p>Riceverai un messaggio WhatsApp presto!</p>
-        </div>
-        <div id="completedMessage3" class="completed-message">
-            <h3>Complimenti!</h3>
-            <p>Riceverai un messaggio WhatsApp con il link per il pagamento!</p>
-        </div>
-    </div>
-
-    <!-- BOX 4-14 (copiare la struttura del box 3 per i box 4-14) -->
-    <!-- Per brevità, ripeto solo la struttura ma con ID diversi -->
-
-    <div class="main-box" id="box4" data-category="pizzeria">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/53/17/8f/53178fa21cb33aa1b162d20f81c83a7f.jpg" alt="La Pizza Classica">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">La Pizza Classica</h2>
-            <p class="offer-description">Le pizze più amate di sempre con ingredienti freschi e di qualità.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown4" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 50, paghiamo solo 14€ <strong><s>ANZICHÉ 30€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter4">0</span></div>
-        <form id="formPartecipazione4">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn4">Partecipa</button>
-        </form>
-        <div id="thankYouMessage4" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage4" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box5" data-category="pizzeria">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/cc/38/ce/cc38ceb02e72da7d5d212558f067ba20.jpg" alt="Pizza Gourmet">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Pizza Gourmet & Birra</h2>
-            <p class="offer-description">Selezione di pizze classiche e gourmet ideali da abbinare a birra fresca.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown5" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 45, paghiamo solo 12€ <strong><s>ANZICHÉ 33€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter5">0</span></div>
-        <form id="formPartecipazione5">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn5">Partecipa</button>
-        </form>
-        <div id="thankYouMessage5" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage5" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box6" data-category="drink">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/b3/5d/ac/b35dac88e5b9a93bc27b6a65dc9a1297.jpg" alt="Mixology & Tapas">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Mixology & Tapas</h2>
-            <p class="offer-description">Cocktail d'autore e piccoli assaggi gourmet per un'esperienza unica.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown6" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 40, paghiamo solo 18€ <strong><s>ANZICHÉ 36€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter6">0</span></div>
-        <form id="formPartecipazione6">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn6">Partecipa</button>
-        </form>
-        <div id="thankYouMessage6" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage6" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box7" data-category="drink">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/88/25/7a/88257af3289e298777894c3d96b872b4.jpg" alt="Eleganza in Bicchiere">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Eleganza in Bicchiere</h2>
-            <p class="offer-description">Atmosfera raffinata e drink dal gusto unico, abbinati a finger food ricercati.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown7" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 70, paghiamo solo 20€ <strong><s>ANZICHÉ 42€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter7">0</span></div>
-        <form id="formPartecipazione7">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn7">Partecipa</button>
-        </form>
-        <div id="thankYouMessage7" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage7" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box8" data-category="drink">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/5f/07/8b/5f078bc04058f9bbb7d438031910ca15.jpg" alt="Mix & Chill">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Mix & Chill</h2>
-            <p class="offer-description">Esperienza giovane e dinamica con cocktail freschi e piatti street food gourmet.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown8" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 40, paghiamo solo 35€ <strong><s>ANZICHÉ 70€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter8">0</span></div>
-        <form id="formPartecipazione8">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn8">Partecipa</button>
-        </form>
-        <div id="thankYouMessage8" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage8" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box9" data-category="birreria-pub">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/97/81/66/978166024f1072a53b5fc7b35c8232f0.jpg" alt="Sapori Speciali">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Sapori Speciali</h2>
-            <p class="offer-description">Un viaggio tra i grandi classici con carne alla griglia e birre fresche.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown9" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 40, paghiamo solo 20€ <strong><s>ANZICHÉ 38€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter9">0</span></div>
-        <form id="formPartecipazione9">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn9">Partecipa</button>
-        </form>
-        <div id="thankYouMessage9" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage9" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box10" data-category="ristoranti">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/13/f8/58/13f858d91de5a0454761cb58242c9b5d.jpg" alt="Eleganza Piemontese">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Eleganza Piemontese</h2>
-            <p class="offer-description">Piatti raffinati della tradizione piemontese rivisitati in chiave moderna.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown10" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 50, paghiamo solo 18€ <strong><s>ANZICHÉ 34€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter10">0</span></div>
-        <form id="formPartecipazione10">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn10">Partecipa</button>
-        </form>
-        <div id="thankYouMessage10" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage10" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box11" data-category="pizzeria">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/ab/c1/f9/abc1f96e8e7ac91801f038fff1139031.jpg" alt="La Pizza Gustosa">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">La Pizza Gustosa</h2>
-            <p class="offer-description">Le pizze più amate preparate con ingredienti freschi e di qualità.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown11" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 50, paghiamo solo 14€ <strong><s>ANZICHÉ 30€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter11">0</span></div>
-        <form id="formPartecipazione11">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn11">Partecipa</button>
-        </form>
-        <div id="thankYouMessage11" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage11" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box12" data-category="drink">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/96/df/b5/96dfb527bd2f604071eeb54ad3cfe7e7.jpg" alt="Mixology & Tapas">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Mixology & Tapas</h2>
-            <p class="offer-description">Cocktail d'autore e piccoli assaggi gourmet per l'esperienza completa della mixology.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown12" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 40, paghiamo solo 18€ <strong><s>ANZICHÉ 36€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter12">0</span></div>
-        <form id="formPartecipazione12">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn12">Partecipa</button>
-        </form>
-        <div id="thankYouMessage12" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage12" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box13" data-category="birreria-pub">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/736x/cb/76/81/cb76817f76cb7111eb7940211c824103.jpg" alt="Aperitivo Gourmet">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Aperitivo Gourmet</h2>
-            <p class="offer-description">Selezione di pizze e birre fresche per una cena tra amici.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown13" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 5, paghiamo solo 23€ <strong><s>ANZICHÉ 28€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter13">0</span></div>
-        <form id="formPartecipazione13">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn13">Partecipa</button>
-        </form>
-        <div id="thankYouMessage13" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage13" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="main-box" id="box14" data-category="birreria-pub">
-        <div class="pizza-container">
-            <img src="https://i.pinimg.com/1200x/76/32/91/7632914caf72b80713ef5023c345aa74.jpg" alt="Bruschette & Delizia">
-        </div>
-        <div class="offer-details">
-            <h2 class="offer-title">Bruschette & Delizia</h2>
-            <p class="offer-description">Cocktail d'autore e piccoli assaggi gourmet per l'esperienza completa della mixology.</p>
-        </div>
-        <div class="timer-container">
-            <i class="fas fa-hourglass-half"></i>
-            <div id="countdown14" class="countdown">60:00</div>
-        </div>
-        <div class="price-highlight">
-            <span class="explosive-text">Se siamo in 5, paghiamo solo 21€ <strong><s>ANZICHÉ 36€</s></strong></span>
-        </div>
-        <div class="counter-box">Al momento siamo: <span id="counter14">0</span></div>
-        <form id="formPartecipazione14">
-            <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="email" name="email" placeholder="La tua email" required>
-            <button type="submit" id="submitBtn14">Partecipa</button>
-        </form>
-        <div id="thankYouMessage14" class="thank-you-message"><h3>Grazie!</h3></div>
-        <div id="completedMessage14" class="completed-message"><h3>Complimenti!</h3></div>
-    </div>
-
-    <div class="popup" id="timeoutPopup">
-        <div class="popup-content">
-            <h3>Tempo scaduto! ⏰</h3>
-            <p>La promozione è terminata. Torna presto per nuove offerte!</p>
-            <button onclick="document.getElementById('timeoutPopup').style.display='none'">Chiudi</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2024 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
-    </footer>
 
     <script>
-        const hamburgerMenu = document.getElementById('hamburgerMenu');
-        const navMenu = document.getElementById('navMenu');
+        // Configurazione URL Script (Sostituisci con la tua nuova distribuzione)
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwZYNPLPfmAS4SSXcOHZposgCXnQ91rbYM4yrRiDr5SRD8HPhPz8diOdw24SrnMVb3q/exec';
 
-        hamburgerMenu.addEventListener('click', () => {
-            hamburgerMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+        const BOX_DATA = {
+            '1':  { nome: 'Sapori Bavaresi',        via: 'Via della Basilica 12, Torino' },
+            '2':  { nome: 'Eleganza Piemontese',    via: 'Via dei Mercanti 5, Torino' },
+            '3':  { nome: 'Burger & Birra',         via: 'Via Santa Teresa 8, Torino' },
+            '4':  { nome: 'La Pizza Classica',      via: 'Via della Consolata 3, Torino' },
+            '5':  { nome: 'Pizza Gourmet & Birra',  via: 'Via dell\'Arsenale 17, Torino' },
+            '6':  { nome: 'Mixology & Tapas',       via: 'Via Barbaroux 22, Torino' },
+            '7':  { nome: 'Eleganza in Bicchiere',  via: 'Via delle Orfane 9, Torino' },
+            '8':  { nome: 'Mix & Chill',            via: 'Via Sant\'Agostino 14, Torino' },
+            '9':  { nome: 'Sapori Speciali',        via: 'Via della Basilica 12, Torino' },
+            '10': { nome: 'Eleganza Piemontese',    via: 'Via dei Mercanti 5, Torino' },
+            '11': { nome: 'La Pizza Gustosa',       via: 'Via della Consolata 3, Torino' },
+            '12': { nome: 'Mixology & Tapas',       via: 'Via Barbaroux 22, Torino' },
+            '13': { nome: 'Aperitivo Gourmet',      via: 'Via Santa Teresa 8, Torino' },
+            '14': { nome: 'Bruschette & Delizia',   via: 'Via Barbaroux 22, Torino' }
+        };
 
-        document.addEventListener('click', (e) => {
-            if (!hamburgerMenu.contains(e.target) && !navMenu.contains(e.target)) {
-                hamburgerMenu.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-
-        function filterBoxes(category) {
-            const boxes = document.querySelectorAll('.main-box');
-            boxes.forEach(box => {
-                if (category === 'tutti' || box.getAttribute('data-category') === category) {
-                    box.style.display = 'block';
-                } else {
-                    box.style.display = 'none';
-                }
-            });
-            hamburgerMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-
-        // Configurazione Google OAuth
-        const GOOGLE_CLIENT_ID = '61656461250-qrjsl279of90l7ctudsno11bfavruub8.apps.googleusercontent.com';
-
-        function handleCredentialResponse(response) {
-            const responsePayload = decodeJwtResponse(response.credential);
-            const userEmail = responsePayload.email;
-            const userName = responsePayload.name;
+        function renderBoxes() {
+            const grid = document.getElementById('boxesGrid');
+            grid.innerHTML = '';
             
-            localStorage.setItem('userEmail', userEmail);
-            localStorage.setItem('userToken', response.credential);
-            localStorage.setItem('userName', userName);
-            
-            document.getElementById('googleLoginContainer').style.display = 'none';
-            document.getElementById('userLoggedIn').style.display = 'block';
-            document.getElementById('userNameDisplay').textContent = userName;
-            
-            document.querySelectorAll('form').forEach(form => {
-                form.style.opacity = '1';
-                form.style.pointerEvents = 'auto';
+            Object.keys(BOX_DATA).forEach(id => {
+                const box = BOX_DATA[id];
+                const card = document.createElement('div');
+                card.className = 'box-card';
+                card.innerHTML = `
+                    <div>
+                        <div class="box-title">Box ${id} - ${box.nome}</div>
+                        <p><i class="fas fa-map-marker-alt"></i> ${box.via}</p>
+                        <div class="counter" id="counter-${id}">Iscritti: Caricamento...</div>
+                    </div>
+                    <form id="form-${id}">
+                        <button type="button" class="btn-partecipa" onclick="joinBox('${id}')">Partecipa</button>
+                    </form>
+                    <div class="thank-you" id="thanks-${id}">🎉 Iscrizione Registrata!</div>
+                `;
+                grid.appendChild(card);
+                updateCounter(id);
             });
         }
 
-        function decodeJwtResponse(token) {
-            var base64Url = token.split('.')[1];
-            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-            return JSON.parse(jsonPayload);
-        }
-
-        function logout() {
-            localStorage.removeItem('userEmail');
-            localStorage.removeItem('userToken');
-            localStorage.removeItem('userName');
-            document.getElementById('googleLoginContainer').style.display = 'block';
-            document.getElementById('userLoggedIn').style.display = 'none';
-            document.querySelectorAll('form').forEach(form => {
-                form.style.opacity = '0.5';
-                form.style.pointerEvents = 'none';
-            });
-            window.location.href = 'index.html';
-        }
-
-        window.addEventListener('load', () => {
-            const userEmail = localStorage.getItem('userEmail');
-            const userName = localStorage.getItem('userName');
-            
-            if (userEmail && userName) {
-                document.getElementById('googleLoginContainer').style.display = 'none';
-                document.getElementById('userLoggedIn').style.display = 'block';
-                document.getElementById('userNameDisplay').textContent = userName;
-                document.querySelectorAll('form').forEach(form => {
-                    form.style.opacity = '1';
-                    form.style.pointerEvents = 'auto';
-                });
-            } else {
-                document.querySelectorAll('form').forEach(form => {
-                    form.style.opacity = '0.5';
-                    form.style.pointerEvents = 'none';
-                });
-            }
-            
-            if (window.google) {
-                google.accounts.id.initialize({
-                    client_id: GOOGLE_CLIENT_ID,
-                    callback: handleCredentialResponse
-                });
-                google.accounts.id.renderButton(
-                    document.getElementById('buttonDiv'),
-                    { theme: 'outline', size: 'large' }
-                );
-            }
-        });
-
-        // Configurazione box
-        const boxConfigs = [];
-        for (let i = 1; i <= 14; i++) {
-            boxConfigs[i] = {
-                id: String(i),
-                scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
-                countdownEl: document.getElementById('countdown' + i),
-                counterEl: document.getElementById('counter' + i),
-                form: document.getElementById('formPartecipazione' + i),
-                submitBtn: document.getElementById('submitBtn' + i),
-                thankYouMessage: document.getElementById('thankYouMessage' + i),
-                completedMessage: document.getElementById('completedMessage' + i)
-            };
-        }
-
-        function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        function initializeTimers() {
-            for (let i = 1; i <= 14; i++) {
-                let timeLeft = 3600;
-                setInterval(() => {
-                    timeLeft--;
-                    boxConfigs[i].countdownEl.textContent = formatTime(timeLeft);
-                    if (timeLeft <= 0) {
-                        boxConfigs[i].submitBtn.disabled = true;
-                        boxConfigs[i].submitBtn.textContent = 'Tempo scaduto';
-                        document.getElementById('timeoutPopup').style.display = 'flex';
-                    }
-                }, 1000);
-            }
-        }
-
-        async function updateCounter(config) {
+        async function updateCounter(id) {
             try {
-                const res = await fetch(config.scriptURL + '?boxId=' + config.id);
+                const res = await fetch(`${SCRIPT_URL}?boxId=${id}`);
                 const data = await res.json();
                 if (data.result === 'success') {
-                    config.counterEl.textContent = data.count;
+                    document.getElementById(`counter-${id}`).innerText = `Iscritti: ${data.count}`;
                 }
-            } catch (error) {
-                console.error('Errore nel recupero contatore:', error);
+            } catch (e) {
+                document.getElementById(`counter-${id}`).innerText = `Iscritti: 0`;
             }
         }
 
-        function setupFormSubmit(config) {
-            config.form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const nome = config.form.querySelector('input[name="nome"]').value;
-                const email = config.form.querySelector('input[name="email"]').value;
-                const params = new URLSearchParams();
-                params.append('nome', nome);
-                params.append('email', email);
-                params.append('boxId', config.id);
+        async function joinBox(id) {
+            // Verifica login su localStorage (creato da loghin.html)
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userEmail = localStorage.getItem('userEmail');
+            const userName = localStorage.getItem('userName') || 'Utente';
 
-                try {
-                    const res = await fetch(config.scriptURL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: params.toString()
-                    });
-                    const data = await res.json();
-                    if (data.result === 'success') {
-                        config.thankYouMessage.style.display = 'block';
-                        config.form.style.display = 'none';
-                        updateCounter(config);
-                        setTimeout(() => {
-                            config.thankYouMessage.style.display = 'none';
-                            config.form.style.display = 'flex';
-                            config.form.reset();
-                        }, 5000);
-                    }
-                } catch (error) {
-                    alert('Errore: ' + error.message);
+            if (!isLoggedIn || !userEmail) {
+                alert('Per partecipare devi prima effettuare il login!');
+                window.location.href = 'loghin.html';
+                return;
+            }
+
+            const params = new URLSearchParams();
+            params.append('boxId', id);
+            params.append('nome', userName);
+            params.append('email', userEmail);
+
+            try {
+                const res = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: params.toString()
+                });
+                const data = await res.json();
+                
+                if (data.result === 'success') {
+                    document.getElementById(`thanks-${id}`).style.display = 'block';
+                    document.getElementById(`form-${id}`).style.display = 'none';
+                    updateCounter(id);
+                    
+                    // Reindirizza l'utente alla pagina dei coupon dopo 2 secondi
+                    setTimeout(() => {
+                        window.location.href = 'coupon.html';
+                    }, 2000);
+                } else {
+                    alert(data.message || 'Errore durante l\'iscrizione');
                 }
-            });
+            } catch (error) {
+                alert('Errore di connessione al database.');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            initializeTimers();
-            for (let i = 1; i <= 14; i++) {
-                setupFormSubmit(boxConfigs[i]);
-                updateCounter(boxConfigs[i]);
-            }
-            setInterval(() => {
-                for (let i = 1; i <= 14; i++) {
-                    updateCounter(boxConfigs[i]);
-                }
-            }, 15000);
+            renderBoxes();
         });
     </script>
 </body>
