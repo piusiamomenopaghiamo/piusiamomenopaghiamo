@@ -18,6 +18,10 @@
     <link rel="icon" href="Logo1.png">
     <link rel="apple-touch-icon" href="Logo1.png">
 
+    <!-- 🔹 GOOGLE OAUTH -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+<meta name="google-signin-client_id" content="61656461250">
+
     <!-- 🔹 FONT E CSS ESTERNI -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -646,6 +650,13 @@
     <li><a href="comepartecipare.html">Come Funziona</a></li>
     <li><a href="contatti.html">Contatti</a></li>
 </ul>
+            <div id="googleLoginContainer" style="margin-left: auto;">
+    <div id="buttonDiv"></div>
+</div>
+<div id="userLoggedIn" style="display:none; margin-left: auto; color: white;">
+    Benvenuto, <strong><span id="userNameDisplay"></span></strong>!
+    <button onclick="logout()" style="background: white; color: #0083b0; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">Esci</button>
+</div>
         </div>
     </header>
 
@@ -682,18 +693,18 @@
 
         <form id="formPartecipazione1">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn1">Partecipa</button>
         </form>
 
         <div id="thankYouMessage1" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage1" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -729,18 +740,18 @@
 
         <form id="formPartecipazione2">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn2">Partecipa</button>
         </form>
 
         <div id="thankYouMessage2" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage2" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
     
@@ -776,18 +787,18 @@
 
         <form id="formPartecipazione3">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn3">Partecipa</button>
         </form>
 
         <div id="thankYouMessage3" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage3" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -823,18 +834,18 @@
 
         <form id="formPartecipazione4">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn4">Partecipa</button>
         </form>
 
         <div id="thankYouMessage4" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage4" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -870,18 +881,18 @@
 
         <form id="formPartecipazione5">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn5">Partecipa</button>
         </form>
 
         <div id="thankYouMessage5" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage5" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -917,18 +928,18 @@
 
         <form id="formPartecipazione6">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn6">Partecipa</button>
         </form>
 
         <div id="thankYouMessage6" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage6" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -964,18 +975,18 @@
 
         <form id="formPartecipazione7">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn7">Partecipa</button>
         </form>
 
         <div id="thankYouMessage7" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage7" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -1011,18 +1022,18 @@
 
         <form id="formPartecipazione8">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn8">Partecipa</button>
         </form>
 
         <div id="thankYouMessage8" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage8" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -1058,18 +1069,18 @@
 
         <form id="formPartecipazione9">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn9">Partecipa</button>
         </form>
 
         <div id="thankYouMessage9" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage9" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -1105,18 +1116,18 @@
 
         <form id="formPartecipazione10">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn10">Partecipa</button>
         </form>
 
         <div id="thankYouMessage10" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage10" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -1152,18 +1163,18 @@
 
         <form id="formPartecipazione11">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn11">Partecipa</button>
         </form>
 
         <div id="thankYouMessage11" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage11" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -1199,18 +1210,18 @@
 
         <form id="formPartecipazione12">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn12">Partecipa</button>
         </form>
 
         <div id="thankYouMessage12" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage12" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -1247,18 +1258,18 @@
 
         <form id="formPartecipazione13">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn13">Partecipa</button>
         </form>
 
         <div id="thankYouMessage13" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage13" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -1294,18 +1305,18 @@
 
         <form id="formPartecipazione14">
             <input type="text" name="nome" placeholder="Il tuo nome" required>
-            <input type="tel" name="telefono" placeholder="Il tuo numero WhatsApp (es. 3912345678)" required pattern="[0-9+\s\-]{6,20}">
+            <input type="email" name="email" placeholder="La tua email" required>
             <button type="submit" id="submitBtn14">Partecipa</button>
         </form>
 
         <div id="thankYouMessage14" class="thank-you-message">
             <h3>Grazie per la tua partecipazione!</h3>
-            <p>Riceverai un messaggio WhatsApp non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta!</p>
+            <p>Riceverai una email non appena raggiungeremo il numero di partecipanti richiesto per attivare l'offerta.</p>
         </div>
 
         <div id="completedMessage14" class="completed-message">
             <h3>Complimenti! Abbiamo raggiunto il numero di partecipanti!</h3>
-            <p>Tutti i partecipanti riceveranno un messaggio WhatsApp con il link per completare il pagamento e ricevere il loro coupon personale!</p>
+            <p>Tutti i partecipanti riceveranno una email con le istruzioni per completare l'acquisto.</p>
         </div>
     </div>
 
@@ -1435,7 +1446,7 @@ document.addEventListener('click', (e) => {
         // Configurazione box
         const box1Config = {
             id: '1',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown1'),
             counterEl: document.getElementById('counter1'),
             form: document.getElementById('formPartecipazione1'),
@@ -1449,7 +1460,7 @@ document.addEventListener('click', (e) => {
 
         const box2Config = {
             id: '2',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown2'),
             counterEl: document.getElementById('counter2'),
             form: document.getElementById('formPartecipazione2'),
@@ -1463,7 +1474,7 @@ document.addEventListener('click', (e) => {
             
         const box3Config = {
             id: '3',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown3'),
             counterEl: document.getElementById('counter3'),
             form: document.getElementById('formPartecipazione3'),
@@ -1477,7 +1488,7 @@ document.addEventListener('click', (e) => {
 
         const box4Config = {
             id: '4',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown4'),
             counterEl: document.getElementById('counter4'),
             form: document.getElementById('formPartecipazione4'),
@@ -1491,7 +1502,7 @@ document.addEventListener('click', (e) => {
 
         const box5Config = {
             id: '5',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown5'),
             counterEl: document.getElementById('counter5'),
             form: document.getElementById('formPartecipazione5'),
@@ -1505,7 +1516,7 @@ document.addEventListener('click', (e) => {
 
         const box6Config = {
             id: '6',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown6'),
             counterEl: document.getElementById('counter6'),
             form: document.getElementById('formPartecipazione6'),
@@ -1519,7 +1530,7 @@ document.addEventListener('click', (e) => {
 
         const box7Config = {
             id: '7',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown7'),
             counterEl: document.getElementById('counter7'),
             form: document.getElementById('formPartecipazione7'),
@@ -1533,7 +1544,7 @@ document.addEventListener('click', (e) => {
 
         const box8Config = {
             id: '8',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown8'),
             counterEl: document.getElementById('counter8'),
             form: document.getElementById('formPartecipazione8'),
@@ -1547,7 +1558,7 @@ document.addEventListener('click', (e) => {
 
         const box9Config = {
             id: '9',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown9'),
             counterEl: document.getElementById('counter9'),
             form: document.getElementById('formPartecipazione9'),
@@ -1561,7 +1572,7 @@ document.addEventListener('click', (e) => {
 
         const box10Config = {
             id: '10',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown10'),
             counterEl: document.getElementById('counter10'),
             form: document.getElementById('formPartecipazione10'),
@@ -1575,7 +1586,7 @@ document.addEventListener('click', (e) => {
 
         const box11Config = {
             id: '11',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown11'),
             counterEl: document.getElementById('counter11'),
             form: document.getElementById('formPartecipazione11'),
@@ -1589,7 +1600,7 @@ document.addEventListener('click', (e) => {
 
         const box12Config = {
             id: '12',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown12'),
             counterEl: document.getElementById('counter12'),
             form: document.getElementById('formPartecipazione12'),
@@ -1603,7 +1614,7 @@ document.addEventListener('click', (e) => {
 
         const box13Config = {
             id: '13',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown13'),
             counterEl: document.getElementById('counter13'),
             form: document.getElementById('formPartecipazione13'),
@@ -1617,7 +1628,7 @@ document.addEventListener('click', (e) => {
 
         const box14Config = {
             id: '14',
-            scriptURL: 'https://script.google.com/macros/s/AKfycbzN6yfYxs4WuQ9DV40lkYy9VQzda6d_a-eBzwlVob6IblifOVPPJH491UJR18RZLtdu/exec',
+            scriptURL: 'https://script.google.com/macros/s/AKfycbzjx69GSrQRBqU16kuAF9jCtRPX2BGEz1KnwfFlMZr2mWNq9Fea1rodeV-LuHPxBzHL/exec',
             countdownEl: document.getElementById('countdown14'),
             counterEl: document.getElementById('counter14'),
             form: document.getElementById('formPartecipazione14'),
@@ -1865,12 +1876,12 @@ document.addEventListener('click', (e) => {
 
         // ✅ Leggi i campi dal form
         const nome = config.form.querySelector('input[name="nome"]').value;
-        const telefono = config.form.querySelector('input[name="telefono"]').value;
+        const email = config.form.querySelector('input[name="email"]').value;
 
         // ✅ Invia come URL-encoded, non FormData
         const params = new URLSearchParams();
         params.append('nome', nome);
-        params.append('telefono', telefono);
+        params.append('email', email);
         params.append('boxId', config.id);
 
         try {
@@ -2053,5 +2064,82 @@ window.addEventListener('appinstalled', () => {
     installBtn.style.display = 'none';
 });
     </script>
+    <script>
+// Configurazione Google OAuth
+const GOOGLE_CLIENT_ID = 'IL_TUO_CLIENT_ID_QUI';
+
+// Funzione di callback quando l'utente si loga con Google
+function handleCredentialResponse(response) {
+    const responsePayload = decodeJwtResponse(response.credential);
+    const userEmail = responsePayload.email;
+    const userName = responsePayload.name;
+    
+    localStorage.setItem('userEmail', userEmail);
+    localStorage.setItem('userToken', response.credential);
+    localStorage.setItem('userName', userName);
+    
+    document.getElementById('googleLoginContainer').style.display = 'none';
+    document.getElementById('userLoggedIn').style.display = 'block';
+    document.getElementById('userNameDisplay').textContent = userName;
+    
+    document.querySelectorAll('.box-form').forEach(form => {
+        form.style.opacity = '1';
+        form.style.pointerEvents = 'auto';
+    });
+}
+
+function decodeJwtResponse(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
+}
+
+function logout() {
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('userName');
+    document.getElementById('googleLoginContainer').style.display = 'block';
+    document.getElementById('userLoggedIn').style.display = 'none';
+    document.querySelectorAll('.box-form').forEach(form => {
+        form.style.opacity = '0.5';
+        form.style.pointerEvents = 'none';
+    });
+    window.location.href = 'index.html';
+}
+
+window.addEventListener('load', () => {
+    const userEmail = localStorage.getItem('userEmail');
+    const userName = localStorage.getItem('userName');
+    
+    if (userEmail && userName) {
+        document.getElementById('googleLoginContainer').style.display = 'none';
+        document.getElementById('userLoggedIn').style.display = 'block';
+        document.getElementById('userNameDisplay').textContent = userName;
+        document.querySelectorAll('.box-form').forEach(form => {
+            form.style.opacity = '1';
+            form.style.pointerEvents = 'auto';
+        });
+    } else {
+        document.querySelectorAll('.box-form').forEach(form => {
+            form.style.opacity = '0.5';
+            form.style.pointerEvents = 'none';
+        });
+    }
+    
+    if (window.google) {
+        google.accounts.id.initialize({
+            client_id: 61656461250,
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.getElementById('buttonDiv'),
+            { theme: 'outline', size: 'large' }
+        );
+    }
+});
+</script>
 </body>
 </html>
