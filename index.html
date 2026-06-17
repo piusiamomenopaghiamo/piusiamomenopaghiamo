@@ -44,7 +44,7 @@
         header {
             background: linear-gradient(to right, #00b4db, #0083b0);
             color: white;
-            padding: 10px 20px 30px;
+            padding: 15px 20px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             position: sticky;
@@ -54,26 +54,18 @@
 
         .header-content {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .logo-container {
-            flex: 1;
-        }
-
-        header h1 {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        header p {
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
+        .nav-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: relative;
         }
 
         .hamburger-menu {
@@ -82,6 +74,8 @@
             cursor: pointer;
             padding: 5px;
             z-index: 101;
+            position: absolute;
+            right: 0;
         }
 
         .hamburger-menu span {
@@ -95,12 +89,14 @@
 
         .nav-menu {
             display: flex;
+            justify-content: center;
             list-style: none;
+            flex-wrap: wrap;
             transition: all 0.3s ease;
         }
 
         .nav-menu li {
-            margin-left: 20px;
+            margin: 0 12px;
         }
 
         .nav-menu a {
@@ -117,17 +113,28 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        .login-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 12px;
+            gap: 10px;
+        }
+
         #googleLoginContainer {
-            margin-left: auto;
+            display: flex;
+            justify-content: center;
         }
 
         #userLoggedIn {
-            margin-left: auto;
             color: white;
             display: none;
+            align-items: center;
+            gap: 10px;
         }
 
-        #userLoggedIn button {
+        #userLoggedIn button, .login-row .btn-accedi {
             background: white;
             color: #0083b0;
             border: none;
@@ -135,7 +142,8 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            margin-left: 10px;
+            text-decoration: none;
+            font-size: 0.95rem;
         }
 
         @media (max-width: 768px) {
@@ -145,10 +153,10 @@
 
             .nav-menu {
                 position: fixed;
-                top: 70px;
+                top: 60px;
                 left: -100%;
                 width: 100%;
-                height: calc(100vh - 70px);
+                height: calc(100vh - 60px);
                 background: linear-gradient(to bottom, #0083b0, #00b4db);
                 flex-direction: column;
                 align-items: center;
@@ -186,11 +194,6 @@
 
             .hamburger-menu.active span:nth-child(3) {
                 transform: rotate(45deg) translate(-5px, -6px);
-            }
-
-            #googleLoginContainer {
-                margin-left: 0;
-                margin-top: 10px;
             }
         }
 
@@ -404,30 +407,31 @@
 <body>
     <header>
         <div class="header-content">
-            <div class="logo-container" style="text-align: center; width: 100%; margin-bottom: 10px;">
-                <h1 style="margin: 0; font-size: 1.8rem;">Più Siamo Meno Paghiamo</h1>
-            </div>
-            
-            <div class="hamburger-menu" id="hamburgerMenu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-row">
+                <div class="hamburger-menu" id="hamburgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#" onclick="filterBoxes('tutti')">Tutti</a></li>
+                    <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
+                    <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
+                    <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                    <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
+                </ul>
             </div>
 
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#" onclick="filterBoxes('tutti')">Tutti</a></li>
-                <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
-                <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
-                <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
-                <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
-            </ul>
-
-            <div id="googleLoginContainer">
-                <div id="buttonDiv"></div>
-            </div>
-            <div id="userLoggedIn">
-                Benvenuto, <strong><span id="userNameDisplay"></span></strong>!
-                <button onclick="logout()">Esci</button>
+            <div class="login-row">
+                <div id="googleLoginContainer">
+                    <div id="buttonDiv"></div>
+                    <a href="loghin.html" class="btn-accedi">Accedi con Email</a>
+                </div>
+                <div id="userLoggedIn">
+                    Benvenuto, <strong><span id="userNameDisplay"></span></strong>!
+                    <button onclick="logout()">Esci</button>
+                </div>
             </div>
         </div>
     </header>
@@ -855,18 +859,12 @@
             const userEmail = responsePayload.email;
             const userName = responsePayload.name;
             
+            localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userEmail', userEmail);
             localStorage.setItem('userToken', response.credential);
             localStorage.setItem('userName', userName);
             
-            document.getElementById('googleLoginContainer').style.display = 'none';
-            document.getElementById('userLoggedIn').style.display = 'block';
-            document.getElementById('userNameDisplay').textContent = userName;
-            
-            document.querySelectorAll('form').forEach(form => {
-                form.style.opacity = '1';
-                form.style.pointerEvents = 'auto';
-            });
+            updateLoginUI();
         }
 
         function decodeJwtResponse(token) {
@@ -879,37 +877,41 @@
         }
 
         function logout() {
+            localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('userEmail');
             localStorage.removeItem('userToken');
             localStorage.removeItem('userName');
-            document.getElementById('googleLoginContainer').style.display = 'block';
-            document.getElementById('userLoggedIn').style.display = 'none';
-            document.querySelectorAll('form').forEach(form => {
-                form.style.opacity = '0.5';
-                form.style.pointerEvents = 'none';
-            });
-            window.location.href = 'index.html';
+            updateLoginUI();
         }
 
-        window.addEventListener('load', () => {
+        // Aggiorna l'interfaccia in base allo stato di login, sia che provenga
+        // da Google OAuth sia dal login email/password fatto su loghin.html
+        function updateLoginUI() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             const userEmail = localStorage.getItem('userEmail');
             const userName = localStorage.getItem('userName');
-            
-            if (userEmail && userName) {
+
+            if (isLoggedIn && userEmail) {
                 document.getElementById('googleLoginContainer').style.display = 'none';
-                document.getElementById('userLoggedIn').style.display = 'block';
-                document.getElementById('userNameDisplay').textContent = userName;
+                document.getElementById('userLoggedIn').style.display = 'flex';
+                document.getElementById('userNameDisplay').textContent = userName || userEmail;
                 document.querySelectorAll('form').forEach(form => {
                     form.style.opacity = '1';
                     form.style.pointerEvents = 'auto';
                 });
             } else {
+                document.getElementById('googleLoginContainer').style.display = 'flex';
+                document.getElementById('userLoggedIn').style.display = 'none';
                 document.querySelectorAll('form').forEach(form => {
                     form.style.opacity = '0.5';
                     form.style.pointerEvents = 'none';
                 });
             }
-            
+        }
+
+        window.addEventListener('load', () => {
+            updateLoginUI();
+
             if (window.google) {
                 google.accounts.id.initialize({
                     client_id: GOOGLE_CLIENT_ID,
