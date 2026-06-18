@@ -1061,7 +1061,8 @@
                 submitBtn: document.getElementById('submitBtn' + i),
                 thankYouMessage: document.getElementById('thankYouMessage' + i),
                 completedMessage: document.getElementById('completedMessage' + i),
-                haPartecipato: false // SEMPRE aggiornato dal server, mai letto da localStorage
+                haPartecipato: false, // SEMPRE aggiornato dal server, mai letto da localStorage
+                timeExpired: false
             };
         }
 
@@ -1078,6 +1079,7 @@
                     timeLeft--;
                     boxConfigs[i].countdownEl.textContent = formatTime(timeLeft);
                     if (timeLeft <= 0) {
+                        boxConfigs[i].timeExpired = true;
                         boxConfigs[i].submitBtn.disabled = true;
                         boxConfigs[i].submitBtn.textContent = 'Tempo scaduto';
                         document.getElementById('timeoutPopup').style.display = 'flex';
@@ -1144,6 +1146,14 @@
                     if (data.giaPartecipa) {
                         config.submitBtn.disabled = true;
                         config.submitBtn.textContent = 'Hai già partecipato';
+                    } else if (!config.timeExpired) {
+                        // Questo account non ha partecipato secondo il server: resetto
+                        // il bottone, anche se un account precedente su questo stesso
+                        // browser lo aveva lasciato disabilitato.
+                        config.submitBtn.disabled = false;
+                        config.submitBtn.style.backgroundColor = '';
+                        config.submitBtn.style.cursor = '';
+                        config.submitBtn.textContent = 'Partecipa';
                     }
                     applyBoxState(config, data.count);
                 }
