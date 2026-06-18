@@ -244,12 +244,12 @@
         }
 
         .main-box {
-            max-width: 340px;
+            max-width: 500px;
             background: white;
-            margin: 20px auto;
-            padding: 16px;
+            margin: 30px auto;
+            padding: 30px 20px;
             border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
             border: 2px solid #00b894;
             opacity: 1;
             pointer-events: auto;
@@ -257,69 +257,69 @@
         }
 
         .pizza-container {
-            width: 100%;
-            height: 160px;
-            margin: 0 auto 12px;
-            border: 3px solid #a0d8f3;
-            border-radius: 10px;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 20px;
+            border: 4px solid #a0d8f3;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
         }
 
         .pizza-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 7px;
+            border-radius: 8px;
         }
 
         .offer-details {
             text-align: center;
-            margin: 10px 0;
+            margin: 20px 0;
         }
 
         .offer-title {
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             color: #d62828;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
         }
 
         .offer-description {
-            display: none;
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
         }
 
         .timer-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin: 10px 0;
+            gap: 10px;
+            margin: 20px 0;
             color: #e63946;
             font-weight: bold;
-            font-size: 0.85rem;
         }
 
         .counter-box {
             background: #e6f5ff;
             color: #0077a3;
-            padding: 8px;
+            padding: 15px;
             border-radius: 8px;
-            margin: 10px 0;
+            margin: 20px 0;
             font-weight: bold;
             text-align: center;
-            font-size: 0.85rem;
         }
 
         .price-highlight {
             background: linear-gradient(45deg, #ff4e00, #ec9f05);
             color: #fff;
             text-align: center;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 14px;
-            box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 69, 0, 0.7);
+            animation: pulse-glow 2s infinite;
         }
 
         @keyframes pulse-glow {
@@ -328,37 +328,38 @@
         }
 
         .explosive-text {
-            font-size: 1rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: #fff200;
-            text-shadow: 1px 1px 0 #000;
+            text-shadow: 2px 2px 0 #000, 0 0 10px #ff0000, 0 0 20px #ff6600;
+            animation: flash-text 1.5s infinite alternate;
         }
 
-        .discover-btn {
+        .menu-btn {
             display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            background: white;
-            color: #0083b0;
-            border: 2px solid #0083b0;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
+            margin: 20px auto;
+            background-color: #00b4db;
         }
 
-        .discover-btn:hover {
-            background: #0083b0;
-            color: white;
+        .menu-btn:hover {
+            background-color: #0083b0;
         }
 
         @keyframes flash-text {
             from { color: #fff200; text-shadow: 2px 2px 0 #000, 0 0 10px #ff0000, 0 0 20px #ff6600; }
             to { color: #ffffff; text-shadow: 2px 2px 0 #000, 0 0 15px #ff3300, 0 0 25px #ff6600; }
+        }
+
+        @media (max-width: 768px) {
+            .main-box {
+                margin: 20px 15px;
+                padding: 20px 15px;
+            }
+
+            .pizza-container {
+                width: 250px;
+                height: 250px;
+            }
         }
 
         form {
@@ -521,10 +522,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown1" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box1.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 40, paghiamo solo 20€ <strong><s>ANZICHÉ 38€</s></strong></span>
         </div>
-        <a href="box1.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter1">0</span></div>
         <form id="formPartecipazione1">
             <button type="submit" id="submitBtn1">Partecipa</button>
@@ -552,10 +554,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown2" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box2.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 50, paghiamo solo 18€ <strong><s>ANZICHÉ 34€</s></strong></span>
         </div>
-        <a href="box2.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter2">0</span></div>
         <form id="formPartecipazione2">
             <button type="submit" id="submitBtn2">Partecipa</button>
@@ -583,10 +586,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown3" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box3.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 60, paghiamo solo 15€ <strong><s>ANZICHÉ 35€</s></strong></span>
         </div>
-        <a href="box3.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter3">0</span></div>
         <form id="formPartecipazione3">
             <button type="submit" id="submitBtn3">Partecipa</button>
@@ -616,10 +620,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown4" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box4.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 50, paghiamo solo 14€ <strong><s>ANZICHÉ 30€</s></strong></span>
         </div>
-        <a href="box4.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter4">0</span></div>
         <form id="formPartecipazione4">
             <button type="submit" id="submitBtn4">Partecipa</button>
@@ -640,10 +645,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown5" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box5.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 45, paghiamo solo 12€ <strong><s>ANZICHÉ 33€</s></strong></span>
         </div>
-        <a href="box5.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter5">0</span></div>
         <form id="formPartecipazione5">
             <button type="submit" id="submitBtn5">Partecipa</button>
@@ -664,10 +670,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown6" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box6.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 40, paghiamo solo 18€ <strong><s>ANZICHÉ 36€</s></strong></span>
         </div>
-        <a href="box6.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter6">0</span></div>
         <form id="formPartecipazione6">
             <button type="submit" id="submitBtn6">Partecipa</button>
@@ -688,10 +695,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown7" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box7.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 70, paghiamo solo 20€ <strong><s>ANZICHÉ 42€</s></strong></span>
         </div>
-        <a href="box7.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter7">0</span></div>
         <form id="formPartecipazione7">
             <button type="submit" id="submitBtn7">Partecipa</button>
@@ -712,10 +720,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown8" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box8.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 40, paghiamo solo 35€ <strong><s>ANZICHÉ 70€</s></strong></span>
         </div>
-        <a href="box8.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter8">0</span></div>
         <form id="formPartecipazione8">
             <button type="submit" id="submitBtn8">Partecipa</button>
@@ -736,10 +745,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown9" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box9.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 40, paghiamo solo 20€ <strong><s>ANZICHÉ 38€</s></strong></span>
         </div>
-        <a href="box9.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter9">0</span></div>
         <form id="formPartecipazione9">
             <button type="submit" id="submitBtn9">Partecipa</button>
@@ -760,10 +770,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown10" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box10.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 50, paghiamo solo 18€ <strong><s>ANZICHÉ 34€</s></strong></span>
         </div>
-        <a href="box10.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter10">0</span></div>
         <form id="formPartecipazione10">
             <button type="submit" id="submitBtn10">Partecipa</button>
@@ -784,10 +795,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown11" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box11.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 50, paghiamo solo 14€ <strong><s>ANZICHÉ 30€</s></strong></span>
         </div>
-        <a href="box11.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter11">0</span></div>
         <form id="formPartecipazione11">
             <button type="submit" id="submitBtn11">Partecipa</button>
@@ -808,10 +820,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown12" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box12.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 40, paghiamo solo 18€ <strong><s>ANZICHÉ 36€</s></strong></span>
         </div>
-        <a href="box12.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter12">0</span></div>
         <form id="formPartecipazione12">
             <button type="submit" id="submitBtn12">Partecipa</button>
@@ -832,10 +845,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown13" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box13.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 5, paghiamo solo 23€ <strong><s>ANZICHÉ 28€</s></strong></span>
         </div>
-        <a href="box13.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter13">0</span></div>
         <form id="formPartecipazione13">
             <button type="submit" id="submitBtn13">Partecipa</button>
@@ -856,10 +870,11 @@
             <i class="fas fa-hourglass-half"></i>
             <div id="countdown14" class="countdown">60:00</div>
         </div>
+
+        <button class="menu-btn" onclick="window.location.href='box14.html'">Scopri di più</button>
         <div class="price-highlight">
             <span class="explosive-text">Se siamo in 5, paghiamo solo 21€ <strong><s>ANZICHÉ 36€</s></strong></span>
         </div>
-        <a href="box14.html" class="discover-btn">Scopri di più</a>
         <div class="counter-box">Al momento siamo: <span id="counter14">0</span></div>
         <form id="formPartecipazione14">
             <button type="submit" id="submitBtn14">Partecipa</button>
