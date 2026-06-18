@@ -1070,17 +1070,32 @@
             }
         }
 
-        async function updateCounter(config) {
-            try {
-                const res = await fetch(config.scriptURL + '?boxId=' + config.id);
-                const data = await res.json();
-                if (data.result === 'success') {
-                    config.counterEl.textContent = data.count;
-                }
-            } catch (error) {
-                console.error('Errore nel recupero contatore:', error);
+      async function updateCounter(config) {
+    try {
+        const res = await fetch(config.scriptURL + '?action=getCount&boxId=' + config.id + '&t=' + Date.now());
+        const data = await res.json();
+        if (data.result === 'success') {
+            const count = data.count;
+            config.counterEl.textContent = count;
+            
+            // Leggi il numero minimo dal box HTML
+            const boxElement = document.getElementById('box' + config.id);
+            const minimo = parseInt(boxElement.getAttribute('data-minimo'));
+            
+            // Se raggiunto il minimo
+            if (count >= minimo) {
+                config.submitBtn.disabled = true;
+                config.submitBtn.textContent = 'Numero raggiunto!';
+                config.submitBtn.style.backgroundColor = '#ccc';
+                config.submitBtn.style.cursor = 'not-allowed';
+                config.completedMessage.style.display = 'block';
+                config.form.style.display = 'none';
             }
         }
+    } catch (error) {
+        console.error('Errore:', error);
+    }
+}
 
         function setupFormSubmit(config) {
             config.form.addEventListener('submit', async (e) => {
