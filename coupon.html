@@ -49,6 +49,48 @@
         </div>
     </div>
 
+    <style>
+        .paypal-section {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .paypal-section h3 { color: #856404; margin-bottom: 10px; }
+        .paypal-section p { color: #555; margin-bottom: 15px; }
+        .btn-paypal {
+            display: inline-block;
+            background: #0070ba;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+        .btn-paypal:hover { background: #005a9e; }
+        .btn-download {
+            display: inline-block;
+            background: #00b894;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        .btn-download:hover { background: #009972; }
+    </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -60,16 +102,65 @@
                 return;
             }
 
-            // Simulazione o lettura locale dell'ultimo Box prenotato per mostrare il coupon a schermo
+            // Controlla se il pagamento è già stato effettuato
+            const pagamentoEffettuato = localStorage.getItem('pagamentoEffettuato_' + userEmail);
+
+            if (!pagamentoEffettuato) {
+                // Mostra sezione pagamento PayPal
+                container.innerHTML = `
+                    <div class="paypal-section">
+                        <h3>💳 Completa il Pagamento</h3>
+                        <p>Hai partecipato con successo! Per ottenere il tuo coupon è necessario completare il pagamento tramite PayPal.</p>
+                        <button class="btn-paypal" onclick="avviaPagamentoPayPal('${userEmail}')">
+                            <i class="fas fa-credit-card"></i> Paga con PayPal
+                        </button>
+                    </div>
+                `;
+            } else {
+                // Pagamento già effettuato: mostra il coupon con opzione di download
+                mostraCoupon(userEmail, container);
+            }
+        });
+
+        function avviaPagamentoPayPal(email) {
+            // Simulazione pagamento PayPal: in produzione sostituire con link reale PayPal
+            // Esempio link PayPal reale: https://www.paypal.com/paypalme/TUOUSERNAME/20
+            const conferma = confirm('Verrai reindirizzato a PayPal per completare il pagamento. Continuare?');
+            if (conferma) {
+                // Segna il pagamento come effettuato (in produzione gestire via webhook PayPal)
+                localStorage.setItem('pagamentoEffettuato_' + email, 'true');
+                const container = document.getElementById('couponContainer');
+                mostraCoupon(email, container);
+            }
+        }
+
+        function mostraCoupon(userEmail, container) {
+            const couponId = 'CPN-' + Math.random().toString(36).substr(2, 8).toUpperCase();
             container.innerHTML = `
                 <div class="coupon-card">
                     <div class="coupon-title">🎫 COUPON ATTIVO</div>
                     <p>Associato a: <strong>${userEmail}</strong></p>
-                    <div class="coupon-number">ID PRENOTAZIONE VALIDO</div>
-                    <p>Mostra questa schermata o il messaggio di conferma all'ingresso del locale.</p>
+                    <div class="coupon-number">${couponId}</div>
+                    <p>Mostra questa schermata o scarica il coupon all'ingresso del locale.</p>
+                    <br>
+                    <button class="btn-download" onclick="scaricaCoupon('${userEmail}', '${couponId}')">
+                        <i class="fas fa-download"></i> Scarica il Coupon
+                    </button>
                 </div>
             `;
-        });
+        }
+
+        function scaricaCoupon(email, couponId) {
+            // Genera un coupon testuale scaricabile
+            const contenuto = `COUPON ATTIVO\n====================\nAssociato a: ${email}\nID: ${couponId}\nData: ${new Date().toLocaleDateString('it-IT')}\n====================\nMostra questo coupon all'ingresso del locale.`;
+            const blob = new Blob([contenuto], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'coupon_' + couponId + '.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
     </script>
 </body>
 </html>
