@@ -55,6 +55,7 @@
             transition: background 0.3s;
         }
         .btn-paypal:hover { background: #005a9e; }
+
         .btn-download {
             display: inline-block;
             background: #00b894;
@@ -70,6 +71,38 @@
             transition: background 0.3s;
         }
         .btn-download:hover { background: #009972; }
+
+        /* Pulsante "Ho già pagato" disabilitato */
+        .btn-gia-pagato {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: not-allowed;
+            border: none;
+            margin-top: 8px;
+            background: #cccccc;
+            color: #888888;
+            transition: background 0.3s, color 0.3s;
+        }
+        /* Pulsante "Ho già pagato" abilitato (dopo click su PayPal) */
+        .btn-gia-pagato.abilitato {
+            background: #00b894;
+            color: white;
+            cursor: pointer;
+        }
+        .btn-gia-pagato.abilitato:hover { background: #009972; }
+
+        .avviso-paypal {
+            font-size: 0.85rem;
+            color: #c0392b;
+            margin-top: 8px;
+            display: none;
+        }
+        .avviso-paypal.visibile {
+            display: block;
+        }
 
         .box-section {
             background: white;
@@ -147,7 +180,6 @@
             }
 
             if (boxPartecipati.length === 0) {
-                // REGOLA 3: nessuna partecipazione = nessun link PayPal visibile
                 container.innerHTML = `
                     <div class="no-partecipazioni">
                         <h3>🔒 Nessuna partecipazione attiva</h3>
@@ -165,19 +197,30 @@
                 const pagamentoEffettuato = localStorage.getItem(pagamentoKey);
 
                 if (!pagamentoEffettuato) {
-                    // REGOLA 3 + 5: mostra il link PayPal corretto per quel box
+                    // Controlla se l'utente ha già cliccato il link PayPal in questa sessione
+                    const paypalCliccato = sessionStorage.getItem('paypalCliccato_box' + boxId + '_' + userEmail);
+                    const btnAbilitato = paypalCliccato ? 'abilitato' : '';
+                    const avvisoVisibile = paypalCliccato ? '' : 'visibile';
+
                     html += `
                         <div class="paypal-section">
                             <h3>💳 Box ${boxId} – ${box.nome}</h3>
                             <p>Hai partecipato con successo! Completa il pagamento di <strong>${box.prezzo}</strong> tramite PayPal per ottenere il tuo coupon.</p>
-                            <a class="btn-paypal" href="${box.url}" target="_blank" onclick="segnaPagemento(${boxId}, '${userEmail}')">
+                            <a class="btn-paypal" href="${box.url}" target="_blank" onclick="segnaCliccatoPaypal(${boxId}, '${userEmail}')">
                                 <i class="fas fa-credit-card"></i> Paga con PayPal – ${box.prezzo}
                             </a>
                             <br><br>
-                            <small style="color:#856404;">Dopo il pagamento, clicca qui per aggiornare:</small><br>
-                            <button class="btn-download" style="margin-top:8px;" onclick="segnaPagemento(${boxId}, '${userEmail}'); location.reload();">
+                            <small style="color:#856404;">Dopo aver completato il pagamento su PayPal, clicca qui:</small><br>
+                            <button 
+                                id="btn-gia-pagato-${boxId}"
+                                class="btn-gia-pagato ${btnAbilitato}"
+                                onclick="confermaPagemento(${boxId}, '${userEmail}', this)"
+                            >
                                 ✅ Ho già pagato
                             </button>
+                            <div id="avviso-${boxId}" class="avviso-paypal ${avvisoVisibile}">
+                                ⚠️ Devi prima cliccare "Paga con PayPal" e completare il pagamento.
+                            </div>
                         </div>
                     `;
                 } else {
@@ -202,12 +245,33 @@
             container.innerHTML = html;
         });
 
-        function segnaPagemento(boxId, email) {
+        // Segna che l'utente ha cliccato il link PayPal (solo per questa sessione)
+        function segnaCliccatoPaypal(boxId, email) {
+            sessionStorage.setItem('paypalCliccato_box' + boxId + '_' + email, 'true');
+            // Abilita il pulsante "Ho già pagato" dopo il click su PayPal
+            setTimeout(() => {
+                const btn = document.getElementById('btn-gia-pagato-' + boxId);
+                const avviso = document.getElementById('avviso-' + boxId);
+                if (btn) btn.classList.add('abilitato');
+                if (avviso) avviso.classList.remove('visibile');
+            }, 500);
+        }
+
+        // Conferma pagamento SOLO se l'utente ha prima cliccato il link PayPal
+        function confermaPagemento(boxId, email, btn) {
+            const paypalCliccato = sessionStorage.getItem('paypalCliccato_box' + boxId + '_' + email);
+            if (!paypalCliccato) {
+                // Mostra avviso e blocca
+                const avviso = document.getElementById('avviso-' + boxId);
+                if (avviso) avviso.classList.add('visibile');
+                return;
+            }
+            // PayPal è stato cliccato: segna il pagamento e ricarica
             localStorage.setItem('pagamentoEffettuato_box' + boxId + '_' + email, 'true');
+            location.reload();
         }
 
         function getCouponId(email, boxId) {
-            // Genera un ID deterministico basato su email + boxId (stesso ad ogni reload)
             const key = 'couponId_box' + boxId + '_' + email;
             let id = localStorage.getItem(key);
             if (!id) {
