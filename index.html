@@ -1085,6 +1085,25 @@
             }
         }
 
+        // Stato "gruppo completo": ha sempre la priorità su tutto il resto
+        // (anche se l'utente ha già partecipato), così il messaggio
+        // "abbiamo raggiunto il numero" è quello che vince sempre quando la
+        // soglia è stata raggiunta, indipendentemente da quale funzione
+        // risponde per ultima.
+        function applyCompletedState(config) {
+            config.submitBtn.disabled = true;
+            config.submitBtn.textContent = 'Numero raggiunto!';
+            config.submitBtn.style.backgroundColor = '#ccc';
+            config.submitBtn.style.cursor = 'not-allowed';
+            config.completedMessage.style.display = 'block';
+            config.form.style.display = 'none';
+        }
+
+        function getMinimo(config) {
+            const boxElement = document.getElementById('box' + config.id);
+            return parseInt(boxElement.getAttribute('data-minimo'));
+        }
+
         async function checkPartecipazione(config) {
             const email = localStorage.getItem('userEmail');
             if (!email) return; // non loggato, niente da controllare ancora
@@ -1094,7 +1113,11 @@
                 const data = await res.json();
                 if (data.result === 'success') {
                     config.counterEl.textContent = data.count;
-                    if (data.giaPartecipa) {
+                    const minimo = getMinimo(config);
+
+                    if (data.count >= minimo) {
+                        applyCompletedState(config);
+                    } else if (data.giaPartecipa) {
                         config.submitBtn.disabled = true;
                         config.submitBtn.textContent = 'Hai già partecipato';
                     }
@@ -1113,17 +1136,11 @@
             config.counterEl.textContent = count;
             
             // Leggi il numero minimo dal box HTML
-            const boxElement = document.getElementById('box' + config.id);
-            const minimo = parseInt(boxElement.getAttribute('data-minimo'));
+            const minimo = getMinimo(config);
             
             // Se raggiunto il minimo
             if (count >= minimo) {
-                config.submitBtn.disabled = true;
-                config.submitBtn.textContent = 'Numero raggiunto!';
-                config.submitBtn.style.backgroundColor = '#ccc';
-                config.submitBtn.style.cursor = 'not-allowed';
-                config.completedMessage.style.display = 'block';
-                config.form.style.display = 'none';
+                applyCompletedState(config);
             }
         }
     } catch (error) {
