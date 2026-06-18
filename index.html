@@ -302,6 +302,7 @@
         }
 
         .counter-box {
+            display:none !important;
             background: #e6f5ff;
             color: #0077a3;
             padding: 15px;
@@ -1090,13 +1091,18 @@
         // "abbiamo raggiunto il numero" è quello che vince sempre quando la
         // soglia è stata raggiunta, indipendentemente da quale funzione
         // risponde per ultima.
-        function applyCompletedState(config) {
+        function applyCompletedState(config, giaPartecipa = false) {
             config.submitBtn.disabled = true;
             config.submitBtn.textContent = 'Numero raggiunto!';
             config.submitBtn.style.backgroundColor = '#ccc';
             config.submitBtn.style.cursor = 'not-allowed';
             config.completedMessage.style.display = 'block';
             config.form.style.display = 'none';
+
+            const p = config.completedMessage.querySelector('p');
+            if (p && !giaPartecipa) {
+                p.style.display = 'none';
+            }
         }
 
         function getMinimo(config) {
@@ -1116,7 +1122,7 @@
                     const minimo = getMinimo(config);
 
                     if (data.count >= minimo) {
-                        applyCompletedState(config);
+                        applyCompletedState(config, data.giaPartecipa);
                     } else if (data.giaPartecipa) {
                         config.submitBtn.disabled = true;
                         config.submitBtn.textContent = 'Hai già partecipato';
