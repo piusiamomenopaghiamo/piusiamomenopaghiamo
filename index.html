@@ -1,6 +1,3 @@
-Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è stato toccato nient'altro della struttura, degli stili o delle logiche di funzionamento.
-È stata modificata la funzione JavaScript applyCompletedState in modo che, quando il numero viene raggiunto (regola valida per tutti i box da 1 a 14), vengano rimosse le frasi per chi non ha partecipato e il testo "Al momento siamo:", mostrando ai nuovi visitatori unicamente la scritta richiesta.
-```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -305,7 +302,6 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
         }
 
         .counter-box {
-            display:none !important;
             background: #e6f5ff;
             color: #0077a3;
             padding: 15px;
@@ -553,7 +549,7 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
         </div>
         <div class="offer-details">
             <h2 class="offer-title">Eleganza Piemontese</h2>
-            <p class="offer-description">Piatti raffinati della traditione piemontese rivisitati in chiave moderna.</p>
+            <p class="offer-description">Piatti raffinati della tradizione piemontese rivisitati in chiave moderna.</p>
         </div>
         <div class="timer-container">
             <i class="fas fa-hourglass-half"></i>
@@ -610,7 +606,9 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
         </div>
     </div>
 
-    <!-- BOX 4-14 -->
+    <!-- BOX 4-14 (copiare la struttura del box 3 per i box 4-14) -->
+    <!-- Per brevità, ripeto solo la struttura ma con ID diversi -->
+
     <div class="main-box" id="box4" data-minimo="50" data-category="pizzeria">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/53/17/8f/53178fa21cb33aa1b162d20f81c83a7f.jpg" alt="La Pizza Classica">
@@ -1005,6 +1003,8 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
             updateLoginUI();
         }
 
+        // Aggiorna l'interfaccia in base allo stato di login, sia che provenga
+        // da Google OAuth sia dal login email/password fatto su loghin.html
         function updateLoginUI() {
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             const userEmail = localStorage.getItem('userEmail');
@@ -1018,6 +1018,7 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
                     form.style.opacity = '1';
                     form.style.pointerEvents = 'auto';
                 });
+                // Appena l'utente si loggua, controlliamo a quali box ha già partecipato
                 if (typeof boxConfigs !== 'undefined') {
                     for (let i = 1; i <= 14; i++) {
                         if (boxConfigs[i]) checkPartecipazione(boxConfigs[i]);
@@ -1025,7 +1026,7 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
                 }
             } else {
                 document.getElementById('googleLoginContainer').style.display = 'flex';
-                document.getElementById('userLoggedIn').style.none = 'none';
+                document.getElementById('userLoggedIn').style.display = 'none';
                 document.querySelectorAll('form').forEach(form => {
                     form.style.opacity = '0.5';
                     form.style.pointerEvents = 'none';
@@ -1084,48 +1085,16 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
             }
         }
 
-        function applyCompletedState(config, giaPartecipa = false) {
-            config.submitBtn.disabled = true;
-            config.submitBtn.textContent = 'abbiamo raggiunto il numero';
-            config.submitBtn.style.backgroundColor = '#ccc';
-            config.submitBtn.style.cursor = 'not-allowed';
-            config.form.style.display = 'none';
-
-            // Elimina la frase "Al momento siamo:" nascondendo il contenitore del contatore
-            const parentBox = document.getElementById('box' + config.id);
-            if (parentBox) {
-                const counterBox = parentBox.querySelector('.counter-box');
-                if (counterBox) {
-                    counterBox.style.setProperty('display', 'none', 'important');
-                }
-            }
-
-            if (giaPartecipa) {
-                config.completedMessage.style.display = 'block';
-            } else {
-                config.completedMessage.style.display = 'none';
-            }
-        }
-
-        function getMinimo(config) {
-            const boxElement = document.getElementById('box' + config.id);
-            return parseInt(boxElement.getAttribute('data-minimo'));
-        }
-
         async function checkPartecipazione(config) {
             const email = localStorage.getItem('userEmail');
-            if (!email) return;
+            if (!email) return; // non loggato, niente da controllare ancora
 
             try {
                 const res = await fetch(config.scriptURL + '?boxId=' + config.id + '&action=checkPartecipazione&email=' + encodeURIComponent(email));
                 const data = await res.json();
                 if (data.result === 'success') {
                     config.counterEl.textContent = data.count;
-                    const minimo = getMinimo(config);
-
-                    if (data.count >= minimo) {
-                        applyCompletedState(config, data.giaPartecipa);
-                    } else if (data.giaPartecipa) {
+                    if (data.giaPartecipa) {
                         config.submitBtn.disabled = true;
                         config.submitBtn.textContent = 'Hai già partecipato';
                     }
@@ -1135,33 +1104,32 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
             }
         }
 
-        async function updateCounter(config) {
-            try {
-                const res = await fetch(config.scriptURL + '?action=getCount&boxId=' + config.id + '&t=' + Date.now());
-                const data = await res.json();
-                if (data.result === 'success') {
-                    const count = data.count;
-                    config.counterEl.textContent = count;
-                    
-                    const minimo = getMinimo(config);
-                    
-                    if (count >= minimo) {
-                        const email = localStorage.getItem('userEmail');
-                        let giaPartecipa = false;
-                        if (email) {
-                            const checkRes = await fetch(config.scriptURL + '?boxId=' + config.id + '&action=checkPartecipazione&email=' + encodeURIComponent(email));
-                            const checkData = await checkRes.json();
-                            if (checkData.result === 'success') {
-                                giaPartecipa = checkData.giaPartecipa;
-                            }
-                        }
-                        applyCompletedState(config, giaPartecipa);
-                    }
-                }
-            } catch (error) {
-                console.error('Errore:', error);
+      async function updateCounter(config) {
+    try {
+        const res = await fetch(config.scriptURL + '?action=getCount&boxId=' + config.id + '&t=' + Date.now());
+        const data = await res.json();
+        if (data.result === 'success') {
+            const count = data.count;
+            config.counterEl.textContent = count;
+            
+            // Leggi il numero minimo dal box HTML
+            const boxElement = document.getElementById('box' + config.id);
+            const minimo = parseInt(boxElement.getAttribute('data-minimo'));
+            
+            // Se raggiunto il minimo
+            if (count >= minimo) {
+                config.submitBtn.disabled = true;
+                config.submitBtn.textContent = 'Numero raggiunto!';
+                config.submitBtn.style.backgroundColor = '#ccc';
+                config.submitBtn.style.cursor = 'not-allowed';
+                config.completedMessage.style.display = 'block';
+                config.form.style.display = 'none';
             }
         }
+    } catch (error) {
+        console.error('Errore:', error);
+    }
+}
 
         function setupFormSubmit(config) {
             config.form.addEventListener('submit', async (e) => {
@@ -1209,7 +1177,7 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
             for (let i = 1; i <= 14; i++) {
                 setupFormSubmit(boxConfigs[i]);
                 checkPartecipazione(boxConfigs[i]);
-                updateCounter(boxConfigs[i]);
+                updateCounter(boxConfigs[i]); // controllo immediato: se il box ha già raggiunto il numero, il bottone "Partecipa" sparisce subito anche per i nuovi visitatori
             }
             setInterval(() => {
                 for (let i = 1; i <= 14; i++) {
@@ -1220,5 +1188,3 @@ Ecco il codice HTML completo e modificato esattamente come hai richiesto. Non è
     </script>
 </body>
 </html>
-
-```
