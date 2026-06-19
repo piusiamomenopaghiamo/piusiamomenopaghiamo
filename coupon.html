@@ -6,6 +6,8 @@
     <title>I Miei Coupon</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>emailjs.init('MuG8aGsNaDzNpKG49');</script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Open Sans', sans-serif; background: #f2f7fb; padding-top: 80px; }
@@ -130,13 +132,16 @@
             14: { url: 'https://www.paypal.com/ncp/payment/47D6T5VJ3RMHY', nome: 'Bruschette & Delizia',   prezzo: '€21', minimo: 5  }
         };
 
-        // RESET: cancella tutti i pagamenti salvati in precedenza
-        (function resetPagamenti() {
-            const keysToRemove = [];
-            for (let k in localStorage) {
-                if (k.startsWith('pagamentoEffettuato_box')) keysToRemove.push(k);
+        // RESET UNA TANTUM: cancella i vecchi pagamenti solo se non già fatto
+        (function resetPagamentiOnce() {
+            if (!localStorage.getItem('resetPagamentiV1')) {
+                const keysToRemove = [];
+                for (let k in localStorage) {
+                    if (k.startsWith('pagamentoEffettuato_box')) keysToRemove.push(k);
+                }
+                keysToRemove.forEach(k => localStorage.removeItem(k));
+                localStorage.setItem('resetPagamentiV1', 'done');
             }
-            keysToRemove.forEach(k => localStorage.removeItem(k));
         })();
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -219,12 +224,27 @@
         });
 
         function getCouponId(email, boxId) {
-            // Genera un ID deterministico basato su email + boxId (stesso ad ogni reload)
             const key = 'couponId_box' + boxId + '_' + email;
+            const notificaKey = 'notificaInviata_box' + boxId + '_' + email;
             let id = localStorage.getItem(key);
             if (!id) {
                 id = 'CPN' + boxId + '-' + Math.random().toString(36).substr(2, 7).toUpperCase();
                 localStorage.setItem(key, id);
+            }
+            // Invia email notifica solo la prima volta
+            if (!localStorage.getItem(notificaKey)) {
+                const box = paypalLinks[boxId];
+                emailjs.send('service_jwxi7vw', 'template_jaucesw', {
+                    user_email: email,
+                    box_id: boxId,
+                    box_nome: box.nome,
+                    coupon_id: id,
+                    data: new Date().toLocaleDateString('it-IT')
+                }).then(() => {
+                    localStorage.setItem(notificaKey, 'true');
+                }).catch(err => {
+                    console.error('Errore invio email:', err);
+                });
             }
             return id;
         }
