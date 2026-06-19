@@ -144,7 +144,7 @@
             }
         })();
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const userEmail = localStorage.getItem('userEmail');
             const container = document.getElementById('couponContainer');
@@ -164,16 +164,25 @@
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
 
-            // Trova tutti i box a cui l'utente ha partecipato
-            const boxPartecipati = [];
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxma2BYdsIkToYeIRE76kPjMIFleMHmPw8Nn4sysAFt_aLyHucMHiATDcOCoxX_gJxz/exec';
+
+            container.innerHTML = '<p>Verifica partecipazioni in corso...</p>';
+
+            // Controlla sul server quali box ha realmente partecipato l'utente
+            const checks = [];
             for (let i = 1; i <= 14; i++) {
-                if (localStorage.getItem('partecipato_box' + i + '_' + userEmail)) {
-                    boxPartecipati.push(i);
-                }
+                checks.push(
+                    fetch(scriptURL + '?boxId=' + i + '&action=checkPartecipazione&email=' + encodeURIComponent(userEmail) + '&t=' + Date.now())
+                        .then(r => r.json())
+                        .then(data => ({ boxId: i, partecipato: data.result === 'success' && !!data.giaPartecipa }))
+                        .catch(() => ({ boxId: i, partecipato: false }))
+                );
             }
 
+            const risultati = await Promise.all(checks);
+            const boxPartecipati = risultati.filter(r => r.partecipato).map(r => r.boxId);
+
             if (boxPartecipati.length === 0) {
-                // REGOLA 3: nessuna partecipazione = nessun link PayPal visibile
                 container.innerHTML = `
                     <div class="no-partecipazioni">
                         <h3>🔒 Nessuna partecipazione attiva</h3>
@@ -191,7 +200,6 @@
                 const pagamentoEffettuato = localStorage.getItem(pagamentoKey);
 
                 if (!pagamentoEffettuato) {
-                    // Solo pulsante PayPal — nessun bottone "Ho già pagato"
                     html += `
                         <div class="paypal-section">
                             <h3>💳 Box ${boxId} – ${box.nome}</h3>
@@ -202,7 +210,6 @@
                         </div>
                     `;
                 } else {
-                    // Pagamento già effettuato: mostra il coupon con pulsante download
                     const couponId = getCouponId(userEmail, boxId);
                     html += `
                         <div class="coupon-card">
