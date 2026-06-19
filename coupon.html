@@ -146,12 +146,14 @@
             }
 
             try {
-                // Interroga il server per tutti i 14 box in parallelo
+                // Interroga il server per tutti i 14 box in parallelo.
+                // cache: 'no-store' impedisce al browser di usare risposte vecchie
+                // anche dopo che le righe sono state cancellate dal foglio.
                 const richieste = [];
                 for (let boxId = 1; boxId <= 14; boxId++) {
                     const url = `${SCRIPT_URL}?action=checkPartecipazione&boxId=${boxId}&email=${encodeURIComponent(userEmail)}&t=${Date.now()}`;
                     richieste.push(
-                        fetch(url)
+                        fetch(url, { cache: 'no-store' })
                             .then(res => res.json())
                             .then(data => ({ boxId, data }))
                             .catch(() => ({ boxId, data: null }))
@@ -160,8 +162,10 @@
 
                 const risultati = await Promise.all(richieste);
 
-                // Solo i box dove l'utente ha partecipato
-                const boxPartecipati = risultati.filter(r => r.data && r.data.giaPartecipa);
+                // Solo i box dove il server conferma che l'utente ha partecipato.
+                // Se le righe sono state cancellate, giaPartecipa sarà false
+                // e il box non viene mostrato, eliminando i dati vecchi.
+                const boxPartecipati = risultati.filter(r => r.data && r.data.giaPartecipa === true);
 
                 if (boxPartecipati.length === 0) {
                     container.innerHTML = `
