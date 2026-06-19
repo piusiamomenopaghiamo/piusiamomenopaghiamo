@@ -9,7 +9,6 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Open Sans', sans-serif; background: #f2f7fb; padding-top: 80px; }
-
         .top-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 65px;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -19,7 +18,6 @@
         .menu-nav { display: flex; gap: 25px; }
         .menu-nav a { color: white; text-decoration: none; font-weight: bold; }
         .menu-nav a:hover { color: #ffeb3b; }
-
         .container { max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
         .coupon-card {
             background: linear-gradient(135deg, #00b4db, #0083b0);
@@ -29,60 +27,38 @@
         }
         .coupon-title { font-family: 'Quicksand', sans-serif; font-size: 2rem; margin-bottom: 10px; }
         .coupon-number { font-size: 1.5rem; color: #ffeb3b; font-weight: bold; margin: 15px 0; }
-
         .paypal-section {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 20px;
-            text-align: center;
+            background: #fff3cd; border: 2px solid #ffc107;
+            border-radius: 12px; padding: 25px; margin-top: 20px; text-align: center;
         }
         .paypal-section h3 { color: #856404; margin-bottom: 10px; }
         .paypal-section p { color: #555; margin-bottom: 15px; }
         .btn-paypal {
-            display: inline-block;
-            background: #0070ba;
-            color: white;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: background 0.3s;
+            display: inline-block; background: #0070ba; color: white;
+            padding: 14px 30px; border-radius: 8px; font-size: 1.1rem;
+            font-weight: bold; text-decoration: none; cursor: pointer;
+            border: none; transition: background 0.3s;
         }
         .btn-paypal:hover { background: #005a9e; }
         .btn-download {
-            display: inline-block;
-            background: #00b894;
-            color: white;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            margin-top: 15px;
-            transition: background 0.3s;
+            display: inline-block; background: #00b894; color: white;
+            padding: 14px 30px; border-radius: 8px; font-size: 1.1rem;
+            font-weight: bold; text-decoration: none; cursor: pointer;
+            border: none; margin-top: 15px; transition: background 0.3s;
         }
         .btn-download:hover { background: #009972; }
-
         .no-partecipazioni {
-            background: #f8d7da;
-            border: 2px solid #f5c2c7;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            color: #721c24;
+            background: #f8d7da; border: 2px solid #f5c2c7;
+            border-radius: 12px; padding: 20px; margin-top: 20px; color: #721c24;
+        }
+        .in-attesa {
+            background: #d4edda; border: 2px solid #c3e6cb;
+            border-radius: 12px; padding: 20px; margin-top: 20px; color: #155724;
         }
         .loading { color: #555; margin-top: 20px; }
     </style>
 </head>
 <body>
-
     <div class="top-menu">
         <nav class="menu-nav">
             <a href="index.html"><i class="fas fa-home"></i> Home</a>
@@ -100,6 +76,10 @@
 
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxma2BYdsIkToYeIRE76kPjMIFleMHmPw8Nn4sysAFt_aLyHucMHiATDcOCoxX_gJxz/exec';
+
+        // Minimo partecipanti richiesti per chiudere il gruppo —
+        // deve corrispondere esattamente ai valori nel CONFIG dello script Google
+        const MINIMI = { 1:40, 2:50, 3:60, 4:50, 5:45, 6:40, 7:70, 8:40, 9:40, 10:50, 11:50, 12:40, 13:5, 14:5 };
 
         const boxInfo = {
             1:  { nome: 'Sapori Bavaresi',       prezzo: '€20' },
@@ -146,9 +126,7 @@
             }
 
             try {
-                // Interroga il server per tutti i 14 box in parallelo.
                 // cache: 'no-store' impedisce al browser di usare risposte vecchie
-                // anche dopo che le righe sono state cancellate dal foglio.
                 const richieste = [];
                 for (let boxId = 1; boxId <= 14; boxId++) {
                     const url = `${SCRIPT_URL}?action=checkPartecipazione&boxId=${boxId}&email=${encodeURIComponent(userEmail)}&t=${Date.now()}`;
@@ -162,9 +140,7 @@
 
                 const risultati = await Promise.all(richieste);
 
-                // Solo i box dove il server conferma che l'utente ha partecipato.
-                // Se le righe sono state cancellate, giaPartecipa sarà false
-                // e il box non viene mostrato, eliminando i dati vecchi.
+                // Solo i box dove il SERVER conferma la partecipazione (=== true, confronto stretto)
                 const boxPartecipati = risultati.filter(r => r.data && r.data.giaPartecipa === true);
 
                 if (boxPartecipati.length === 0) {
@@ -172,28 +148,41 @@
                         <div class="no-partecipazioni">
                             <h3>🔒 Nessuna partecipazione attiva</h3>
                             <p>Non hai ancora partecipato a nessun gruppo. Torna alla <a href="index.html">Home</a> e iscriviti a un'offerta!</p>
-                        </div>
-                    `;
+                        </div>`;
                     return;
                 }
 
                 let html = '';
                 boxPartecipati.forEach(({ boxId, data }) => {
                     const info = boxInfo[boxId];
+                    const minimo = MINIMI[boxId];
+                    const count = data.count || 0;
 
-                    if (!data.pagato) {
-                        // Non ha ancora pagato: mostra solo il pulsante PayPal
+                    // REGOLA FONDAMENTALE: il gruppo DEVE aver raggiunto il minimo
+                    // prima di mostrare qualsiasi opzione di pagamento o coupon.
+                    // Ignoriamo completamente data.pagato se il gruppo non è chiuso,
+                    // così i dati di un ciclo precedente non possono mai mostrarsi.
+                    const gruppoChiuso = count >= minimo;
+
+                    if (!gruppoChiuso) {
+                        // Gruppo non ancora raggiunto: solo messaggio di attesa, niente PayPal
+                        html += `
+                            <div class="in-attesa">
+                                <h3>⏳ Box ${boxId} – ${info.nome}</h3>
+                                <p>Hai partecipato! Il gruppo non ha ancora raggiunto il numero minimo di partecipanti (${count}/${minimo}). Quando sarà completo, qui apparirà il link per il pagamento.</p>
+                            </div>`;
+                    } else if (!data.pagato) {
+                        // Gruppo chiuso e non ancora pagato: mostra PayPal
                         html += `
                             <div class="paypal-section">
                                 <h3>💳 Box ${boxId} – ${info.nome}</h3>
-                                <p>Completa il pagamento di <strong>${info.prezzo}</strong> tramite PayPal per ottenere il tuo coupon.</p>
+                                <p>Il gruppo è completo! Completa il pagamento di <strong>${info.prezzo}</strong> per ottenere il tuo coupon.</p>
                                 <a class="btn-paypal" href="${paypalUrls[boxId]}" target="_blank">
                                     <i class="fas fa-credit-card"></i> Vai al Pagamento – ${info.prezzo}
                                 </a>
-                            </div>
-                        `;
+                            </div>`;
                     } else {
-                        // Pagamento confermato dal server: mostra il coupon
+                        // Gruppo chiuso e pagato: mostra il coupon
                         const couponId = data.numeroCoupon;
                         const nomeBox = data.nomeBox || info.nome;
                         html += `
@@ -207,8 +196,7 @@
                                 <button class="btn-download" onclick="scaricaCoupon('${userEmail}', '${couponId}', '${nomeBox}', ${boxId})">
                                     <i class="fas fa-download"></i> Scarica il Coupon
                                 </button>
-                            </div>
-                        `;
+                            </div>`;
                     }
                 });
 
