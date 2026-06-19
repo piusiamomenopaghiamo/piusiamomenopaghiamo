@@ -168,25 +168,39 @@
 
             container.innerHTML = '<p>Verifica partecipazioni in corso...</p>';
 
-            // Controlla sul server partecipazione E count per ogni box
-            const checks = [];
-            for (let i = 1; i <= 14; i++) {
-                checks.push(
-                    fetch(scriptURL + '?boxId=' + i + '&action=checkPartecipazione&email=' + encodeURIComponent(userEmail) + '&t=' + Date.now())
-                        .then(r => r.json())
-                        .then(data => {
-                            console.log('Box ' + i + ' risposta server:', JSON.stringify(data));
-                            return { boxId: i, partecipato: data.result === 'success' && !!data.giaPartecipa, count: data.count || 0 };
-                        })
-                        .catch(() => ({ boxId: i, partecipato: false, count: 0 }))
-                );
-            }
-
-            const risultati = await Promise.all(checks);
-            // Mostra solo i box dove l'utente ha partecipato E il gruppo ha raggiunto il minimo
             const minimiBox = {
                 1:40, 2:50, 3:60, 4:50, 5:45, 6:40, 7:70, 8:40, 9:40, 10:50, 11:50, 12:40, 13:5, 14:5
             };
+
+            // Due chiamate separate per ogni box, come fa index.html
+            const checksPartecipazione = [];
+            const checksCount = [];
+            for (let i = 1; i <= 14; i++) {
+                checksPartecipazione.push(
+                    fetch(scriptURL + '?boxId=' + i + '&action=checkPartecipazione&email=' + encodeURIComponent(userEmail) + '&t=' + Date.now())
+                        .then(r => r.json())
+                        .then(data => ({ boxId: i, partecipato: data.result === 'success' && !!data.giaPartecipa }))
+                        .catch(() => ({ boxId: i, partecipato: false }))
+                );
+                checksCount.push(
+                    fetch(scriptURL + '?action=getCount&boxId=' + i + '&t=' + Date.now())
+                        .then(r => r.json())
+                        .then(data => ({ boxId: i, count: data.result === 'success' ? (data.count || 0) : 0 }))
+                        .catch(() => ({ boxId: i, count: 0 }))
+                );
+            }
+
+            const [partecipazioniRis, countRis] = await Promise.all([
+                Promise.all(checksPartecipazione),
+                Promise.all(checksCount)
+            ]);
+
+            const risultati = partecipazioniRis.map((p, idx) => ({
+                boxId: p.boxId,
+                partecipato: p.partecipato,
+                count: countRis[idx].count
+            }));
+
             const boxPartecipati = risultati
                 .filter(r => r.partecipato && r.count >= minimiBox[r.boxId])
                 .map(r => r.boxId);
