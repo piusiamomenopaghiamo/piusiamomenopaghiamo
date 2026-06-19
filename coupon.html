@@ -174,7 +174,10 @@
                 checks.push(
                     fetch(scriptURL + '?boxId=' + i + '&action=checkPartecipazione&email=' + encodeURIComponent(userEmail) + '&t=' + Date.now())
                         .then(r => r.json())
-                        .then(data => ({ boxId: i, partecipato: data.result === 'success' && !!data.giaPartecipa, count: data.count || 0 }))
+                        .then(data => {
+                            console.log('Box ' + i + ' risposta server:', JSON.stringify(data));
+                            return { boxId: i, partecipato: data.result === 'success' && !!data.giaPartecipa, count: data.count || 0 };
+                        })
                         .catch(() => ({ boxId: i, partecipato: false, count: 0 }))
                 );
             }
@@ -189,7 +192,14 @@
                 .map(r => r.boxId);
 
             if (boxPartecipati.length === 0) {
-                container.innerHTML = `
+                // Controlla se ha almeno una partecipazione attiva (gruppo non ancora chiuso)
+                const haPartecipazioni = risultati.some(r => r.partecipato);
+                container.innerHTML = haPartecipazioni ? `
+                    <div class="no-partecipazioni" style="background:#d4edda; border-color:#c3e6cb; color:#155724;">
+                        <h3>⏳ Stai aspettando...</h3>
+                        <p>Hai partecipato a un gruppo ma non è ancora stato raggiunto il numero minimo. Quando il gruppo si chiude, qui apparirà il link per il pagamento!</p>
+                    </div>
+                ` : `
                     <div class="no-partecipazioni">
                         <h3>🔒 Nessuna partecipazione attiva</h3>
                         <p>Non hai ancora partecipato a nessun gruppo. Torna alla <a href="index.html">Home</a> e iscriviti a un'offerta!</p>
