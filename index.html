@@ -1233,6 +1233,11 @@
                         // Lo stato di partecipazione vive solo in memoria: la prossima
                         // chiamata a checkPartecipazione lo riconfermerà dal server
                         config.haPartecipato = true;
+                        // Aggiorniamo SUBITO il box (counter incluso) con il count e il
+                        // minimo appena ricevuti da questa stessa risposta, così "Al
+                        // momento siamo" si aggiorna immediatamente e non resta a 0 in
+                        // attesa delle chiamate di conferma qui sotto.
+                        applyBoxState(config, data.count, data.minimo);
                         checkPartecipazione(config);
                         updateCounter(config);
                         alert('Appena si raggiunge il numero potrai scaricare il tuo coupon nell\'area riservata!');
