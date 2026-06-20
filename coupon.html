@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Miei Coupon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Open Sans', sans-serif; background: #f2f7fb; padding-top: 80px; }
+        .top-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 65px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .menu-nav { display: flex; gap: 25px; }
+        .menu-nav a { color: white; text-decoration: none; font-weight: bold; }
+        .menu-nav a:hover { color: #ffeb3b; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
+        .coupon-card {
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            color: white; border-radius: 15px; padding: 30px;
+            margin-top: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 3px dashed #ffffff;
+        }
+        .coupon-title { font-family: 'Quicksand', sans-serif; font-size: 2rem; margin-bottom: 10px; }
+        .coupon-number { font-size: 1.5rem; color: #ffeb3b; font-weight: bold; margin: 15px 0; }
+        .paypal-section {
+            background: #fff3cd; border: 2px solid #ffc107;
+            border-radius: 12px; padding: 25px; margin-top: 20px; text-align: center;
+        }
+        .paypal-section h3 { color: #856404; margin-bottom: 10px; }
+        .paypal-section p { color: #555; margin-bottom: 15px; }
+        .btn-paypal {
+            display: inline-block; background: #0070ba; color: white;
+            padding: 14px 30px; border-radius: 8px; font-size: 1.1rem;
+            font-weight: bold; text-decoration: none; cursor: pointer;
+            border: none; transition: background 0.3s;
+        }
+        .btn-paypal:hover { background: #005a9e; }
+        .btn-download {
+            display: inline-block; background: #00b894; color: white;
+            padding: 14px 30px; border-radius: 8px; font-size: 1.1rem;
+            font-weight: bold; text-decoration: none; cursor: pointer;
+            border: none; margin-top: 15px; transition: background 0.3s;
+        }
+        .btn-download:hover { background: #009972; }
+        .no-partecipazioni {
+            background: #f8d7da; border: 2px solid #f5c2c7;
+            border-radius: 12px; padding: 20px; margin-top: 20px; color: #721c24;
+        }
+        .in-attesa {
+            background: #d4edda; border: 2px solid #c3e6cb;
+            border-radius: 12px; padding: 20px; margin-top: 20px; color: #155724;
+        }
+        .loading { color: #555; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="top-menu">
+        <nav class="menu-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="coupon.html"><i class="fas fa-ticket-alt"></i> I Miei Coupon</a>
+            <a href="loghin.html"><i class="fas fa-user"></i> Login / Profilo</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h2>I Tuoi Coupon Attivi</h2>
+        <div id="couponContainer">
+            <p class="loading">Caricamento coupon...</p>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxma2BYdsIkToYeIRE76kPjMIFleMHmPw8Nn4sysAFt_aLyHucMHiATDcOCoxX_gJxz/exec';
+
+        // Il minimo per chiudere ogni gruppo NON è più tenuto qui staticamente:
+        // arriva direttamente dal server (campo "minimo" nella risposta di
+        // checkPartecipazione), che lo legge da CONFIG.BOXES nel file .gs.
+        // Così va cambiato in un solo posto, senza rischio di disallineamento.
+
+        const boxInfo = {
+            1:  { nome: 'Sapori Bavaresi',       prezzo: '€20' },
+            2:  { nome: 'Eleganza Piemontese',   prezzo: '€18' },
+            3:  { nome: 'Burger & Birra',        prezzo: '€15' },
+            4:  { nome: 'La Pizza Classica',     prezzo: '€14' },
+            5:  { nome: 'Pizza Gourmet & Birra', prezzo: '€12' },
+            6:  { nome: 'Mixology & Tapas',      prezzo: '€18' },
+            7:  { nome: 'Eleganza in Bicchiere', prezzo: '€20' },
+            8:  { nome: 'Mix & Chill',           prezzo: '€35' },
+            9:  { nome: 'Sapori Speciali',       prezzo: '€20' },
+            10: { nome: 'Eleganza Piemontese',   prezzo: '€18' },
+            11: { nome: 'La Pizza Gustosa',      prezzo: '€14' },
+            12: { nome: 'Mixology & Tapas',      prezzo: '€18' },
+            13: { nome: 'Aperitivo Gourmet',     prezzo: '€23' },
+            14: { nome: 'Bruschette & Delizia',  prezzo: '€21' }
+        };
+
+        const paypalUrls = {
+            1:  'https://www.paypal.com/ncp/payment/SX3DSQ4WJRGF8',
+            2:  'https://www.paypal.com/ncp/payment/Z7DWPW5MEW8HE',
+            3:  'https://www.paypal.com/ncp/payment/Y8URU5D35W876',
+            4:  'https://www.paypal.com/ncp/payment/NU6RNKDHZVKR2',
+            5:  'https://www.paypal.com/ncp/payment/AHHZEULY8C6WL',
+            6:  'https://www.paypal.com/ncp/payment/LNAJBL92QT86L',
+            7:  'https://www.paypal.com/ncp/payment/HNT3PWS7R87ZN',
+            8:  'https://www.paypal.com/ncp/payment/RUQJFPHT4TT3G',
+            9:  'https://www.paypal.com/ncp/payment/TXVJZC6AF45TS',
+            10: 'https://www.paypal.com/ncp/payment/MWVNSSZUMGHXW',
+            11: 'https://www.paypal.com/ncp/payment/M5U9L2W4ABSKE',
+            12: 'https://www.paypal.com/ncp/payment/N4YNPWFWHWM6C',
+            13: 'https://www.paypal.com/ncp/payment/Q3ED39CP6WKUC',
+            14: 'https://www.paypal.com/ncp/payment/47D6T5VJ3RMHY'
+        };
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userEmail = localStorage.getItem('userEmail');
+            const container = document.getElementById('couponContainer');
+
+            if (!isLoggedIn || !userEmail) {
+                container.innerHTML = `<p>Effettua il <a href="loghin.html">Login</a> per visualizzare i tuoi coupon.</p>`;
+                return;
+            }
+
+            try {
+                // cache: 'no-store' impedisce al browser di usare risposte vecchie
+                const richieste = [];
+                for (let boxId = 1; boxId <= 14; boxId++) {
+                    const url = `${SCRIPT_URL}?action=checkPartecipazione&boxId=${boxId}&email=${encodeURIComponent(userEmail)}&t=${Date.now()}`;
+                    richieste.push(
+                        fetch(url, { cache: 'no-store' })
+                            .then(res => res.json())
+                            .then(data => ({ boxId, data }))
+                            .catch(() => ({ boxId, data: null }))
+                    );
+                }
+
+                const risultati = await Promise.all(richieste);
+
+                // Solo i box dove il SERVER conferma la partecipazione (=== true, confronto stretto).
+                // Dopo un azzeramento lato admin, il server torna sempre giaPartecipa=false per
+                // chi è stato rimosso, quindi questi box scompaiono automaticamente da qui anche
+                // se in passato avevano un coupon: niente coupon vecchi residui in vista.
+                const boxPartecipati = risultati.filter(r => r.data && r.data.giaPartecipa === true);
+
+                if (boxPartecipati.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-partecipazioni">
+                            <h3>🔒 Nessuna partecipazione attiva</h3>
+                            <p>Non hai ancora partecipato a nessun gruppo. Torna alla <a href="index.html">Home</a> e iscriviti a un'offerta!</p>
+                        </div>`;
+                    return;
+                }
+
+                let html = '';
+                boxPartecipati.forEach(({ boxId, data }) => {
+                    const info = boxInfo[boxId];
+                    const minimo = data.minimo;
+                    const count = data.count || 0;
+
+                    // REGOLA FONDAMENTALE: il gruppo DEVE aver raggiunto il minimo
+                    // prima di mostrare qualsiasi opzione di pagamento o coupon.
+                    // Ignoriamo completamente data.pagato se il gruppo non è chiuso,
+                    // così i dati di un ciclo precedente non possono mai mostrarsi.
+                    const gruppoChiuso = count >= minimo;
+
+                    if (!gruppoChiuso) {
+                        // Gruppo non ancora raggiunto: solo messaggio di attesa, niente PayPal
+                        html += `
+                            <div class="in-attesa">
+                                <h3>⏳ Box ${boxId} – ${info.nome}</h3>
+                                <p>Hai partecipato! Il gruppo non ha ancora raggiunto il numero minimo di partecipanti (${count}/${minimo}). Quando sarà completo, qui apparirà il link per il pagamento.</p>
+                            </div>`;
+                    } else if (!data.pagato) {
+                        // Gruppo chiuso e non ancora pagato: mostra PayPal
+                        html += `
+                            <div class="paypal-section">
+                                <h3>💳 Box ${boxId} – ${info.nome}</h3>
+                                <p>Il gruppo è completo! Completa il pagamento di <strong>${info.prezzo}</strong> per ottenere il tuo coupon.</p>
+                                <a class="btn-paypal" href="${paypalUrls[boxId]}" target="_blank">
+                                    <i class="fas fa-credit-card"></i> Vai al Pagamento – ${info.prezzo}
+                                </a>
+                            </div>`;
+                    } else {
+                        // Gruppo chiuso e pagato: mostra il coupon
+                        const couponId = data.numeroCoupon;
+                        const nomeBox = data.nomeBox || info.nome;
+                        html += `
+                            <div class="coupon-card">
+                                <div class="coupon-title">🎫 COUPON ATTIVO – Box ${boxId}</div>
+                                <p><strong>${nomeBox}</strong></p>
+                                <p>Associato a: <strong>${userEmail}</strong></p>
+                                <div class="coupon-number">${couponId}</div>
+                                <p>Mostra questa schermata o scarica il coupon all'ingresso del locale.</p>
+                                <br>
+                                <button class="btn-download" onclick="scaricaCoupon('${userEmail}', '${couponId}', '${nomeBox}', ${boxId})">
+                                    <i class="fas fa-download"></i> Scarica il Coupon
+                                </button>
+                            </div>`;
+                    }
+                });
+
+                container.innerHTML = html;
+
+            } catch (err) {
+                container.innerHTML = `<p class="loading">Errore nel caricamento. Riprova tra poco.</p>`;
+            }
+        });
+
+        function scaricaCoupon(email, couponId, nomeBox, boxId) {
+            const contenuto = `COUPON ATTIVO\n====================\nBox ${boxId} – ${nomeBox}\nAssociato a: ${email}\nID: ${couponId}\nData: ${new Date().toLocaleDateString('it-IT')}\n====================\nMostra questo coupon all'ingresso del locale.`;
+            const blob = new Blob([contenuto], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'coupon_' + couponId + '.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
