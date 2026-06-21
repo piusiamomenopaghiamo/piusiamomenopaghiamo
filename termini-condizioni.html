@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Termini e Condizioni - Più Siamo, Meno Paghiamo!</title>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 body {
 font-family: 'Open Sans', sans-serif;
@@ -121,6 +122,56 @@ transition: color 0.3s;
 color: #00b4db;
 }
 
+.social-icons {
+display: flex;
+gap: 15px;
+margin-top: 15px;
+}
+
+.social-icons a {
+color: white;
+background: rgba(255,255,255,0.1);
+width: 38px;
+height: 38px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background 0.3s;
+}
+
+.social-icons a:hover {
+background: #00b4db;
+}
+
+.newsletter-form {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.newsletter-form input {
+padding: 10px 12px;
+border-radius: 6px;
+border: none;
+font-family: 'Open Sans', sans-serif;
+}
+
+.newsletter-form button {
+padding: 10px 12px;
+border-radius: 6px;
+border: none;
+background: #00b4db;
+color: white;
+font-weight: bold;
+cursor: pointer;
+transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+background: #0083b0;
+}
+
 .copyright {
 text-align: center;
 margin-top: 40px;
@@ -159,7 +210,7 @@ grid-template-columns: 1fr;
 <p>Accedendo o utilizzando la piattaforma "Più Siamo, Meno Paghiamo!", l'utente accetta di essere vincolato dai presenti Termini e Condizioni.</p>
 
 <h2>2. Servizio offerto</h2>
-<p>La piattaforma consente l'accesso a offerte collettive. Il prezzo finale è variabile e dipende dal numero di partecipanti. Nessun obbligo d'acquisto fino alla conferma dell'offerta.</p>
+<p>La piattaforma consente l'accesso a offerte collettive a prezzo fisso, indicato chiaramente prima dell'iscrizione. L'iscrizione a un'offerta è gratuita e non comporta alcun obbligo d'acquisto: il pagamento viene richiesto solo dopo che l'offerta raggiunge il numero minimo di partecipanti stabilito e viene effettuato volontariamente dall'utente.</p>
 
 <h2>3. Registrazione utente</h2>
 <ul>
@@ -201,28 +252,36 @@ grid-template-columns: 1fr;
             <ul>
                 <li><a href="chi-siamo.html">Chi Siamo</a></li>
                 <li><a href="comepartecipare.html">Come Partecipare</a></li>
+                <li><a href="come-funziona.html">Come Funziona</a></li>
+                <li><a href="regolamento.html">Regolamento</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-            
-                 <li><a href="privacy.html">Privacy</a></li>
-                <li><a href="cookie.html">Cookie Policy</a></li>
                 <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Legale</h3>
+            <ul>
+                <li><a href="termini-condizioni.html">Termini & Condizioni</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="cookie.html">Cookie Policy</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
             <h3>Categorie</h3>
             <ul>
-                <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
-                <li><a href="#" onclick="filterBoxes('birreria-pub')">Pub</a></li>
-                <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzerie</a></li>
-                <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                <li><a href="index.html#ristoranti">Ristoranti</a></li>
+                <li><a href="index.html#birreria-pub">Pub</a></li>
+                <li><a href="index.html#pizzeria">Pizzerie</a></li>
+                <li><a href="index.html#drink">Drink</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
             <h3>Newsletter</h3>
             <p>Iscriviti per ricevere le offerte esclusive</p>
-            <form class="newsletter-form">
+            <form class="newsletter-form" onsubmit="return handleNewsletterSubmit(event)">
                 <input type="email" placeholder="La tua email" required>
                 <button type="submit">Iscriviti</button>
             </form>
@@ -230,10 +289,20 @@ grid-template-columns: 1fr;
     </div>
 
     <div class="copyright">
-        <p>&copy; 2024 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
-        <p>P.IVA 01234567890</p>
+        <p>&copy; 2026 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
     </div>
 </footer>
+
+<script>
+    // Per ora non c'è un backend collegato alla newsletter: evitiamo il
+    // reload pagina e diamo un feedback onesto, invece di lasciare il form
+    // silenziosamente rotto (submit che ricarica e non fa nulla).
+    function handleNewsletterSubmit(event) {
+        event.preventDefault();
+        alert('Iscrizione alla newsletter non ancora attiva. Torna presto!');
+        return false;
+    }
+</script>
 </body>
 </html>
 

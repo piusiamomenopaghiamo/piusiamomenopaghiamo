@@ -469,6 +469,117 @@
             font-size: 1.8rem;
             margin-bottom: 15px;
         }
+
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 5px solid #00b4db;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: #00b4db;
+            font-family: 'Quicksand', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #00b4db;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #00b4db;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .newsletter-form button {
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: none;
+            background: #00b4db;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #0083b0;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -926,7 +1037,62 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Più Siamo Meno Paghiamo</h3>
+                <p>Unisciti alla rivoluzione degli acquisti di gruppo per ristoranti e locali. Più persone partecipano, più il prezzo scende!</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Link Utili</h3>
+                <ul>
+                    <li><a href="chi-siamo.html">Chi Siamo</a></li>
+                    <li><a href="comepartecipare.html">Come Partecipare</a></li>
+                    <li><a href="come-funziona.html">Come Funziona</a></li>
+                    <li><a href="regolamento.html">Regolamento</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contatti.html">Contatti</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Legale</h3>
+                <ul>
+                    <li><a href="termini-condizioni.html">Termini & Condizioni</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="cookie.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Categorie</h3>
+                <ul>
+                    <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
+                    <li><a href="#" onclick="filterBoxes('birreria-pub')">Pub</a></li>
+                    <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzerie</a></li>
+                    <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Iscriviti per ricevere le offerte esclusive</p>
+                <form class="newsletter-form" onsubmit="return handleNewsletterSubmit(event)">
+                    <input type="email" placeholder="La tua email" required>
+                    <button type="submit">Iscriviti</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
+        </div>
     </footer>
 
     <script>
@@ -968,6 +1134,15 @@
                 document.addEventListener('DOMContentLoaded', () => filterBoxes(hash));
             }
         })();
+
+        // Per ora non c'è un backend collegato alla newsletter: evitiamo il
+        // reload pagina e diamo un feedback onesto, invece di lasciare il
+        // form silenziosamente rotto (submit che ricarica e non fa nulla).
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            alert('Iscrizione alla newsletter non ancora attiva. Torna presto!');
+            return false;
+        }
 
         // Configurazione Google OAuth
         const GOOGLE_CLIENT_ID = '61656461250-qrjsl279of90l7ctudsno11bfavruub8.apps.googleusercontent.com';
