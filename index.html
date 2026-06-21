@@ -958,6 +958,17 @@
             navMenu.classList.remove('active');
         }
 
+        // Se arriviamo da un link tipo index.html#ristoranti (es. dal footer di
+        // un'altra pagina come privacy.html), applichiamo subito il filtro
+        // corrispondente, così il link funziona davvero e non mostra solo "tutti".
+        (function applyFilterFromHash() {
+            const categoriaValida = ['ristoranti', 'birreria-pub', 'drink', 'pizzeria'];
+            const hash = window.location.hash.replace('#', '');
+            if (categoriaValida.includes(hash)) {
+                document.addEventListener('DOMContentLoaded', () => filterBoxes(hash));
+            }
+        })();
+
         // Configurazione Google OAuth
         const GOOGLE_CLIENT_ID = '61656461250-qrjsl279of90l7ctudsno11bfavruub8.apps.googleusercontent.com';
 

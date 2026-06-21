@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Privacy e Cookie Policy - Più Siamo, Meno Paghiamo!</title>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 body {
 font-family: 'Open Sans', sans-serif;
@@ -156,7 +157,7 @@ grid-template-columns: 1fr;
 
 <div class="content">
 <h2>1. Titolare del trattamento</h2>
-<p>Il titolare del trattamento dei dati è: <strong>Più Siamo, Meno Paghiamo!</strong>, contattabile tramite la pagina <a href="contatti.html">Contatti</a>.</p>
+<p>Il sito "Più Siamo, Meno Paghiamo!" è attualmente in fase di sviluppo e test. Il titolare del trattamento dei dati sarà comunicato in questa pagina non appena l'attività sarà operativa a livello commerciale. Per qualsiasi richiesta relativa ai dati personali, è possibile scrivere tramite la pagina <a href="contatti.html">Contatti</a>.</p>
 
 <h2>2. Tipologie di dati raccolti</h2>
 <ul>
@@ -165,17 +166,25 @@ grid-template-columns: 1fr;
 <li>Cookie tecnici e, previo consenso, cookie analitici e di marketing</li>
 </ul>
 
-<h2>3. Finalità del trattamento</h2>
+<h2>3. Dati tecnici salvati nel browser</h2>
+<p>Per permettere il funzionamento dell'area personale (accesso e visualizzazione dei coupon), il sito salva localmente nel browser dell'utente, tramite la tecnologia "localStorage", i seguenti dati tecnici necessari al servizio:</p>
+<ul>
+<li>Stato di accesso (se l'utente ha effettuato il login)</li>
+<li>Indirizzo email utilizzato per l'accesso</li>
+</ul>
+<p>Questi dati restano memorizzati solo sul dispositivo dell'utente, non vengono trasmessi a terzi per finalità di profilazione, e possono essere cancellati in qualsiasi momento svuotando i dati di navigazione del browser.</p>
+
+<h2>4. Finalità del trattamento</h2>
 <ul>
 <li>Gestione delle prenotazioni e comunicazioni con gli utenti</li>
 <li>Analisi statistiche anonime per migliorare il servizio</li>
 <li>Invio di offerte promozionali, previo consenso esplicito</li>
 </ul>
 
-<h2>4. Conservazione dei dati</h2>
+<h2>5. Conservazione dei dati</h2>
 <p>I dati personali saranno conservati per il tempo necessario a soddisfare le finalità sopra descritte, salvo obblighi legali.</p>
 
-<h2>5. Diritti dell'utente</h2>
+<h2>6. Diritti dell'utente</h2>
 <p>L'utente può in qualsiasi momento esercitare i diritti previsti dal GDPR, tra cui:</p>
 <ul>
 <li>Diritto di accesso</li>
@@ -207,8 +216,7 @@ grid-template-columns: 1fr;
                 <li><a href="chi-siamo.html">Chi Siamo</a></li>
                 <li><a href="comepartecipare.html">Come Partecipare</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-                <li><a href="termini-condizioni.html">Termini & Condizioni</a></li>
-                
+                <li><a href="termini-condizioni.html">Termini & Condizioni</a></li>   
                 <li><a href="cookie.html">Cookie Policy</a></li>
                 <li><a href="contatti.html">Contatti</a></li>
             </ul>
@@ -217,17 +225,17 @@ grid-template-columns: 1fr;
         <div class="footer-section">
             <h3>Categorie</h3>
             <ul>
-                <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
-                <li><a href="#" onclick="filterBoxes('birreria-pub')">Pub</a></li>
-                <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzerie</a></li>
-                <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                <li><a href="index.html#ristoranti">Ristoranti</a></li>
+                <li><a href="index.html#birreria-pub">Pub</a></li>
+                <li><a href="index.html#pizzeria">Pizzerie</a></li>
+                <li><a href="index.html#drink">Drink</a></li>
             </ul>
         </div>
 
         <div class="footer-section">
             <h3>Newsletter</h3>
             <p>Iscriviti per ricevere le offerte esclusive</p>
-            <form class="newsletter-form">
+            <form class="newsletter-form" onsubmit="return handleNewsletterSubmit(event)">
                 <input type="email" placeholder="La tua email" required>
                 <button type="submit">Iscriviti</button>
             </form>
@@ -235,9 +243,19 @@ grid-template-columns: 1fr;
     </div>
 
     <div class="copyright">
-        <p>&copy; 2024 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
-        <p>P.IVA 01234567890</p>
+        <p>&copy; 2026 Più Siamo Meno Paghiamo. Tutti i diritti riservati.</p>
     </div>
 </footer>
+
+<script>
+    // Per ora non c'è un backend collegato alla newsletter: evitiamo il
+    // reload pagina e diamo un feedback onesto, invece di lasciare il form
+    // silenziosamente rotto (submit che ricarica e non fa nulla).
+    function handleNewsletterSubmit(event) {
+        event.preventDefault();
+        alert('Iscrizione alla newsletter non ancora attiva. Torna presto!');
+        return false;
+    }
+</script>
 </body>
 </html>
