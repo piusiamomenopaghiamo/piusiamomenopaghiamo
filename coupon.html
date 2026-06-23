@@ -31,92 +31,72 @@
         .coupon-title { font-family: 'Quicksand', sans-serif; font-size: 2rem; margin-bottom: 10px; }
         .coupon-number { font-size: 1.5rem; color: #ffeb3b; font-weight: bold; margin: 15px 0; }
 
+        /* ── IN ATTESA: gruppo non ancora completo ── */
+        .in-attesa {
+            background: #d4edda; border: 2px solid #c3e6cb;
+            border-radius: 12px; padding: 25px; margin-top: 20px;
+            color: #155724; text-align: left;
+        }
+        .in-attesa h3 { margin-bottom: 10px; }
+        .in-attesa p  { line-height: 1.6; }
+        .progress-bar-wrap {
+            background: #b8dfc4; border-radius: 20px;
+            height: 12px; margin-top: 14px; overflow: hidden;
+        }
+        .progress-bar-fill {
+            background: #28a745; height: 100%; border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+        .progress-label {
+            font-size: 0.82rem; color: #155724;
+            margin-top: 5px; text-align: right;
+        }
+
+        /* ── SATISPAY ── */
         .satispay-section {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 20px;
-            text-align: center;
+            background: #fff3cd; border: 2px solid #ffc107;
+            border-radius: 12px; padding: 25px; margin-top: 20px; text-align: center;
         }
         .satispay-section h3 { color: #856404; margin-bottom: 10px; }
-        .satispay-section p { color: #555; margin-bottom: 15px; }
+        .satispay-section p  { color: #555; margin-bottom: 15px; }
 
         .btn-satispay {
-            display: inline-block;
-            background: #e8314a;
-            color: white;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            transition: background 0.3s;
+            display: inline-block; background: #e8314a; color: white;
+            padding: 14px 30px; border-radius: 8px; font-size: 1.1rem;
+            font-weight: bold; text-decoration: none; cursor: pointer;
+            border: none; transition: background 0.3s;
         }
         .btn-satispay:hover { background: #c0272e; }
 
         .btn-download {
-            display: inline-block;
-            background: #00b894;
-            color: white;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            border: none;
-            margin-top: 15px;
-            transition: background 0.3s;
+            display: inline-block; background: #00b894; color: white;
+            padding: 14px 30px; border-radius: 8px; font-size: 1.1rem;
+            font-weight: bold; text-decoration: none; cursor: pointer;
+            border: none; margin-top: 15px; transition: background 0.3s;
         }
         .btn-download:hover { background: #009972; }
 
-        .uid-section {
-            margin-top: 18px;
-            text-align: left;
-        }
+        .uid-section { margin-top: 18px; text-align: left; }
         .uid-section label {
-            display: block;
-            font-size: 0.9rem;
-            color: #856404;
-            font-weight: bold;
-            margin-bottom: 6px;
+            display: block; font-size: 0.9rem; color: #856404;
+            font-weight: bold; margin-bottom: 6px;
         }
         .uid-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ffc107;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: monospace;
-            color: #333;
-            outline: none;
-            transition: border-color 0.3s;
+            width: 100%; padding: 12px; border: 2px solid #ffc107;
+            border-radius: 8px; font-size: 0.95rem; font-family: monospace;
+            color: #333; outline: none; transition: border-color 0.3s;
         }
-        .uid-input:focus { border-color: #0083b0; }
+        .uid-input:focus  { border-color: #0083b0; }
         .uid-input.errore { border-color: #c0392b; }
 
         .btn-conferma {
-            display: block;
-            background: #cccccc;
-            color: #888888;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: not-allowed;
-            border: none;
-            margin-top: 12px;
-            width: 100%;
+            display: block; padding: 14px 30px; border-radius: 8px;
+            font-size: 1.1rem; font-weight: bold; border: none;
+            margin-top: 12px; width: 100%;
             transition: background 0.3s, color 0.3s;
+            background: #cccccc; color: #888888; cursor: not-allowed;
         }
-        .btn-conferma.abilitato {
-            background: #00b894;
-            color: white;
-            cursor: pointer;
-        }
+        .btn-conferma.abilitato { background: #00b894; color: white; cursor: pointer; }
         .btn-conferma.abilitato:hover { background: #009972; }
 
         .avviso { font-size: 0.85rem; color: #c0392b; margin-top: 6px; display: none; }
@@ -124,29 +104,17 @@
         .info-uid { font-size: 0.8rem; color: #777; margin-top: 6px; }
 
         .no-partecipazioni {
-            background: #f8d7da;
-            border: 2px solid #f5c2c7;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            color: #721c24;
+            background: #f8d7da; border: 2px solid #f5c2c7;
+            border-radius: 12px; padding: 20px; margin-top: 20px; color: #721c24;
         }
 
-        .loading {
-            color: #888;
-            font-style: italic;
-            margin-top: 20px;
-        }
+        .loading { color: #888; font-style: italic; margin-top: 20px; }
 
         .spinner {
-            display: inline-block;
-            width: 18px; height: 18px;
-            border: 3px solid #ccc;
-            border-top-color: #0083b0;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            vertical-align: middle;
-            margin-right: 8px;
+            display: inline-block; width: 18px; height: 18px;
+            border: 3px solid #ccc; border-top-color: #0083b0;
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+            vertical-align: middle; margin-right: 8px;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
@@ -169,29 +137,20 @@
     </div>
 
     <script>
-        // ⚠️ INSERISCI QUI L'URL DEL TUO APPS SCRIPT (deployment Web App)
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyT8-bqjjpGmChrNvrGnZ6fC5CSTd5ccp-0rGrJSpA0J1E8C9kvNQL5F4--49UCtmN/exec';
 
-        // Lista di tutti i box (1-14)
-        const TUTTI_I_BOX = Array.from({length: 14}, (_, i) => i + 1);
+        const TUTTI_I_BOX = Array.from({ length: 14 }, (_, i) => i + 1);
 
-        // ====================================================
-        // Helper: GET verso Apps Script (gestisce redirect CORS)
-        // ====================================================
+        // ── GET helper ──
         async function gasGet(params) {
             const qs = new URLSearchParams(params).toString();
             const res = await fetch(`${APPS_SCRIPT_URL}?${qs}`, {
-                method: 'GET',
-                redirect: 'follow'
+                method: 'GET', redirect: 'follow'
             });
             return res.json();
         }
 
-        // ====================================================
-        // Helper: POST verso Apps Script
-        // Apps Script legge i parametri da e.parameter, quindi
-        // inviamo come application/x-www-form-urlencoded
-        // ====================================================
+        // ── POST helper (URLSearchParams → e.parameter lato Apps Script) ──
         async function gasPost(params) {
             const res = await fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
@@ -202,9 +161,9 @@
             return res.json();
         }
 
-        // ====================================================
-        // Avvio: verifica login e carica box attivi
-        // ====================================================
+        // ══════════════════════════════════════════════════════
+        // AVVIO
+        // ══════════════════════════════════════════════════════
         document.addEventListener('DOMContentLoaded', async () => {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const userEmail  = localStorage.getItem('userEmail');
@@ -216,38 +175,68 @@
                 return;
             }
 
-            // Controlla tutti i box in parallelo tramite Apps Script
+            // Controlla tutti i box in parallelo
             const richieste = TUTTI_I_BOX.map(boxId =>
                 gasGet({ action: 'checkPartecipazione', boxId, email: userEmail })
                     .then(data => ({ boxId, data }))
                     .catch(() => ({ boxId, data: { result: 'error' } }))
             );
 
-            const risultati = await Promise.all(richieste);
-
-            // Filtra solo i box a cui l'utente partecipa
-            const boxAttivi = risultati.filter(r => r.data.result === 'success' && r.data.giaPartecipa);
+            const risultati  = await Promise.all(richieste);
+            const boxAttivi  = risultati.filter(r => r.data.result === 'success' && r.data.giaPartecipa === true);
 
             if (boxAttivi.length === 0) {
                 container.innerHTML = `
                     <div class="no-partecipazioni">
                         <h3>🔒 Nessuna partecipazione attiva</h3>
                         <p>Non hai ancora partecipato a nessun gruppo. Torna alla <a href="index.html">Home</a> e iscriviti a un'offerta!</p>
-                    </div>
-                `;
+                    </div>`;
                 return;
             }
 
-            // Costruisci la pagina per ogni box attivo
             let html = '';
             boxAttivi.forEach(({ boxId, data }) => {
-                if (data.pagato && data.numeroCoupon) {
-                    // ✅ Già pagato → mostra coupon
-                    html += buildCouponCard(boxId, userEmail, data.numeroCoupon, data.nomeBox);
+                const count  = data.count  || 0;
+                const minimo = data.minimo || 0;
+                const prezzo = data.prezzo ? '€' + data.prezzo : '';
+                const nomeBox = data.nomeBox || data.nomeBoxConfig || ('Box ' + boxId);
+
+                // ══════════════════════════════════════════════
+                // REGOLA FONDAMENTALE — 3 stati possibili:
+                //
+                // 1. Gruppo NON ancora completo → solo messaggio di attesa.
+                //    Non mostrare MAI Satispay, anche se data.pagato fosse
+                //    residuo di un ciclo precedente.
+                //
+                // 2. Gruppo completo + NON pagato → mostra Satispay + campo UID
+                //
+                // 3. Gruppo completo + GIÀ pagato → mostra il coupon
+                // ══════════════════════════════════════════════
+                const gruppoChiuso = count >= minimo;
+
+                if (!gruppoChiuso) {
+                    // ── STATO 1: in attesa ──
+                    const pct = minimo > 0 ? Math.min(Math.round((count / minimo) * 100), 100) : 0;
+                    html += `
+                        <div class="in-attesa" id="section-${boxId}">
+                            <h3>⏳ Box ${boxId} – ${nomeBox}</h3>
+                            <p>
+                                Sei iscritto! Il gruppo non ha ancora raggiunto il numero minimo
+                                di partecipanti necessario. Quando sarà completo, qui apparirà
+                                il link per il pagamento.
+                            </p>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width:${pct}%"></div>
+                            </div>
+                            <div class="progress-label">${count} / ${minimo} partecipanti</div>
+                        </div>`;
+
+                } else if (data.pagato && data.numeroCoupon) {
+                    // ── STATO 3: coupon già ottenuto ──
+                    html += buildCouponCard(boxId, userEmail, data.numeroCoupon, nomeBox);
+
                 } else {
-                    // 💳 Non ancora pagato → mostra form Satispay + UID
-                    const prezzo     = data.prezzo ? '€' + data.prezzo : '';
-                    const nomeBox    = data.nomeBox || data.nomeBoxConfig || '';
+                    // ── STATO 2: gruppo completo, pagamento da completare ──
                     const linkSatispay = data.satispay || '#';
                     html += buildSatispaySection(boxId, nomeBox, prezzo, linkSatispay);
                 }
@@ -255,14 +244,14 @@
 
             container.innerHTML = html;
 
-            // Salva userName aggiornato per i bottoni inline (via data attribute)
-            container.dataset.userName = userName;
+            // Salva email e nome per il recupero dentro confermaPagemento
+            container.dataset.userName  = userName;
             container.dataset.userEmail = userEmail;
         });
 
-        // ====================================================
-        // Builder: card coupon già ottenuto
-        // ====================================================
+        // ══════════════════════════════════════════════════════
+        // BUILDER: card coupon già ottenuto
+        // ══════════════════════════════════════════════════════
         function buildCouponCard(boxId, email, numeroCoupon, nomeBox) {
             return `
                 <div class="coupon-card" id="section-${boxId}">
@@ -272,21 +261,25 @@
                     <div class="coupon-number">${numeroCoupon}</div>
                     <p>Mostra questa schermata o scarica il coupon all'ingresso del locale.</p>
                     <br>
-                    <button class="btn-download" onclick="scaricaCoupon('${email}', '${numeroCoupon}', '${nomeBox}', ${boxId})">
+                    <button class="btn-download"
+                        onclick="scaricaCoupon('${email}', '${numeroCoupon}', '${nomeBox}', ${boxId})">
                         <i class="fas fa-download"></i> Scarica il Coupon
                     </button>
-                </div>
-            `;
+                </div>`;
         }
 
-        // ====================================================
-        // Builder: sezione pagamento Satispay
-        // ====================================================
+        // ══════════════════════════════════════════════════════
+        // BUILDER: sezione pagamento Satispay + campo UID
+        // ══════════════════════════════════════════════════════
         function buildSatispaySection(boxId, nomeBox, prezzo, linkSatispay) {
             return `
                 <div class="satispay-section" id="section-${boxId}">
                     <h3>💳 Box ${boxId} – ${nomeBox}</h3>
-                    <p>Hai partecipato con successo! Completa il pagamento di <strong>${prezzo}</strong> tramite Satispay per ottenere il tuo coupon.</p>
+                    <p>
+                        Il gruppo è completo! Paga <strong>${prezzo}</strong> con Satispay,
+                        poi incolla l'<strong>UID della ricevuta</strong> qui sotto
+                        per ottenere il tuo coupon.
+                    </p>
                     <a class="btn-satispay" href="${linkSatispay}" target="_blank">
                         <i class="fas fa-mobile-alt"></i> Paga con Satispay – ${prezzo}
                     </a>
@@ -298,9 +291,13 @@
                             class="uid-input"
                             placeholder="es: 019eee9c-b300-7aeb-9126-1a1f54c4afef"
                             oninput="verificaUID(${boxId})"
-                        />
-                        <div class="info-uid">Trovi l'UID nella ricevuta Satispay ricevuta dopo il pagamento.</div>
-                        <div id="avviso-${boxId}" class="avviso">⚠️ Inserisci un UID valido prima di continuare.</div>
+                        >
+                        <div class="info-uid">
+                            Trovi l'UID nella ricevuta che Satispay ti invia dopo il pagamento.
+                        </div>
+                        <div id="avviso-${boxId}" class="avviso">
+                            ⚠️ Inserisci un UID valido prima di continuare.
+                        </div>
                         <button
                             id="btn-conferma-${boxId}"
                             class="btn-conferma"
@@ -309,18 +306,17 @@
                             ✅ Conferma e ottieni il Coupon
                         </button>
                     </div>
-                </div>
-            `;
+                </div>`;
         }
 
-        // ====================================================
-        // Verifica formato UID → abilita/disabilita bottone
-        // ====================================================
+        // ══════════════════════════════════════════════════════
+        // VERIFICA UID → abilita/disabilita bottone conferma
+        // ══════════════════════════════════════════════════════
         function verificaUID(boxId) {
-            const input  = document.getElementById('uid-' + boxId);
-            const btn    = document.getElementById('btn-conferma-' + boxId);
-            const avviso = document.getElementById('avviso-' + boxId);
-            const uid    = input.value.trim();
+            const input    = document.getElementById('uid-' + boxId);
+            const btn      = document.getElementById('btn-conferma-' + boxId);
+            const avviso   = document.getElementById('avviso-' + boxId);
+            const uid      = input.value.trim();
             const uidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
             if (uidRegex.test(uid)) {
@@ -333,20 +329,20 @@
             }
         }
 
-        // ====================================================
-        // Conferma pagamento: invia UID all'Apps Script via POST
-        // ====================================================
+        // ══════════════════════════════════════════════════════
+        // CONFERMA PAGAMENTO → POST all'Apps Script
+        // ══════════════════════════════════════════════════════
         async function confermaPagemento(boxId) {
             const container = document.getElementById('couponContainer');
             const email  = container.dataset.userEmail;
             const nome   = container.dataset.userName;
 
-            const input  = document.getElementById('uid-' + boxId);
-            const btn    = document.getElementById('btn-conferma-' + boxId);
-            const avviso = document.getElementById('avviso-' + boxId);
-            const uid    = input.value.trim();
-
+            const input    = document.getElementById('uid-' + boxId);
+            const btn      = document.getElementById('btn-conferma-' + boxId);
+            const avviso   = document.getElementById('avviso-' + boxId);
+            const uid      = input.value.trim();
             const uidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
             if (!uidRegex.test(uid)) {
                 avviso.textContent = '⚠️ Inserisci un UID valido prima di continuare.';
                 avviso.classList.add('visibile');
@@ -354,21 +350,20 @@
                 return;
             }
 
-            // Disabilita il bottone durante la chiamata
+            // Disabilita durante la chiamata
             btn.classList.remove('abilitato');
             btn.textContent = '⏳ Verifica in corso...';
             btn.disabled = true;
 
             try {
-                // POST con URLSearchParams → e.parameter di Apps Script lo legge correttamente
                 const dati = await gasPost({ boxId, email, nome, uid });
 
                 if (dati.result === 'success') {
-                    // Coupon generato con successo → sostituisce la sezione inline
+                    // ✅ Coupon generato → sostituisce il blocco inline
                     const section = document.getElementById('section-' + boxId);
                     section.outerHTML = buildCouponCard(boxId, email, dati.numeroCoupon, dati.nomeBox);
                 } else {
-                    // Errore restituito dal server Apps Script
+                    // ❌ Errore dal server
                     avviso.textContent = '❌ ' + (dati.message || 'Errore durante la verifica. Riprova.');
                     avviso.classList.add('visibile');
                     btn.classList.add('abilitato');
@@ -384,15 +379,23 @@
             }
         }
 
-        // ====================================================
-        // Download coupon come file .txt
-        // ====================================================
+        // ══════════════════════════════════════════════════════
+        // SCARICA COUPON come file .txt
+        // ══════════════════════════════════════════════════════
         function scaricaCoupon(email, couponId, nomeBox, boxId) {
-            const contenuto = `COUPON ATTIVO\n====================\nBox ${boxId} – ${nomeBox}\nAssociato a: ${email}\nID: ${couponId}\nData: ${new Date().toLocaleDateString('it-IT')}\n====================\nMostra questo coupon all'ingresso del locale.`;
+            const contenuto =
+                'COUPON ATTIVO\n' +
+                '====================\n' +
+                'Box ' + boxId + ' \u2013 ' + nomeBox + '\n' +
+                'Associato a: ' + email + '\n' +
+                'ID: ' + couponId + '\n' +
+                'Data: ' + new Date().toLocaleDateString('it-IT') + '\n' +
+                '====================\n' +
+                'Mostra questo coupon all\u2019ingresso del locale.';
             const blob = new Blob([contenuto], { type: 'text/plain' });
             const url  = URL.createObjectURL(blob);
             const a    = document.createElement('a');
-            a.href = url;
+            a.href     = url;
             a.download = 'coupon_' + couponId + '.txt';
             a.click();
             URL.revokeObjectURL(url);
