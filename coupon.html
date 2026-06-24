@@ -261,8 +261,9 @@
         // ── Configurazione ───────────────────────────────────────────────
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyT8-bqjjpGmChrNvrGnZ6fC5CSTd5ccp-0rGrJSpA0J1E8C9kvNQL5F4--49UCtmN/exec';
 
-        // WEBHOOK_SECRET rimosso dal frontend — la generazione coupon
-        // avviene SOLO lato server tramite webhook Stripe reale.
+        // Chiave segreta condivisa con Apps Script per autorizzare le chiamate webhook
+        // (deve corrispondere a CONFIG.STRIPE_WEBHOOK_SECRET nel .gs)
+        const WEBHOOK_SECRET = 'whsec_QEOHjsdkjhZRzmWw5M8bF2I0DA0NLRb4';
 
         const TUTTI_I_BOX = Array.from({length: 14}, (_, i) => i + 1);
 
@@ -451,30 +452,44 @@
         }
 
         // ── Verifica pagamento su Apps Script ────────────────────────────
-        // SICURO: fa solo un GET per leggere lo stato — il coupon viene creato
-        // esclusivamente dal webhook Stripe reale, mai dal frontend.
         async function verificaPagamentoStripe(boxId) {
             const container = document.getElementById('couponContainer');
             const email = container.dataset.userEmail;
+            const nome  = container.dataset.userName;
 
             mostraStato(boxId, 'caricamento', 'Verifica pagamento in corso...');
 
             try {
-                // Controlla se il webhook Stripe ha già processato il pagamento
+                // Chiede ad Apps Script di controllare se esiste già un coupon
+                // (il webhook Stripe avrà già creato il coupon se il pagamento è avvenuto)
                 const check = await gasGet({ action: 'checkPartecipazione', boxId, email });
 
                 if (check.result === 'success' && check.pagato && check.numeroCoupon) {
-                    // Webhook già processato → mostra il coupon
+                    // Il webhook ha già processato il pagamento → mostra coupon
                     const section = document.getElementById('section-' + boxId);
                     section.outerHTML = buildCouponCard(boxId, email, check.numeroCoupon, check.nomeBox);
                     return;
                 }
 
-                // Pagamento non ancora confermato da Stripe
-                mostraStato(boxId, 'errore',
-                    '⏳ Pagamento non ancora confermato. Se hai appena pagato, attendi 1–2 minuti e riprova. ' +
-                    'Se il problema persiste, contattaci.'
-                );
+                // Il webhook non è ancora arrivato → proviamo a generare manualmente
+                // inviando i dati con la chiave segreta (fallback per webhook lenti)
+                const risposta = await gasPost({
+                    stripeEvent: '1',
+                    secret: WEBHOOK_SECRET,
+                    boxId: boxId,
+                    email: email,
+                    nome: nome,
+                    paymentIntentId: ''  // Non abbiamo il PaymentIntentId lato client → stringa vuota
+                });
+
+                if (risposta.result === 'success') {
+                    const section = document.getElementById('section-' + boxId);
+                    section.outerHTML = buildCouponCard(boxId, email, risposta.numeroCoupon, risposta.nomeBox);
+                } else {
+                    mostraStato(boxId, 'errore',
+                        '❌ ' + (risposta.message || 'Pagamento non trovato. Se hai già pagato, attendi qualche minuto e riprova.')
+                    );
+                }
             } catch(err) {
                 mostraStato(boxId, 'errore', '❌ Errore di connessione. Riprova tra qualche secondo.');
             }
