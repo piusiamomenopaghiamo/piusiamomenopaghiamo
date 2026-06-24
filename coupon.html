@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I Miei Coupon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <title>I Miei Coupon – Più Siamo Meno Paghiamo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Open Sans', sans-serif; background: #f2f7fb; padding-top: 80px; }
 
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f2f7fb;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* ── Top menu ── */
         .top-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 65px;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -17,106 +24,206 @@
             display: flex; justify-content: center; align-items: center;
         }
         .menu-nav { display: flex; gap: 25px; }
-        .menu-nav a { color: white; text-decoration: none; font-weight: bold; }
+        .menu-nav a { color: white; text-decoration: none; font-weight: bold; font-size: 0.95rem; }
         .menu-nav a:hover { color: #ffeb3b; }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
+        /* ── Layout ── */
+        .container { max-width: 620px; margin: 0 auto; padding: 24px 16px; }
+        .page-title {
+            text-align: center;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.7rem;
+            color: #1e3c72;
+            margin-bottom: 24px;
+        }
 
+        /* ── Coupon card (già pagato) ── */
         .coupon-card {
             background: linear-gradient(135deg, #00b4db, #0083b0);
-            color: white; border-radius: 15px; padding: 30px;
-            margin-top: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border: 3px dashed #ffffff;
+            color: white;
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 3px dashed rgba(255,255,255,0.6);
+            text-align: center;
         }
-        .coupon-title { font-family: 'Quicksand', sans-serif; font-size: 2rem; margin-bottom: 10px; }
-        .coupon-number { font-size: 1.5rem; color: #ffeb3b; font-weight: bold; margin: 15px 0; }
-
-        /* ── IN ATTESA: gruppo non ancora completo ── */
-        .in-attesa {
-            background: #d4edda; border: 2px solid #c3e6cb;
-            border-radius: 12px; padding: 25px; margin-top: 20px;
-            color: #155724; text-align: left;
+        .coupon-card .box-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.85;
+            margin-bottom: 6px;
         }
-        .in-attesa h3 { margin-bottom: 10px; }
-        .in-attesa p  { line-height: 1.6; }
-        .progress-bar-wrap {
-            background: #b8dfc4; border-radius: 20px;
-            height: 12px; margin-top: 14px; overflow: hidden;
+        .coupon-card .nome-box {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 14px;
         }
-        .progress-bar-fill {
-            background: #28a745; height: 100%; border-radius: 20px;
-            transition: width 0.4s ease;
+        .coupon-number {
+            font-size: 1.8rem;
+            color: #ffeb3b;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 10px 0 16px;
         }
-        .progress-label {
-            font-size: 0.82rem; color: #155724;
-            margin-top: 5px; text-align: right;
-        }
-
-        /* ── SATISPAY ── */
-        .satispay-section {
-            background: #fff3cd; border: 2px solid #ffc107;
-            border-radius: 12px; padding: 25px; margin-top: 20px; text-align: center;
-        }
-        .satispay-section h3 { color: #856404; margin-bottom: 10px; }
-        .satispay-section p  { color: #555; margin-bottom: 15px; }
-
-        .btn-satispay {
-            display: inline-block; background: #e8314a; color: white;
-            padding: 14px 30px; border-radius: 8px; font-size: 1.1rem;
-            font-weight: bold; text-decoration: none; cursor: pointer;
-            border: none; transition: background 0.3s;
-        }
-        .btn-satispay:hover { background: #c0272e; }
-
+        .coupon-email { font-size: 0.85rem; opacity: 0.85; margin-bottom: 18px; }
         .btn-download {
-            display: inline-block; background: #00b894; color: white;
-            padding: 14px 30px; border-radius: 8px; font-size: 1.1rem;
-            font-weight: bold; text-decoration: none; cursor: pointer;
-            border: none; margin-top: 15px; transition: background 0.3s;
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 11px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
         }
-        .btn-download:hover { background: #009972; }
+        .btn-download:hover { background: rgba(255,255,255,0.35); }
 
-        .uid-section { margin-top: 18px; text-align: left; }
-        .uid-section label {
-            display: block; font-size: 0.9rem; color: #856404;
-            font-weight: bold; margin-bottom: 6px;
+        /* ── Sezione pagamento Stripe ── */
+        .stripe-section {
+            background: white;
+            border: 2px solid #e0e7ef;
+            border-radius: 16px;
+            padding: 26px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
-        .uid-input {
-            width: 100%; padding: 12px; border: 2px solid #ffc107;
-            border-radius: 8px; font-size: 0.95rem; font-family: monospace;
-            color: #333; outline: none; transition: border-color 0.3s;
+        .stripe-section .box-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
         }
-        .uid-input:focus  { border-color: #0083b0; }
-        .uid-input.errore { border-color: #c0392b; }
-
-        .btn-conferma {
-            display: block; padding: 14px 30px; border-radius: 8px;
-            font-size: 1.1rem; font-weight: bold; border: none;
-            margin-top: 12px; width: 100%;
-            transition: background 0.3s, color 0.3s;
-            background: #cccccc; color: #888888; cursor: not-allowed;
+        .stripe-section .box-badge {
+            background: #1e3c72;
+            color: white;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
         }
-        .btn-conferma.abilitato { background: #00b894; color: white; cursor: pointer; }
-        .btn-conferma.abilitato:hover { background: #009972; }
+        .stripe-section .box-nome {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1e3c72;
+        }
+        .stripe-section .box-prezzo {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 18px;
+        }
+        .stripe-section .box-prezzo strong { color: #00b4db; }
 
-        .avviso { font-size: 0.85rem; color: #c0392b; margin-top: 6px; display: none; }
-        .avviso.visibile { display: block; }
-        .info-uid { font-size: 0.8rem; color: #777; margin-top: 6px; }
+        .btn-stripe {
+            display: inline-block;
+            background: #635bff;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s, transform 0.1s;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-stripe:hover { background: #4f46e5; transform: translateY(-1px); }
+        .btn-stripe:active { transform: translateY(0); }
 
-        .no-partecipazioni {
-            background: #f8d7da; border: 2px solid #f5c2c7;
-            border-radius: 12px; padding: 20px; margin-top: 20px; color: #721c24;
+        .divider-pagamento {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 18px 0;
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+        .divider-pagamento::before,
+        .divider-pagamento::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e7ef;
         }
 
-        .loading { color: #888; font-style: italic; margin-top: 20px; }
+        /* Stato verifica pagamento */
+        .verifica-stato {
+            background: #f0f9ff;
+            border: 1.5px solid #bae6fd;
+            border-radius: 10px;
+            padding: 16px;
+            font-size: 0.9rem;
+            color: #0369a1;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        .verifica-stato.visibile { display: flex; }
+        .verifica-stato.errore {
+            background: #fef2f2;
+            border-color: #fecaca;
+            color: #b91c1c;
+        }
+        .verifica-stato.successo {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+            color: #15803d;
+        }
 
+        .btn-verifica {
+            display: block;
+            background: #f0f9ff;
+            color: #0369a1;
+            border: 1.5px solid #bae6fd;
+            padding: 11px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+        .btn-verifica:hover { background: #e0f2fe; }
+
+        /* ── Spinner ── */
         .spinner {
-            display: inline-block; width: 18px; height: 18px;
-            border: 3px solid #ccc; border-top-color: #0083b0;
-            border-radius: 50%; animation: spin 0.8s linear infinite;
-            vertical-align: middle; margin-right: 8px;
+            display: inline-block;
+            width: 16px; height: 16px;
+            border: 2.5px solid currentColor;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            flex-shrink: 0;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Loading / vuoto ── */
+        .loading-page {
+            text-align: center;
+            color: #888;
+            padding: 40px 0;
+            font-style: italic;
+        }
+        .no-partecipazioni {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+            color: #856404;
+        }
+        .no-partecipazioni h3 { margin-bottom: 10px; }
+        .no-partecipazioni a { color: #0083b0; }
     </style>
 </head>
 <body>
@@ -125,32 +232,35 @@
         <nav class="menu-nav">
             <a href="index.html"><i class="fas fa-home"></i> Home</a>
             <a href="coupon.html"><i class="fas fa-ticket-alt"></i> I Miei Coupon</a>
-            <a href="loghin.html"><i class="fas fa-user"></i> Login / Profilo</a>
+            <a href="loghin.html"><i class="fas fa-user"></i> Profilo</a>
         </nav>
     </div>
 
     <div class="container">
-        <h2>I Tuoi Coupon Attivi</h2>
+        <h1 class="page-title">🎫 I Tuoi Coupon</h1>
         <div id="couponContainer">
-            <p class="loading"><span class="spinner"></span> Caricamento in corso...</p>
+            <p class="loading-page"><span class="spinner"></span>&nbsp; Caricamento...</p>
         </div>
     </div>
 
     <script>
+        // ── Configurazione ───────────────────────────────────────────────
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyT8-bqjjpGmChrNvrGnZ6fC5CSTd5ccp-0rGrJSpA0J1E8C9kvNQL5F4--49UCtmN/exec';
 
-        const TUTTI_I_BOX = Array.from({ length: 14 }, (_, i) => i + 1);
+        // Chiave segreta condivisa con Apps Script per autorizzare le chiamate webhook
+        // (deve corrispondere a CONFIG.STRIPE_WEBHOOK_SECRET nel .gs)
+        const WEBHOOK_SECRET = 'whsec_QEOHjsdkjhZRzmWw5M8bF2I0DA0NLRb4';
 
-        // ── GET helper ──
+        const TUTTI_I_BOX = Array.from({length: 14}, (_, i) => i + 1);
+
+        // ── Helper fetch ─────────────────────────────────────────────────
         async function gasGet(params) {
-            const qs = new URLSearchParams(params).toString();
-            const res = await fetch(`${APPS_SCRIPT_URL}?${qs}`, {
+            const res = await fetch(`${APPS_SCRIPT_URL}?${new URLSearchParams(params)}`, {
                 method: 'GET', redirect: 'follow'
             });
             return res.json();
         }
 
-        // ── POST helper (URLSearchParams → e.parameter lato Apps Script) ──
         async function gasPost(params) {
             const res = await fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
@@ -161,9 +271,7 @@
             return res.json();
         }
 
-        // ══════════════════════════════════════════════════════
-        // AVVIO
-        // ══════════════════════════════════════════════════════
+        // ── Avvio ────────────────────────────────────────────────────────
         document.addEventListener('DOMContentLoaded', async () => {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             const userEmail  = localStorage.getItem('userEmail');
@@ -171,231 +279,221 @@
             const container  = document.getElementById('couponContainer');
 
             if (!isLoggedIn || !userEmail) {
-                container.innerHTML = `<p>Effettua il <a href="loghin.html">Login</a> per visualizzare i tuoi coupon.</p>`;
+                container.innerHTML = `<p style="text-align:center">Effettua il <a href="loghin.html">Login</a> per visualizzare i tuoi coupon.</p>`;
                 return;
             }
 
-            // Controlla tutti i box in parallelo
+            // Controlla se l'utente torna da Stripe (parametro ?stripe=success&boxId=N)
+            const urlParams = new URLSearchParams(window.location.search);
+            const stripeSuccess = urlParams.get('stripe') === 'success';
+            const stripeBoxId   = urlParams.get('boxId');
+
+            // Interroga tutti i box in parallelo
             const richieste = TUTTI_I_BOX.map(boxId =>
                 gasGet({ action: 'checkPartecipazione', boxId, email: userEmail })
                     .then(data => ({ boxId, data }))
                     .catch(() => ({ boxId, data: { result: 'error' } }))
             );
 
-            const risultati  = await Promise.all(richieste);
-            const boxAttivi  = risultati.filter(r => r.data.result === 'success' && r.data.giaPartecipa === true);
+            const risultati = await Promise.all(richieste);
+            const boxAttivi = risultati.filter(r => r.data.result === 'success' && r.data.giaPartecipa);
 
             if (boxAttivi.length === 0) {
                 container.innerHTML = `
                     <div class="no-partecipazioni">
                         <h3>🔒 Nessuna partecipazione attiva</h3>
-                        <p>Non hai ancora partecipato a nessun gruppo. Torna alla <a href="index.html">Home</a> e iscriviti a un'offerta!</p>
+                        <p>Non hai ancora aderito a nessun gruppo d'acquisto.<br>
+                        <a href="index.html">Torna alla Home</a> e unisciti a un'offerta!</p>
                     </div>`;
                 return;
             }
 
             let html = '';
             boxAttivi.forEach(({ boxId, data }) => {
-                const count  = data.count  || 0;
-                const minimo = data.minimo || 0;
-                const prezzo = data.prezzo ? '€' + data.prezzo : '';
-                const nomeBox = data.nomeBox || data.nomeBoxConfig || ('Box ' + boxId);
-
-                // ══════════════════════════════════════════════
-                // REGOLA FONDAMENTALE — 3 stati possibili:
-                //
-                // 1. Gruppo NON ancora completo → solo messaggio di attesa.
-                //    Non mostrare MAI Satispay, anche se data.pagato fosse
-                //    residuo di un ciclo precedente.
-                //
-                // 2. Gruppo completo + NON pagato → mostra Satispay + campo UID
-                //
-                // 3. Gruppo completo + GIÀ pagato → mostra il coupon
-                // ══════════════════════════════════════════════
-                const gruppoChiuso = count >= minimo;
-
-                if (!gruppoChiuso) {
-                    // ── STATO 1: in attesa ──
-                    const pct = minimo > 0 ? Math.min(Math.round((count / minimo) * 100), 100) : 0;
-                    html += `
-                        <div class="in-attesa" id="section-${boxId}">
-                            <h3>⏳ Box ${boxId} – ${nomeBox}</h3>
-                            <p>
-                                Sei iscritto! Il gruppo non ha ancora raggiunto il numero minimo
-                                di partecipanti necessario. Quando sarà completo, qui apparirà
-                                il link per il pagamento.
-                            </p>
-                            <div class="progress-bar-wrap">
-                                <div class="progress-bar-fill" style="width:${pct}%"></div>
-                            </div>
-                            <div class="progress-label">${count} / ${minimo} partecipanti</div>
-                        </div>`;
-
-                } else if (data.pagato && data.numeroCoupon) {
-                    // ── STATO 3: coupon già ottenuto ──
-                    html += buildCouponCard(boxId, userEmail, data.numeroCoupon, nomeBox);
-
+                if (data.pagato && data.numeroCoupon) {
+                    html += buildCouponCard(boxId, userEmail, data.numeroCoupon, data.nomeBox);
                 } else {
-                    // ── STATO 2: gruppo completo, pagamento da completare ──
-                    const linkSatispay = data.satispay || '#';
-                    html += buildSatispaySection(boxId, nomeBox, prezzo, linkSatispay);
+                    const ritornoDaStripe = stripeSuccess && String(stripeBoxId) === String(boxId);
+                    html += buildStripeSection(boxId, data, ritornoDaStripe);
                 }
             });
 
             container.innerHTML = html;
-
-            // Salva email e nome per il recupero dentro confermaPagemento
-            container.dataset.userName  = userName;
             container.dataset.userEmail = userEmail;
+            container.dataset.userName  = userName;
+
+            // Se torna da Stripe, avvia automaticamente la verifica per quel box
+            if (stripeSuccess && stripeBoxId) {
+                // Pulisce l'URL senza ricaricare la pagina
+                window.history.replaceState({}, '', 'coupon.html');
+                // Avvia verifica dopo 1s (tempo per il DOM di renderizzarsi)
+                setTimeout(() => verificaPagamentoStripe(stripeBoxId), 1000);
+            }
         });
 
-        // ══════════════════════════════════════════════════════
-        // BUILDER: card coupon già ottenuto
-        // ══════════════════════════════════════════════════════
+        // ── Builder: coupon già ottenuto ─────────────────────────────────
         function buildCouponCard(boxId, email, numeroCoupon, nomeBox) {
             return `
-                <div class="coupon-card" id="section-${boxId}">
-                    <div class="coupon-title">🎫 COUPON ATTIVO – Box ${boxId}</div>
-                    <p><strong>${nomeBox}</strong></p>
-                    <p>Associato a: <strong>${email}</strong></p>
-                    <div class="coupon-number">${numeroCoupon}</div>
-                    <p>Mostra questa schermata o scarica il coupon all'ingresso del locale.</p>
-                    <br>
-                    <button class="btn-download"
-                        onclick="scaricaCoupon('${email}', '${numeroCoupon}', '${nomeBox}', ${boxId})">
-                        <i class="fas fa-download"></i> Scarica il Coupon
-                    </button>
-                </div>`;
+            <div class="coupon-card" id="section-${boxId}">
+                <div class="box-label">Box ${boxId} · Coupon Attivo</div>
+                <div class="nome-box">${nomeBox}</div>
+                <div class="coupon-number">${numeroCoupon}</div>
+                <div class="coupon-email"><i class="fas fa-user"></i> ${email}</div>
+                <button class="btn-download" onclick="scaricaCoupon('${email}','${numeroCoupon}','${nomeBox}',${boxId})">
+                    <i class="fas fa-download"></i> Scarica il Coupon
+                </button>
+            </div>`;
         }
 
-        // ══════════════════════════════════════════════════════
-        // BUILDER: sezione pagamento Satispay + campo UID
-        // ══════════════════════════════════════════════════════
-        function buildSatispaySection(boxId, nomeBox, prezzo, linkSatispay) {
+        // ── Builder: sezione pagamento Stripe ────────────────────────────
+        function buildStripeSection(boxId, data, ritornoDaStripe) {
+            const prezzo    = data.prezzo ? '€' + data.prezzo : '';
+            const nomeBox   = data.nomeBoxConfig || data.nomeBox || '';
+            const linkStripe = (data.stripe && data.stripe !== 'INSERISCI_LINK_STRIPE_BOX' + boxId)
+                ? data.stripe + '?prefilled_email=' + encodeURIComponent(document.getElementById('couponContainer')?.dataset?.userEmail || '')
+                : '#';
+
+            const statoIniziale = ritornoDaStripe
+                ? `<div class="verifica-stato visibile" id="stato-${boxId}"><span class="spinner"></span> Verifica pagamento in corso...</div>`
+                : `<div class="verifica-stato" id="stato-${boxId}"></div>`;
+
             return `
-                <div class="satispay-section" id="section-${boxId}">
-                    <h3>💳 Box ${boxId} – ${nomeBox}</h3>
-                    <p>
-                        Il gruppo è completo! Paga <strong>${prezzo}</strong> con Satispay,
-                        poi incolla l'<strong>UID della ricevuta</strong> qui sotto
-                        per ottenere il tuo coupon.
-                    </p>
-                    <a class="btn-satispay" href="${linkSatispay}" target="_blank">
-                        <i class="fas fa-mobile-alt"></i> Paga con Satispay – ${prezzo}
-                    </a>
-                    <div class="uid-section">
-                        <label for="uid-${boxId}">📋 Inserisci l'UID della ricevuta Satispay:</label>
-                        <input
-                            type="text"
-                            id="uid-${boxId}"
-                            class="uid-input"
-                            placeholder="es: 019eee9c-b300-7aeb-9126-1a1f54c4afef"
-                            oninput="verificaUID(${boxId})"
-                        >
-                        <div class="info-uid">
-                            Trovi l'UID nella ricevuta che Satispay ti invia dopo il pagamento.
-                        </div>
-                        <div id="avviso-${boxId}" class="avviso">
-                            ⚠️ Inserisci un UID valido prima di continuare.
-                        </div>
-                        <button
-                            id="btn-conferma-${boxId}"
-                            class="btn-conferma"
-                            onclick="confermaPagemento(${boxId})"
-                        >
-                            ✅ Conferma e ottieni il Coupon
-                        </button>
-                    </div>
-                </div>`;
+            <div class="stripe-section" id="section-${boxId}">
+                <div class="box-header">
+                    <span class="box-badge">Box ${boxId}</span>
+                    <span class="box-nome">${nomeBox}</span>
+                </div>
+                <div class="box-prezzo">Prezzo gruppo: <strong>${prezzo}</strong> a persona</div>
+
+                <a class="btn-stripe" href="${linkStripe}" onclick="preparaPagamento(event, ${boxId}, '${linkStripe}')">
+                    <i class="fas fa-credit-card"></i> Paga ora con Stripe – ${prezzo}
+                </a>
+
+                <div class="divider-pagamento">Hai già pagato?</div>
+
+                <button class="btn-verifica" onclick="verificaPagamentoStripe(${boxId})">
+                    <i class="fas fa-sync-alt"></i> Verifica pagamento e ottieni il coupon
+                </button>
+
+                ${statoIniziale}
+            </div>`;
         }
 
-        // ══════════════════════════════════════════════════════
-        // VERIFICA UID → abilita/disabilita bottone conferma
-        // ══════════════════════════════════════════════════════
-        function verificaUID(boxId) {
-            const input    = document.getElementById('uid-' + boxId);
-            const btn      = document.getElementById('btn-conferma-' + boxId);
-            const avviso   = document.getElementById('avviso-' + boxId);
-            const uid      = input.value.trim();
-            const uidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-            if (uidRegex.test(uid)) {
-                btn.classList.add('abilitato');
-                input.classList.remove('errore');
-                avviso.classList.remove('visibile');
-            } else {
-                btn.classList.remove('abilitato');
-                input.classList.toggle('errore', uid.length > 0);
-            }
-        }
-
-        // ══════════════════════════════════════════════════════
-        // CONFERMA PAGAMENTO → POST all'Apps Script
-        // ══════════════════════════════════════════════════════
-        async function confermaPagemento(boxId) {
+        // ── Prepara pagamento: registra email nel foglio "pagamenti_in_corso" ──
+        async function preparaPagamento(event, boxId, linkStripe) {
+            event.preventDefault();
             const container = document.getElementById('couponContainer');
-            const email  = container.dataset.userEmail;
-            const nome   = container.dataset.userName;
+            const email = container.dataset.userEmail;
+            const nome  = container.dataset.userName;
 
-            const input    = document.getElementById('uid-' + boxId);
-            const btn      = document.getElementById('btn-conferma-' + boxId);
-            const avviso   = document.getElementById('avviso-' + boxId);
-            const uid      = input.value.trim();
-            const uidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-            if (!uidRegex.test(uid)) {
-                avviso.textContent = '⚠️ Inserisci un UID valido prima di continuare.';
-                avviso.classList.add('visibile');
-                input.classList.add('errore');
-                return;
+            // Salva l'intenzione di pagamento su Apps Script
+            try {
+                await gasPost({ action: 'registraPagamento', boxId, email, nome });
+            } catch(e) {
+                // Non bloccante: prosegui comunque
+                console.warn('registraPagamento fallito:', e);
             }
 
-            // Disabilita durante la chiamata
-            btn.classList.remove('abilitato');
-            btn.textContent = '⏳ Verifica in corso...';
-            btn.disabled = true;
+            // Reindirizza a Stripe con success_url che torna qui
+            const successUrl = encodeURIComponent(
+                window.location.origin + window.location.pathname + '?stripe=success&boxId=' + boxId
+            );
+
+            // Stripe Payment Link: aggiungi ?prefilled_email e success_url
+            // (success_url funziona solo su Payment Links con "Allow customers to leave page" abilitato)
+            let url = linkStripe;
+            try {
+                const u = new URL(linkStripe);
+                u.searchParams.set('prefilled_email', email);
+                // Il success_url nei Payment Link statici non è configurabile via querystring;
+                // l'utente torna qui manualmente o tramite il bottone "Torna al sito" configurato
+                // nella dashboard Stripe. Per ora redirect manuale.
+                url = u.toString();
+            } catch(e) { /* linkStripe non è un URL valido */ }
+
+            window.open(url, '_blank');
+
+            // Mostra stato "In attesa"
+            mostraStato(boxId, 'info', '💳 Stai per essere reindirizzato a Stripe. Dopo il pagamento, torna qui e clicca "Verifica pagamento".');
+        }
+
+        // ── Verifica pagamento su Apps Script ────────────────────────────
+        async function verificaPagamentoStripe(boxId) {
+            const container = document.getElementById('couponContainer');
+            const email = container.dataset.userEmail;
+            const nome  = container.dataset.userName;
+
+            mostraStato(boxId, 'caricamento', 'Verifica pagamento in corso...');
 
             try {
-                const dati = await gasPost({ boxId, email, nome, uid });
+                // Chiede ad Apps Script di controllare se esiste già un coupon
+                // (il webhook Stripe avrà già creato il coupon se il pagamento è avvenuto)
+                const check = await gasGet({ action: 'checkPartecipazione', boxId, email });
 
-                if (dati.result === 'success') {
-                    // ✅ Coupon generato → sostituisce il blocco inline
+                if (check.result === 'success' && check.pagato && check.numeroCoupon) {
+                    // Il webhook ha già processato il pagamento → mostra coupon
                     const section = document.getElementById('section-' + boxId);
-                    section.outerHTML = buildCouponCard(boxId, email, dati.numeroCoupon, dati.nomeBox);
-                } else {
-                    // ❌ Errore dal server
-                    avviso.textContent = '❌ ' + (dati.message || 'Errore durante la verifica. Riprova.');
-                    avviso.classList.add('visibile');
-                    btn.classList.add('abilitato');
-                    btn.textContent = '✅ Conferma e ottieni il Coupon';
-                    btn.disabled = false;
+                    section.outerHTML = buildCouponCard(boxId, email, check.numeroCoupon, check.nomeBox);
+                    return;
                 }
-            } catch (err) {
-                avviso.textContent = '❌ Errore di connessione. Riprova tra qualche secondo.';
-                avviso.classList.add('visibile');
-                btn.classList.add('abilitato');
-                btn.textContent = '✅ Conferma e ottieni il Coupon';
-                btn.disabled = false;
+
+                // Il webhook non è ancora arrivato → proviamo a generare manualmente
+                // inviando i dati con la chiave segreta (fallback per webhook lenti)
+                const risposta = await gasPost({
+                    stripeEvent: '1',
+                    secret: WEBHOOK_SECRET,
+                    boxId: boxId,
+                    email: email,
+                    nome: nome,
+                    paymentIntentId: ''  // Non abbiamo il PaymentIntentId lato client → stringa vuota
+                });
+
+                if (risposta.result === 'success') {
+                    const section = document.getElementById('section-' + boxId);
+                    section.outerHTML = buildCouponCard(boxId, email, risposta.numeroCoupon, risposta.nomeBox);
+                } else {
+                    mostraStato(boxId, 'errore',
+                        '❌ ' + (risposta.message || 'Pagamento non trovato. Se hai già pagato, attendi qualche minuto e riprova.')
+                    );
+                }
+            } catch(err) {
+                mostraStato(boxId, 'errore', '❌ Errore di connessione. Riprova tra qualche secondo.');
             }
         }
 
-        // ══════════════════════════════════════════════════════
-        // SCARICA COUPON come file .txt
-        // ══════════════════════════════════════════════════════
+        // ── Mostra stato verifica ────────────────────────────────────────
+        function mostraStato(boxId, tipo, testo) {
+            const el = document.getElementById('stato-' + boxId);
+            if (!el) return;
+            el.className = 'verifica-stato visibile';
+            if (tipo === 'errore')      el.classList.add('errore');
+            if (tipo === 'successo')    el.classList.add('successo');
+            el.innerHTML = tipo === 'caricamento'
+                ? `<span class="spinner"></span> ${testo}`
+                : testo;
+        }
+
+        // ── Download coupon .txt ─────────────────────────────────────────
         function scaricaCoupon(email, couponId, nomeBox, boxId) {
-            const contenuto =
-                'COUPON ATTIVO\n' +
-                '====================\n' +
-                'Box ' + boxId + ' \u2013 ' + nomeBox + '\n' +
-                'Associato a: ' + email + '\n' +
-                'ID: ' + couponId + '\n' +
-                'Data: ' + new Date().toLocaleDateString('it-IT') + '\n' +
-                '====================\n' +
-                'Mostra questo coupon all\u2019ingresso del locale.';
-            const blob = new Blob([contenuto], { type: 'text/plain' });
+            const testo = [
+                '╔══════════════════════════════╗',
+                '║   PIÙ SIAMO MENO PAGHIAMO   ║',
+                '╚══════════════════════════════╝',
+                '',
+                'COUPON ATTIVO',
+                '─────────────────────────────',
+                'Box:    ' + boxId + ' – ' + nomeBox,
+                'Codice: ' + couponId,
+                'Email:  ' + email,
+                'Data:   ' + new Date().toLocaleDateString('it-IT'),
+                '─────────────────────────────',
+                'Mostra questo coupon al locale.',
+            ].join('\n');
+
+            const blob = new Blob([testo], { type: 'text/plain;charset=utf-8' });
             const url  = URL.createObjectURL(blob);
             const a    = document.createElement('a');
-            a.href     = url;
+            a.href = url;
             a.download = 'coupon_' + couponId + '.txt';
             a.click();
             URL.revokeObjectURL(url);
