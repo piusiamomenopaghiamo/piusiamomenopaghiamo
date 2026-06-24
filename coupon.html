@@ -214,6 +214,20 @@
             padding: 40px 0;
             font-style: italic;
         }
+        /* ── Attesa minimo partecipanti ── */
+        .attesa-minimo {
+            background: #f0f4ff;
+            border: 2px solid #c7d2fe;
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            color: #3730a3;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .attesa-minimo strong { font-size: 1.1rem; }
+        .attesa-minimo small { color: #6366f1; }
+
         .no-partecipazioni {
             background: #fff3cd;
             border: 2px solid #ffc107;
@@ -349,6 +363,10 @@
         function buildStripeSection(boxId, data, ritornoDaStripe) {
             const prezzo    = data.prezzo ? '€' + data.prezzo : '';
             const nomeBox   = data.nomeBoxConfig || data.nomeBox || '';
+            const count     = data.count || 0;
+            const minimo    = data.minimo || 0;
+            const minimoRaggiunto = count >= minimo;
+
             const linkStripe = (data.stripe && data.stripe !== 'INSERISCI_LINK_STRIPE_BOX' + boxId)
                 ? data.stripe + '?prefilled_email=' + encodeURIComponent(document.getElementById('couponContainer')?.dataset?.userEmail || '')
                 : '#';
@@ -356,6 +374,22 @@
             const statoIniziale = ritornoDaStripe
                 ? `<div class="verifica-stato visibile" id="stato-${boxId}"><span class="spinner"></span> Verifica pagamento in corso...</div>`
                 : `<div class="verifica-stato" id="stato-${boxId}"></div>`;
+
+            // Se il minimo NON è ancora raggiunto → mostra messaggio attesa
+            if (!minimoRaggiunto) {
+                return `
+                <div class="stripe-section" id="section-${boxId}">
+                    <div class="box-header">
+                        <span class="box-badge">Box ${boxId}</span>
+                        <span class="box-nome">${nomeBox}</span>
+                    </div>
+                    <div class="box-prezzo">Prezzo gruppo: <strong>${prezzo}</strong> a persona</div>
+                    <div class="attesa-minimo">
+                        ⏳ Gruppo in formazione: <strong>${count} / ${minimo}</strong> partecipanti<br>
+                        <small>Il pagamento si sblocca quando si raggiunge il numero minimo.</small>
+                    </div>
+                </div>`;
+            }
 
             return `
             <div class="stripe-section" id="section-${boxId}">
