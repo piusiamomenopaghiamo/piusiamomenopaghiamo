@@ -54,17 +54,20 @@
 
         .header-content {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+            gap: 16px;
         }
 
         .nav-row {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            width: 100%;
+            flex: 1;
             position: relative;
         }
 
@@ -115,11 +118,10 @@
 
         .login-row {
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
-            width: 100%;
-            margin-top: 12px;
             gap: 10px;
+            flex-shrink: 0;
         }
 
         #googleLoginContainer {
@@ -195,6 +197,19 @@
         @media (max-width: 768px) {
             .hamburger-menu {
                 display: flex;
+            }
+
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .nav-row {
+                flex: 1;
+            }
+
+            .login-row {
+                margin-top: 0;
             }
 
             .nav-menu {
@@ -567,7 +582,7 @@
         }
 
         .copyright {
-            text-align: center;
+            text-align: left;
             margin-top: 40px;
             padding-top: 20px;
             border-top: 1px solid #333;
@@ -604,7 +619,7 @@
 
         /* ── SEZIONE SEI UN LOCALE ── */
         .sezione-locale {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, #00b894, #00a381);
             color: white;
             padding: 50px 20px;
             text-align: center;
@@ -629,8 +644,8 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: #ffeb3b;
-            color: #1e3c72;
+            background: #ff7043;
+            color: white;
             padding: 14px 30px;
             border-radius: 30px;
             font-size: 1rem;
@@ -651,6 +666,17 @@
             border-radius: 20px;
             padding: 5px 14px !important;
             font-weight: 700 !important;
+        }
+
+        /* Fix mobile: rimuove il bordo aggiunto dal media query generale
+           che crea il "riquadro fantasma" sul tasto nel menu a tendina */
+        @media (max-width: 768px) {
+            .nav-menu a.btn-locale-nav {
+                border: none !important;
+                background: #ffeb3b !important;
+                color: #1e3c72 !important;
+                width: auto;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1134,7 +1160,7 @@
         <h2>🍽️ Sei il gestore di un locale?</h2>
         <p>Unisciti alla nostra rete di ristoranti, pizzerie e pub. Raggiungi nuovi clienti già motivati, senza spese pubblicitarie. Noi pensiamo a tutto: cartellone, iscrizioni e pagamenti.</p>
         <a href="contatti.html" class="btn-locale">
-            <i class="fas fa-store"></i> Pubblica la tua offerta — è gratis
+            <i class="fas fa-store"></i> Collabora con noi
         </a>
     </section>
 
