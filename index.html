@@ -715,7 +715,7 @@
                     <li><a href="#" onclick="filterBoxes('tutti')">Tutti</a></li>
                     <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
                     <li><a href="#" onclick="filterBoxes('birreria-pub')">Birreria Pub</a></li>
-                    <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                    <li><a href="#" onclick="filterBoxes('piadineria')">Piadineria</a></li>
                     <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzeria</a></li>
                     <li><a href="coupon.html"><i class="fas fa-user-circle"></i> Area Personale</a></li>
                 </ul>
@@ -901,7 +901,7 @@
         </div>
     </div>
 
-    <div class="main-box" id="box6" data-category="drink">
+    <div class="main-box" id="box6" data-category="piadineria">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/736x/b3/5d/ac/b35dac88e5b9a93bc27b6a65dc9a1297.jpg" alt="Mixology & Tapas">
         </div>
@@ -930,7 +930,7 @@
         </div>
     </div>
 
-    <div class="main-box" id="box7" data-category="drink">
+    <div class="main-box" id="box7" data-category="piadineria">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/736x/88/25/7a/88257af3289e298777894c3d96b872b4.jpg" alt="Eleganza in Bicchiere">
         </div>
@@ -959,7 +959,7 @@
         </div>
     </div>
 
-    <div class="main-box" id="box8" data-category="drink">
+    <div class="main-box" id="box8" data-category="piadineria">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/5f/07/8b/5f078bc04058f9bbb7d438031910ca15.jpg" alt="Mix & Chill">
         </div>
@@ -1075,7 +1075,7 @@
         </div>
     </div>
 
-    <div class="main-box" id="box12" data-category="drink">
+    <div class="main-box" id="box12" data-category="piadineria">
         <div class="pizza-container">
             <img src="https://i.pinimg.com/1200x/96/df/b5/96dfb527bd2f604071eeb54ad3cfe7e7.jpg" alt="Mixology & Tapas">
         </div>
@@ -1210,7 +1210,7 @@
                     <li><a href="#" onclick="filterBoxes('ristoranti')">Ristoranti</a></li>
                     <li><a href="#" onclick="filterBoxes('birreria-pub')">Pub</a></li>
                     <li><a href="#" onclick="filterBoxes('pizzeria')">Pizzerie</a></li>
-                    <li><a href="#" onclick="filterBoxes('drink')">Drink</a></li>
+                    <li><a href="#" onclick="filterBoxes('piadineria')">Piadineria</a></li>
                 </ul>
             </div>
 
@@ -1262,7 +1262,7 @@
         // un'altra pagina come privacy.html), applichiamo subito il filtro
         // corrispondente, così il link funziona davvero e non mostra solo "tutti".
         (function applyFilterFromHash() {
-            const categoriaValida = ['ristoranti', 'birreria-pub', 'drink', 'pizzeria'];
+            const categoriaValida = ['ristoranti', 'birreria-pub', 'piadineria', 'pizzeria'];
             const hash = window.location.hash.replace('#', '');
             if (categoriaValida.includes(hash)) {
                 document.addEventListener('DOMContentLoaded', () => filterBoxes(hash));
