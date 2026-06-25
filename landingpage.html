@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Più Siamo Meno Paghiamo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary:    #00b4db;
+            --primary-dk: #0083b0;
+            --green:      #00b894;
+            --green-dk:   #009972;
+            --orange:     #ff7043;
+            --bg:         #f2f7fb;
+            --white:      #ffffff;
+            --dark:       #333333;
+            --muted:      #666666;
+            --light-blue: #e6f5ff;
+            --yellow:     #ffe66d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dk));
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--yellow);
+        }
+
+        .btn-nav {
+            background-color: var(--white);
+            color: var(--primary-dk);
+            padding: 9px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--yellow);
+            color: var(--primary-dk);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 140px 0 90px;
+            text-align: center;
+            background: linear-gradient(135deg, #e0f4fb 0%, var(--bg) 70%);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .badge {
+            background-color: rgba(0,180,219,0.12);
+            border: 1px solid var(--primary);
+            color: var(--primary-dk);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary-dk);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 680px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-main {
+            background: linear-gradient(to right, var(--primary), var(--primary-dk));
+            color: var(--white);
+            padding: 16px 38px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,131,176,0.25);
+        }
+
+        .cta-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,131,176,0.35);
+        }
+
+        /* ── COME FUNZIONA ── */
+        .how-it-works {
+            padding: 90px 0;
+            background-color: var(--white);
+            border-bottom: 1px solid #dde8f0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .section-title h2 span {
+            color: var(--primary-dk);
+        }
+
+        .section-title p {
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background-color: var(--bg);
+            padding: 40px 28px 32px;
+            border-radius: 16px;
+            border: 2px solid #dde8f0;
+            position: relative;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(0,131,176,0.12);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -18px;
+            left: 28px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dk));
+            color: var(--white);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,131,176,0.3);
+        }
+
+        .step-card i {
+            font-size: 2.2rem;
+            color: var(--primary-dk);
+            margin-top: 10px;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* ── VANTAGGI ── */
+        .benefits-section {
+            padding: 90px 0;
+            background-color: var(--bg);
+        }
+
+        .benefits-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .benefits-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .benefits-text h2 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+
+        .benefits-text h2 span {
+            color: var(--primary-dk);
+        }
+
+        .benefits-text > p {
+            color: var(--muted);
+            margin-bottom: 36px;
+            font-size: 1.05rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .benefit-icon {
+            background-color: rgba(0,180,219,0.1);
+            color: var(--primary-dk);
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--dark);
+        }
+
+        .benefit-info p {
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        /* ── CTA BANNER ── */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--green), #00a381);
+            padding: 60px;
+            border-radius: 24px;
+            text-align: center;
+            margin-bottom: 0;
+            color: var(--white);
+            box-shadow: 0 10px 35px rgba(0,184,148,0.25);
+        }
+
+        .cta-banner h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .cta-banner p {
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        .cta-banner .cta-main {
+            background: var(--white);
+            color: var(--primary-dk);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .cta-banner .cta-main:hover {
+            background: var(--yellow);
+            color: var(--primary-dk);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background-color: #000;
+            color: #ccc;
+            padding: 36px 0;
+            text-align: center;
+            border-top: 5px solid var(--primary);
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p  { font-size: 1rem; }
+            .section-title h2 { font-size: 1.8rem; }
+            .benefits-text h2 { font-size: 1.8rem; }
+            .cta-banner { padding: 36px 20px; }
+            .cta-banner h3 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/" class="logo">
+                <i class="fas fa-users"></i> Più Siamo <span>Meno Paghiamo</span>
+            </a>
+            <a href="https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/" class="btn-nav">
+                Entra nel Sito <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">🍕 Group Buying per Ristoranti &amp; Locali</div>
+            <h1>Raggiungi il Numero, <br>Ottieni il Prezzo <span>Scontato</span></h1>
+            <p>Su <strong>Più Siamo Meno Paghiamo</strong> ogni locale propone un'offerta speciale a prezzo fisso scontato che si attiva soltanto al raggiungimento di un numero minimo di partecipanti. Iscriviti, aspetta che il gruppo si completi e scarica il tuo coupon.</p>
+            <a href="https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/" class="cta-main">
+                Guarda le Offerte Attive <i class="fas fa-fire"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Come Funziona -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Come <span>Funziona</span></h2>
+                <p>Quattro passi semplici per ottenere il tuo sconto di gruppo.</p>
+            </div>
+            
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-store"></i>
+                    <h3>Scegli il Locale</h3>
+                    <p>Sfoglia i ristoranti, pizzerie, pub e birrerie partner attivi nella tua zona e trova l'offerta che fa per te.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-user-plus"></i>
+                    <h3>Iscriviti al Gruppo</h3>
+                    <p>Accedi con il tuo account e clicca su "Partecipa". La tua iscrizione viene registrata immediatamente nel contatore del gruppo.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-users"></i>
+                    <h3>Attendi il Numero Minimo</h3>
+                    <p>L'offerta si sblocca solo quando si raggiunge il numero di partecipanti richiesto dal locale. Fino ad allora il prezzo rimane bloccato.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <i class="fas fa-ticket-alt"></i>
+                    <h3>Scarica il Tuo Coupon</h3>
+                    <p>Quando il gruppo è completo ricevi una notifica: accedi all'Area Personale, completa il pagamento e scarica il tuo coupon da presentare al locale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vantaggi Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-wrapper">
+                <div class="benefits-text">
+                    <h2>Perché Funziona per <span>i Locali</span></h2>
+                    <p>Non è solo uno sconto. È uno strumento di marketing che porta clienti nuovi, garantiti e in flusso controllato — senza che tu spenda un euro in pubblicità.</p>
+
+                    <!-- Benefit 1 -->
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-user-plus"></i></div>
+                        <div class="benefit-info">
+                            <h3>Clienti Nuovi, Non i Soliti</h3>
+                            <p>Chi si iscrive alla piattaforma è spesso alla ricerca di qualcosa da provare. La tua offerta raggiunge persone che non sarebbero mai entrate senza questo incentivo — e che poi tornano.</p>
+                        </div>
+                    </div>
+
+                    <!-- Benefit 2 -->
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-share-alt"></i></div>
+                        <div class="benefit-info">
+                            <h3>Viralità Organica sui Social</h3>
+                            <p>Per completare il gruppo, gli utenti condividono spontaneamente l'offerta con amici e colleghi. Il tuo locale viene promosso su WhatsApp, Instagram e TikTok in modo completamente gratuito — ogni partecipante diventa un tuo promoter.</p>
+                        </div>
+                    </div>
+
+                    <!-- Benefit 3 -->
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="benefit-info">
+                            <h3>Arrivi Scaglionati, Non Caos</h3>
+                            <p>I clienti non arrivano tutti insieme in un colpo solo: ogni singolo partecipante si presenta quando vuole, nel corso della validità del coupon. Tu gestisci i tavoli con i tuoi ritmi, senza sovraffollamento e senza stress in cucina.</p>
+                        </div>
+                    </div>
+
+                    <!-- Benefit 4 -->
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="benefit-info">
+                            <h3>Zero Rischio: Parte Solo se il Numero si Raggiunge</h3>
+                            <p>Lo sconto si attiva solo quando il gruppo è completo. Se i partecipanti non bastano, l'offerta scade in automatico e non sei obbligato a nulla. Tu metti l'offerta sul piatto — il rischio lo porta la piattaforma.</p>
+                        </div>
+                    </div>
+
+                    <!-- Benefit 5 -->
+                    <div class="benefit-item">
+                        <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="benefit-info">
+                            <h3>Incasso Garantito Prima Ancora di Aprire</h3>
+                            <p>I partecipanti completano il pagamento online per riscattare il coupon. Quando aprono la porta, il conto è già fatto. Meno gestione cassa, più certezza di fatturato — anche nelle serate più incerte.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Banner -->
+            <div class="cta-banner" style="margin-top: 70px;">
+                <h3>Pronto a risparmiare questa sera?</h3>
+                <p>Guarda le offerte attive adesso, iscriviti a un gruppo e aspetta che il numero si completi per sbloccare il tuo sconto.</p>
+                <a href="https://piusiamomenopaghiamo.github.io/piusiamomenopaghiamo/" class="cta-main">
+                    Vai alle Offerte <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <span>Più Siamo Meno Paghiamo</span>. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
