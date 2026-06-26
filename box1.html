@@ -3,17 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Più Siamo, Meno Paghiamo</title>
+  <title>Sapori di Romagna – Menu per 2 | Più Siamo Meno Paghiamo</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* RESET E STILI BASE */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Open Sans', sans-serif;
       background: #f2f7fb;
@@ -28,13 +23,18 @@
       padding: 30px 20px;
       text-align: center;
       position: relative;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     header h1 {
       font-family: 'Quicksand', sans-serif;
-      font-size: 2.5rem;
-      margin: 0 0 10px 0;
+      font-size: 2.2rem;
+      margin: 0 0 6px 0;
+    }
+
+    header p.subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
     }
 
     .back-home {
@@ -59,34 +59,40 @@
     .countdown {
       background: #2c3e50;
       color: white;
-      padding: 10px;
+      padding: 10px 20px;
       border-radius: 5px;
       text-align: center;
       font-weight: bold;
-      margin: 20px auto;
-      max-width: 300px;
+      margin: 16px auto 0;
+      max-width: 320px;
     }
 
-    .countdown span {
-      color: #f1c40f;
-    }
+    .countdown span { color: #f1c40f; }
 
-    /* CONTAINER PRINCIPALE */
+    /* CONTAINER */
     .container {
       max-width: 800px;
       margin: 30px auto;
       background: white;
       border-radius: 12px;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
       overflow: hidden;
     }
 
-    /* GALLERIA IMMAGINI */
-    .image-gallery {
-      width: 100%;
-      padding: 20px;
-      position: relative;
+    /* BADGE EVENTO */
+    .event-badge {
+      background: linear-gradient(45deg, #ff4e00, #ec9f05);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
     }
+
+    /* GALLERIA */
+    .image-gallery { width: 100%; padding: 20px; position: relative; }
 
     .main-image {
       position: relative;
@@ -102,7 +108,8 @@
     .main-image img {
       max-width: 100%;
       max-height: 100%;
-      object-fit: contain;
+      object-fit: cover;
+      width: 100%;
       display: block;
     }
 
@@ -110,7 +117,7 @@
       position: absolute;
       top: 15px;
       right: 15px;
-      background: rgba(231, 76, 60, 0.9);
+      background: rgba(231,76,60,0.92);
       color: white;
       padding: 8px 15px;
       border-radius: 20px;
@@ -128,7 +135,7 @@
 
     .thumbnails img {
       width: 100px;
-      height: 60px;
+      height: 65px;
       object-fit: cover;
       border-radius: 6px;
       cursor: pointer;
@@ -143,169 +150,205 @@
       border: 2px solid #00b894;
     }
 
-    .thumbnail-badge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #f1c40f;
-      color: #000;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-
-    /* CONTENUTO */
-    .content {
-      padding: 25px 20px;
-    }
+    /* CONTENT */
+    .content { padding: 25px 20px; }
 
     .content h2 {
       font-size: 1.8rem;
-      margin-bottom: 15px;
+      margin-bottom: 8px;
       color: #0083b0;
       text-align: center;
     }
 
+    .locale-tag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #555;
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .locale-tag i { color: #e74c3c; }
+
+    /* PREZZO */
     .price-container {
       text-align: center;
       margin: 20px 0;
+      background: linear-gradient(45deg, #ff4e00, #ec9f05);
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 0 22px rgba(255,78,0,0.45);
+      animation: pulse-glow 2.2s infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%,100% { box-shadow: 0 0 22px rgba(255,78,0,0.45); }
+      50%      { box-shadow: 0 0 36px rgba(255,100,0,0.85); }
+    }
+
+    .price-label {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
     }
 
     .current-price {
-      font-size: 2.2rem;
-      font-weight: bold;
-      color: #e74c3c;
+      font-size: 3rem;
+      font-weight: 900;
+      color: #fff200;
+      text-shadow: 2px 2px 0 #000, 0 0 12px #ff0000;
+      line-height: 1;
     }
 
     .original-price {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       text-decoration: line-through;
-      color: #95a5a6;
-      margin-left: 10px;
+      color: rgba(255,255,255,0.75);
+      margin-top: 4px;
     }
 
     .discount-badge {
       display: inline-block;
-      background: #f1c40f;
-      color: #000;
-      padding: 3px 10px;
-      border-radius: 15px;
-      font-weight: bold;
-      margin-left: 10px;
-      font-size: 0.9rem;
-    }
-
-    .content p {
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    /* SEZIONI */
-    .details {
-      background: #fff8e1;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border-left: 4px solid #f1c40f;
-    }
-
-    .details h3 {
-      margin-top: 0;
-      color: #0077a3;
-      font-size: 1.3rem;
-    }
-
-    .details ul {
-      padding-left: 20px;
-    }
-
-    .details li {
-      margin-bottom: 8px;
-      position: relative;
-    }
-
-    .details li i {
+      background: white;
       color: #e74c3c;
-      margin-right: 8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-top: 8px;
+      font-size: 1rem;
     }
 
-    .benefits {
-      background: #e8f5e9;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border-left: 4px solid #2ecc71;
-    }
-
+    /* PARTECIPANTI */
     .participants-message {
       background: #e74c3c;
       color: white;
-      padding: 15px;
+      padding: 14px 18px;
       border-radius: 8px;
       text-align: center;
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin: 20px 0;
     }
 
-    /* SOCIAL E TESTIMONIAL */
-    .social-proof {
+    .intro-text {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    /* SEZIONI */
+    .section {
+      padding: 15px 18px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .section h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+      color: #0077a3;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 15px;
+      gap: 8px;
+    }
+
+    .section ul {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .section li {
+      margin-bottom: 7px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .section li i {
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .sec-yellow {
+      background: #fff8e1;
+      border-left: 4px solid #f1c40f;
+    }
+
+    .sec-green {
+      background: #e8f5e9;
+      border-left: 4px solid #2ecc71;
+    }
+
+    .sec-green h3 { color: #1a7a3c; }
+    .sec-green li i { color: #2ecc71; }
+
+    .sec-blue {
+      background: #e3f2fd;
+      border-left: 4px solid #00b4db;
+    }
+
+    .sec-blue h3 { color: #0077a3; }
+    .sec-blue li i { color: #00b4db; }
+
+    .sec-red {
+      background: #fdecea;
+      border-left: 4px solid #e74c3c;
+    }
+
+    .sec-red h3 { color: #c0392b; }
+    .sec-red li i { color: #e74c3c; }
+
+    /* SMART DAYS */
+    .smart-days {
+      background: linear-gradient(135deg, #00b894, #00a381);
+      color: white;
+      padding: 16px 20px;
+      border-radius: 10px;
+      text-align: center;
       margin: 20px 0;
-      flex-wrap: wrap;
     }
 
-    .social-proof img {
-      height: 40px;
-      opacity: 0.7;
-      transition: opacity 0.3s;
+    .smart-days h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
     }
 
-    .social-proof img:hover {
-      opacity: 1;
+    .smart-days .smart-price {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff200;
     }
 
+    .smart-days p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    /* TESTIMONIAL */
     .testimonial {
       background: white;
       padding: 15px;
       border-radius: 8px;
       margin: 20px 0;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
       border-top: 3px solid #e74c3c;
     }
 
-    .testimonial-text {
-      font-style: italic;
-      margin-bottom: 10px;
-    }
+    .stars { color: #f1c40f; margin-bottom: 5px; font-size: 1.1rem; }
+    .testimonial-text { font-style: italic; margin-bottom: 8px; color: #444; }
+    .testimonial-author { font-weight: bold; color: #e74c3c; text-align: right; font-size: 0.9rem; }
 
-    .testimonial-author {
-      font-weight: bold;
-      color: #e74c3c;
-      text-align: right;
-    }
-
-    .stars {
-      color: #f1c40f;
-      margin-bottom: 5px;
-    }
-
-    /* PULSANTE */
-    .button-container {
-      text-align: center;
-      margin: 30px 0;
-    }
+    /* BUTTON */
+    .button-container { text-align: center; margin: 30px 0 10px; }
 
     .button-container button {
-      padding: 16px 40px;
+      padding: 16px 44px;
       background-color: #00b894;
       color: white;
       border: none;
@@ -327,63 +370,35 @@
 
     .button-container button:active {
       transform: translateY(2px);
-      box-shadow: 0 2px 0 #a53125;
+      box-shadow: 0 2px 0 #007d5e;
     }
 
     .guarantee {
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #7f8c8d;
       margin-top: 10px;
     }
 
-    .guarantee i {
-      color: #2ecc71;
-      margin-right: 5px;
-    }
+    .guarantee i { color: #2ecc71; margin-right: 4px; }
 
-    /* ANIMAZIONI */
+    /* PULSE */
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.03); }
       100% { transform: scale(1); }
     }
 
-    .pulse {
-      animation: pulse 2s infinite;
-    }
+    .pulse { animation: pulse 2s infinite; }
 
-    /* MEDIA QUERIES */
+    /* MOBILE */
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-      
-      .current-price {
-        font-size: 1.8rem;
-      }
-      
-      .original-price {
-        font-size: 1.2rem;
-      }
-      
-      .participants-message {
-        font-size: 1rem;
-      }
-      
-      .main-image {
-        height: 250px;
-      }
-      
-      .thumbnails img {
-        width: 80px;
-        height: 50px;
-      }
-      
-      .button-container button {
-        padding: 14px 30px;
-        font-size: 18px;
-      }
+      header h1 { font-size: 1.7rem; }
+      .current-price { font-size: 2.4rem; }
+      .main-image { height: 240px; }
+      .thumbnails img { width: 76px; height: 50px; }
+      .button-container button { padding: 14px 28px; font-size: 17px; }
+      .participants-message { font-size: 1rem; }
     }
   </style>
 </head>
@@ -391,146 +406,200 @@
 
   <header>
     <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
-    <h1>OFFERTA IMPERDIBILE</h1>
-    <div class="countdown">⏰ <i class="fas fa-bolt"></i> Scade tra: <span id="timer">00:59:59</span></div>
+    <div class="countdown">⏰ <i class="fas fa-bolt"></i> Offerta valida ancora per: <span id="timer">00:59:59</span></div>
   </header>
 
   <div class="container">
+
+    <div class="event-badge">🎉 Serata a Tema Romagnola — Edizione Speciale</div>
+
+    <!-- GALLERIA -->
     <div class="image-gallery">
       <div class="main-image">
         <div class="image-badge">OFFERTA LIMITATA</div>
-        <img id="current-image" src="https://raw.githubusercontent.com/piusiamomenopaghiamo/piusiamomenopaghiamo/main/crauti.png" alt="Crauti">
+        <img id="current-image"
+             src="https://i.pinimg.com/1200x/c0/73/b5/c073b550e963af5ccd6f88dc0f3517e3.jpg"
+             alt="Piadina Romagnola">
       </div>
       <div class="thumbnails">
-        <img src="https://raw.githubusercontent.com/piusiamomenopaghiamo/piusiamomenopaghiamo/main/crauti.png" alt="crauti" class="thumb active" onclick="changeImage(this)">
-        <div class="thumbnail-badge"><i class="fas fa-heart"></i></div>
-        
-        <img src="https://raw.githubusercontent.com/piusiamomenopaghiamo/piusiamomenopaghiamo/main/Tagliata.png" alt="Tagliata" class="thumb" onclick="changeImage(this)">
-        <div class="thumbnail-badge"><i class="fas fa-star"></i></div>
-        
-        <img src="https://raw.githubusercontent.com/piusiamomenopaghiamo/piusiamomenopaghiamo/main/Pizza.png" alt="Pizza" class="thumb" onclick="changeImage(this)">
-        <div class="thumbnail-badge"><i class="fas fa-star"></i></div>
-        
-         <img src="https://raw.githubusercontent.com/piusiamomenopaghiamo/piusiamomenopaghiamo/main/Panino.png" alt="Panino" class="thumb" onclick="changeImage(this)">
-        <div class="thumbnail-badge"><i class="fas fa-star"></i></div>
-        
-        <img src="https://raw.githubusercontent.com/piusiamomenopaghiamo/piusiamomenopaghiamo/main/Cocktail.png" alt="Cocktail" class="thumb" onclick="changeImage(this)">
-        <div class="thumbnail-badge"><i class="fas fa-star"></i></div>
-        
-         <img src="https://raw.githubusercontent.com/piusiamomenopaghiamo/piusiamomenopaghiamo/main/Tagos.png" alt="Tagos" class="thumb" onclick="changeImage(this)">
-        <div class="thumbnail-badge"><i class="fas fa-star"></i></div>
-       </div>
+        <img src="https://i.pinimg.com/1200x/99/b1/76/99b176df4170dd6bfa4b5ab146d91695.jpg"
+             alt="Piadina classica" class="thumb active" onclick="changeImage(this)">
+        <img src="https://i.pinimg.com/1200x/e0/5b/13/e05b13bd36355ea0680c1db994794a3a.jpg"
+             alt="Variante gustosa" class="thumb" onclick="changeImage(this)">
+        <img src="https://i.pinimg.com/1200x/a9/0d/32/a90d325665d0fbc43b5dfa25fbccfd9b.jpg"
+             alt="Bevanda inclusa" class="thumb" onclick="changeImage(this)">
+        <img src="https://i.pinimg.com/1200x/f8/a7/4d/f8a74d67617b178c7618c77b06a1c5ea.jpg"
+             alt="Crescione romagnolo" class="thumb" onclick="changeImage(this)">
+        <img src="https://img05.restaurantguru.com/ra94-exterior-LA-PIADINA-ROMAGNOLA.jpg"
+             alt="Tagliere con salumi" class="thumb" onclick="changeImage(this)">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/02/df/dd/8e/la-piadina-romagnola.jpg?w=900&h=500&s=1"
+             alt="Locale accogliente" class="thumb" onclick="changeImage(this)">
+      </div>
     </div>
 
-
+    <!-- CONTENUTO -->
     <div class="content">
-       <h2>Sapori Bavaresi e Birra Artigianale<span class="current-price">    <br> <b>€20</b></span> <span class="original-price"><S>Anzichè €38</S></span> </h2>
-      
+
+      <h2>Menu Piadina Romagnola per 2</h2>
+      <div class="locale-tag">
+        <i class="fas fa-map-marker-alt"></i>
+        <span><strong>La Piadina Romagnola</strong> · Via Principi d'Acaja 61/B, Torino</span>
+      </div>
+
+      <!-- PREZZO -->
+      <div class="price-container">
+        <div class="price-label" style="font-size:1.35rem;font-weight:900;color:#fff;text-shadow:1px 1px 0 #000;">Se ne acquistiamo 20, paghi solo</div>
+        <div class="current-price">€18</div>
+        <div class="original-price" style="font-size:1.5rem;font-weight:900;color:#fff;text-decoration:line-through;">Anziché €34</div>
+        <div class="discount-badge">– 47% di sconto!</div>
+      </div>
+
+      <!-- SBLOCCO OFFERTA -->
       <div class="participants-message">
-        <i class="fas fa-users"></i> <b>Se siamo in 40 persone, sblocchiamo l'offerta!</b>
+        <i class="fas fa-users"></i> &nbsp;Servono <strong>20 partecipanti</strong> per sbloccare l'offerta!
       </div>
 
-      <p>Approfitta subito di questa offerta esclusiva! Partecipa  ora per assicurarti il tuo posto!</p>
-     <p><b>Locale:</b>📍Birrificio San Salvario <br>
-Via Baretti, 25, 10125 Torino TO<br> 
-      
-      
+      <p class="intro-text">
+        Un viaggio nei sapori autentici della Romagna: due piadine artigianali a scelta, con i migliori ingredienti del territorio. Una serata speciale da vivere in coppia o con un amico, in un locale accogliente nel cuore di Torino!
+      </p>
 
-      <div class="benefits">
-        <h3><i class="fas fa-utensils"></i>
-
-Menù (per 2 persone):</h3>
+      <!-- MENU INCLUSO -->
+      <div class="section sec-green">
+        <h3><i class="fas fa-utensils"></i> Menu (per 2 persone)</h3>
         <ul>
-         Il menu include bratwurst alla griglia con crauti e un pulled pork sandwich con coleslaw, accompagnati da patatine rustiche con buccia e nachos con formaggio fuso e jalapeños, per una combinazione perfetta tra sapori tradizionali e street food.<br>
-          
-           
-          
+          <li><i class="fas fa-leaf"></i>
+            <span><strong>2 Piadine artigianali</strong> a scelta — classica con squacquerone e rucola, oppure farcita con prosciutto crudo di Parma, stracchino e pomodorini</span>
+          </li>
+          <li><i class="fas fa-seedling"></i>
+            <span><strong>2 Crescioni</strong> ripieni a scelta — classico erbe e squacquerone, oppure salsiccia e cipolla caramellata</span>
+          </li>
         </ul>
       </div>
 
-      <div class="details">
-        <h3><i class="fas fa-cheese"></i> Accompagnamenti: </h3>
+      <!-- CONTORNI -->
+      <div class="section sec-yellow">
+        <h3><i class="fas fa-cheese"></i> Contorni & Accompagnamenti</h3>
         <ul>
-          <li><i class="fas fa-check"></i>Salsa senape al miele</li>
-          <li><i class="fas fa-check"></i>Salsa piccante al chipotlew</li>
-          <li><i class="fas fa-check"></i>Maionese alla birra chiara</li>
-           <li><i class="fas fa-check"></i>Insalata di cavolo rosso marinato</li>
-          
-        </ul>
-      </div>
-<div class="details">
-        <h3><i class="fas fa-beer"></i> Da Bere: </h3>
-        <ul>
-          <li><i class="fas fa-check"></i>2 birre artigianali a scelta (Pils / IPA / Stout)</li>
-         
-           
-          
-        </ul>
-      </div>
-    
-    
-      <div class="details">
-        <h3><i class="fas fa-exclamation-circle"></i> Condizioni:</h3>
-        <ul>
-          <li><i class="fas fa-stopwatch"></i> Offerta valida per un periodo limitato – non perdere l'occasione!</li>
-          <li><i class="fas fa-calendar-check"></i> Prenotazione obbligatoria </li>
-          <li><i class="fas fa-store"></i> Valida solo presso:📍San Salvario, Torino</li>
+          <li><i class="fas fa-check" style="color:#f1c40f"></i> <span>Insalata di stagione condita con olio EVO</span></li>
+          <li><i class="fas fa-check" style="color:#f1c40f"></i> <span>Patatine fruste croccanti</span></li>
+          <li><i class="fas fa-check" style="color:#f1c40f"></i> <span>Salsa squacquerone cremosa extra</span></li>
+          <li><i class="fas fa-check" style="color:#f1c40f"></i> <span>Pinzimonio di verdure fresche</span></li>
         </ul>
       </div>
 
+      <!-- BEVANDE -->
+      <div class="section sec-blue">
+        <h3><i class="fas fa-glass-cheers"></i> Da Bere (incluso)</h3>
+        <ul>
+          <li><i class="fas fa-check" style="color:#00b4db"></i> <span><strong>2 Bevande</strong> a scelta — acqua naturale/frizzante, bibita o birra artigianale locale</span></li>
+          <li><i class="fas fa-check" style="color:#00b4db"></i> <span>Caffè finale incluso per entrambi</span></li>
+        </ul>
+      </div>
+
+      <!-- DOLCE -->
+      <div class="section sec-red">
+        <h3><i class="fas fa-birthday-cake"></i> Dolce Sorpresa</h3>
+        <ul>
+          <li><i class="fas fa-star" style="color:#e74c3c"></i>
+            <span><strong>Ciambella romagnola</strong> al forno con marmellata di albicocche — la tradizione in ogni morso</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- CONDIZIONI -->
+      <div class="section sec-yellow">
+        <h3><i class="fas fa-exclamation-circle"></i> Condizioni</h3>
+        <ul>
+          <li><i class="fas fa-calendar-alt" style="color:#f1c40f"></i>
+            <span>Offerta valida <strong>solo per il mercoledì sera</strong></span>
+          </li>
+          <li><i class="fas fa-stopwatch" style="color:#f1c40f"></i>
+            <span>Offerta valida per un <strong>periodo limitato</strong> — non perdere l'occasione!</span>
+          </li>
+          <li><i class="fas fa-calendar-check" style="color:#f1c40f"></i>
+            <span><strong>Prenotazione obbligatoria</strong> tramite coupon scaricabile dall'Area Personale</span>
+          </li>
+          <li><i class="fas fa-store" style="color:#f1c40f"></i>
+            <span>Valida <strong>solo</strong> presso: La Piadina Romagnola · Via Principi d'Acaja 61/B, Torino</span>
+          </li>
+          <li><i class="fas fa-users" style="color:#f1c40f"></i>
+            <span>L'offerta si sblocca al raggiungimento di <strong>20 partecipanti</strong></span>
+          </li>
+          <li><i class="fas fa-ban" style="color:#f1c40f"></i>
+            <span>Non cumulabile con altre promozioni o sconti in corso</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- TESTIMONIAL -->
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Piadina artigianale come quella vera! Gli ingredienti si sentono tutti, la ciambella finale è stata una sorpresa deliziosa. Ci torneremo sicuramente!"</p>
+        <div class="testimonial-author">— Francesca M., Torino</div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Locale accogliente, personale gentilissimo e piadine buonissime. Il crescione con salsiccia e cipolla caramellata era straordinario. Ottimo rapporto qualità-prezzo grazie all'offerta!"</p>
+        <div class="testimonial-author">— Marco & Giulia, Torino</div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Serata indimenticabile! Le piadine erano morbidissime e farcite con generosità. Il crescione con erbe e squacquerone ci ha conquistati. Servizio veloce e personale super disponibile."</p>
+        <div class="testimonial-author">— Valentina & Luca, Chieri</div>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Qualità vera, sapori autentici. Si sente subito che usano ingredienti freschi. La ciambella romagnola finale era spettacolare — mi ha ricordato quella di mia nonna! Tornerò ogni mercoledì."</p>
+        <div class="testimonial-author">— Roberto S., Moncalieri</div>
+      </div>
+
+      <!-- CTA -->
       <div class="button-container">
-        <button class="pulse" onclick="window.location.href='index.html#box1'">
-          <i class="fas fa-ticket-alt"></i> PARTECIPA ORA & RISPARMIA 
+        <button class="pulse" id="cta-btn" onclick="window.location.href='index.html#box1'">
+          <i class="fas fa-ticket-alt"></i> PARTECIPA ORA & RISPARMIA
         </button>
         <div class="guarantee">
-          <i class="fas fa-shield-alt"></i> Speciale giorni smart (lun-mar-mer): solo €25!
+          <i class="fas fa-shield-alt"></i> Coupon disponibile nell'Area Personale dopo il raggiungimento del gruppo
         </div>
       </div>
+
     </div>
-  
+  </div>
 
   <script>
-    // 1. Funzione per cambiare immagine
-    function changeImage(element) {
-      document.getElementById("current-image").src = element.src;
+    function changeImage(el) {
+      document.getElementById("current-image").src = el.src;
       document.querySelectorAll(".thumb").forEach(img => img.classList.remove("active"));
-      element.classList.add("active");
+      el.classList.add("active");
     }
 
-    // 2. Timer countdown (48 ore)
     function startCountdown() {
-      const endTime = new Date();
-      endTime.setHours(endTime.getHours() + 1);
-      
-      const timer = setInterval(() => {
-        const now = new Date();
-        const diff = endTime - now;
-        
+      const end = new Date();
+      end.setHours(end.getHours() + 1);
+      const timerEl = document.getElementById("timer");
+
+      setInterval(() => {
+        const diff = end - new Date();
         if (diff <= 0) {
-          clearInterval(timer);
-          document.getElementById("timer").textContent = "OFFERTA SCADUTA";
+          timerEl.textContent = "OFFERTA SCADUTA";
           return;
         }
-        
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        document.getElementById("timer").textContent = 
-          `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        timerEl.textContent =
+          `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
       }, 1000);
     }
 
-    // 3. Inizializzazione
     window.addEventListener('DOMContentLoaded', () => {
       startCountdown();
-      
-      // Animazione pulsante
-      document.querySelector(".button-container button").addEventListener("click", function() {
+      document.getElementById("cta-btn").addEventListener("click", function () {
         this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Stiamo confermando...';
-        setTimeout(() => {
-          window.location.href = 'index.html#box1';
-        }, 1500);
+        setTimeout(() => { window.location.href = 'index.html#box1'; }, 1400);
       });
     });
   </script>
