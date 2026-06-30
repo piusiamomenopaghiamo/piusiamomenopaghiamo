@@ -204,8 +204,8 @@
     });
   });
 
-  // Gestione invio form -> Webhook generico
-  const WEBHOOK_URL = "https://YOUR-WEBHOOK-ENDPOINT.example.com/candidature"; // <-- sostituire con l'URL reale (es. Zapier, Make, Google Sheets API, backend proprio)
+  // Gestione invio form -> invio email tramite FormSubmit
+  const WEBHOOK_URL = "https://formsubmit.co/ajax/piusiamomenopaghiamo@gmail.com";
 
   const form = document.getElementById('candidaturaForm');
   const submitBtn = document.getElementById('submitBtn');
@@ -225,19 +225,12 @@
     formMessage.classList.add('hidden');
 
     try {
-      // Predisposizione chiamata reale al webhook (commentata/simulata finché non si imposta WEBHOOK_URL)
-      /*
       const response = await fetch(WEBHOOK_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify(payload)
       });
       if (!response.ok) throw new Error("Errore di invio");
-      */
-
-      // Simulazione invio (da rimuovere quando si attiva il fetch reale sopra)
-      await new Promise(resolve => setTimeout(resolve, 1200));
-      console.log("Candidatura simulata inviata:", payload);
 
       formMessage.textContent = "✓ Candidatura ricevuta. Riceverai una risposta entro 48 ore via email.";
       formMessage.className = "block text-center text-sm font-semibold rounded-lg py-3 bg-neon/10 border border-neon/40 text-neon";
