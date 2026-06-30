@@ -219,6 +219,8 @@
     const payload = Object.fromEntries(formData.entries());
     payload.timestamp = new Date().toISOString();
     payload.source = "landing-piusiamo-menopaghiamo-B2B";
+    payload._url = window.location.href;
+    payload._captcha = "false";
 
     submitBtn.disabled = true;
     submitBtnText.textContent = "Invio in corso...";
